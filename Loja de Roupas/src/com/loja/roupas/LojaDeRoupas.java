@@ -17,7 +17,7 @@ public class LojaDeRoupas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Integrar o Github versão 1.0.0.0");
+        System.out.println("");
     }
     
 }
