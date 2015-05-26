@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.loja.roupas.modelo;
+package com.loja.roupas.model;
 
 /**
  *
  * @author Gustavo
  */
-public class Produtos {
+public class ModelFuncionarios {
     
 }
