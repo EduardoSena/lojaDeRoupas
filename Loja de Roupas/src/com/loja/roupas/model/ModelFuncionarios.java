@@ -7,7 +7,7 @@ package com.loja.roupas.model;
 
 /**
  *
- * @author Gustavo
+ * @author Eduardo, Gustavo e Ludimila
  */
 public class ModelFuncionarios {
     
