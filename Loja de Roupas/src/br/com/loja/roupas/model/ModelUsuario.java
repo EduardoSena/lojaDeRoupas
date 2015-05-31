@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.loja.roupas.model;
+package br.com.loja.roupas.model;
+import java.sql.Date;
+
 
 /**
  *
@@ -16,7 +18,7 @@ abstract public class ModelUsuario {
   private String email;
   private String telefone;
   private String cpf;
-  private int datanasc;
+  private String  datanasc;
   private String endereco;
   private String cep;
 
@@ -53,13 +55,13 @@ abstract public class ModelUsuario {
         this.cpf = cpf;
     }
 
-    public int getDatanasc() {
-        return datanasc;
-    }
+//    public String  getDatanasc() {
+//        return datanasc;
+//    }
 
-    public void setDatanasc(int datanasc) {
-        this.datanasc = datanasc;
-    }
+//    public void setDatanasc( String datanasc) {
+//        this.datanasc = datanasc;
+//    }
 
     public String getEndereco() {
         return endereco;

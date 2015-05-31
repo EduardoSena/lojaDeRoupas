@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.loja.roupas.dao;
+package br.com.loja.roupas.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,15 +13,15 @@ import java.sql.SQLException;
  * @author Eduardo Marcio
  */
 public class ConexaoDao {
+    private String bancoDeDados="jdbc:postgresql://localhost:5432/dbloja";
+    private String login = "postgres";
+    private String senha="181977dudu";
     
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection(
+            return DriverManager.getConnection(bancoDeDados,login,senha);
                    // "jdbc:mysql://localhost/projetojava",
-                "jdbc:postgresql://localhost:5432/dbloja",                  
-                    "postgres","181977dudu");
-        
-        
+                           
         }
         
         
