@@ -80,7 +80,12 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         subMenuCadProd.setText("Cadastrar Produtos");
         menuProduto.add(subMenuCadProd);
 
-        subMenuVenda.setText("Listar Produtos");
+        subMenuVenda.setText("Lista de Produtos");
+        subMenuVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuVendaActionPerformed(evt);
+            }
+        });
         menuProduto.add(subMenuVenda);
 
         subMenuCadPedido.setText("Pedidos");
@@ -90,7 +95,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         menuVenda.setText("Vendas");
 
-        jMenuItem1.setText("Listar Vendas");
+        jMenuItem1.setText("Lista de Vendas");
         menuVenda.add(jMenuItem1);
 
         subMenuListaVendas.add(menuVenda);
@@ -138,6 +143,16 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_subMenuFuncionarioActionPerformed
+
+    private void subMenuVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuVendaActionPerformed
+        // TODO add your handling code here:
+        InternalFrameListarProdutos internoListaProdutos=new InternalFrameListarProdutos();
+        if (FmPrincipalMdi.controleAcesso == true) {
+        DesktopPanePrincipal.add(internoListaProdutos);
+         internoListaProdutos.setVisible(true);
+         FmPrincipalMdi.controleAcesso=false;
+        }
+    }//GEN-LAST:event_subMenuVendaActionPerformed
 
     /**
      * @param args the command line arguments
