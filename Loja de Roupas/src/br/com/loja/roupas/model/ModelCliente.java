@@ -5,7 +5,7 @@
  */
 package br.com.loja.roupas.model;
 
-import java.sql.Date;
+
 
 /**
  *
@@ -13,11 +13,15 @@ import java.sql.Date;
  */
 public class ModelCliente extends ModelUsuario {
 
-    private int idcliente;
+    private int idCliente;
     private double desconto;
 
-    public int getIdcliente() {
-        return idcliente;
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idcliente) {
+        this.idCliente = idcliente;
     }
 
     public double getDesconto() {
