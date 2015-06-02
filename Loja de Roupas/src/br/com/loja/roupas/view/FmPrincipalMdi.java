@@ -39,9 +39,9 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         menuFuncionario = new javax.swing.JMenu();
         subMenuFuncionario = new javax.swing.JMenuItem();
         menuProduto = new javax.swing.JMenu();
-        subMenuCadProd = new javax.swing.JMenu();
+        subMenuCadProd = new javax.swing.JMenuItem();
         subMenuVenda = new javax.swing.JMenuItem();
-        subMenuCadPedido = new javax.swing.JMenu();
+        subMenuCadPedido = new javax.swing.JMenuItem();
         menuVenda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -77,7 +77,12 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         menuProduto.setText("Produtos");
 
-        subMenuCadProd.setText("Cadastrar Produtos");
+        subMenuCadProd.setText("Cadastro de Produtos");
+        subMenuCadProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuCadProdActionPerformed(evt);
+            }
+        });
         menuProduto.add(subMenuCadProd);
 
         subMenuVenda.setText("Lista de Produtos");
@@ -146,13 +151,24 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
     private void subMenuVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuVendaActionPerformed
         // TODO add your handling code here:
-        InternalFrameListarProdutos internoListaProdutos=new InternalFrameListarProdutos();
+        InternalFrameListaProdutos internoListaProdutos=new InternalFrameListaProdutos();
         if (FmPrincipalMdi.controleAcesso == true) {
         DesktopPanePrincipal.add(internoListaProdutos);
          internoListaProdutos.setVisible(true);
          FmPrincipalMdi.controleAcesso=false;
         }
     }//GEN-LAST:event_subMenuVendaActionPerformed
+
+    private void subMenuCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadProdActionPerformed
+        // TODO add your handling code here:
+        InternalFrameProdutos internoProdutos=new InternalFrameProdutos();
+        if (FmPrincipalMdi.controleAcesso == true) {
+        DesktopPanePrincipal.add(internoProdutos);
+         internoProdutos.setVisible(true);
+         FmPrincipalMdi.controleAcesso=false;
+        }
+        
+    }//GEN-LAST:event_subMenuCadProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,8 +212,8 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
     private javax.swing.JMenu menuFuncionario;
     private javax.swing.JMenu menuProduto;
     private javax.swing.JMenu menuVenda;
-    private javax.swing.JMenu subMenuCadPedido;
-    private javax.swing.JMenu subMenuCadProd;
+    private javax.swing.JMenuItem subMenuCadPedido;
+    private javax.swing.JMenuItem subMenuCadProd;
     private javax.swing.JMenuItem subMenuCliente;
     private javax.swing.JMenuItem subMenuFuncionario;
     private javax.swing.JMenuBar subMenuListaVendas;

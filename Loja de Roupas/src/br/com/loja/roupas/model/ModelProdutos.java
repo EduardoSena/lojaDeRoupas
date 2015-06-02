@@ -10,18 +10,15 @@ package br.com.loja.roupas.model;
  * @author Eduardo, Gustavo e Ludimila
  */
 public class ModelProdutos {
-    
-  
-            
-        
-    private int codigoProdutos ;
-    private int fkFuncionarios ;
-    private String nome ;
-    private  String descricao; 
-    private  double precounitario; 
-    private  String cor ;
-    private  int tamanho ;
-    private  String marca ;
+
+    private int codigoProdutos;
+    private int fkFuncionarios;
+    private String nome;
+    private String descricao;
+    private double precounitario;
+    private String cor;
+    private String tamanho;
+    private String marca;
 
     /**
      * @return the codigoProdutos
@@ -110,14 +107,14 @@ public class ModelProdutos {
     /**
      * @return the tamanho
      */
-    public int getTamanho() {
+    public String getTamanho() {
         return tamanho;
     }
 
     /**
      * @param tamanho the tamanho to set
      */
-    public void setTamanho(int tamanho) {
+    public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
@@ -134,10 +131,5 @@ public class ModelProdutos {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-    
-    
-    
-    
-    
-    
+
 }

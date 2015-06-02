@@ -6,7 +6,6 @@
 package br.com.loja.roupas.view;
 
 import br.com.loja.roupas.dao.ConexaoDao;
-import br.com.loja.roupas.model.ModelProdutos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,15 +19,15 @@ import net.proteanit.sql.DbUtils;
  *
  * @author Eduardo Marcio
  */
-public class InternalFrameListarProdutos extends javax.swing.JInternalFrame {
+public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     private Connection conexao;
-    private static String nomePesquisa;
+   private static String nomePesquisa;
 
     /**
      * Creates new form InternalFrameListarProdutos
      */
-    public InternalFrameListarProdutos() {
+    public InternalFrameListaProdutos() {
         this.conexao = new ConexaoDao().getConnection();
         initComponents();
     }
@@ -209,6 +208,7 @@ public class InternalFrameListarProdutos extends javax.swing.JInternalFrame {
         }else{
             try {
                 pesquisaProdutoLista();
+                
 
             } catch (Exception ex) {
                 Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);

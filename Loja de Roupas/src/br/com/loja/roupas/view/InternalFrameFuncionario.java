@@ -394,6 +394,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
     private void btnCadastroFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroFuncActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_btnCadastroFuncActionPerformed
 
     private void btnAlterarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncActionPerformed

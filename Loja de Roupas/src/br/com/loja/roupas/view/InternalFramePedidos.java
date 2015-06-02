@@ -55,6 +55,8 @@ public class InternalFramePedidos extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         txtPrecoProduto = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+
         jPanelPedido.setBackground(new java.awt.Color(204, 204, 255));
         jPanelPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Pedidos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 

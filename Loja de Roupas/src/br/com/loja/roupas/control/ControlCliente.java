@@ -12,7 +12,6 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author Eduardo Marcio
@@ -20,6 +19,10 @@ import java.sql.SQLException;
 public class ControlCliente {
 
     private Connection conexao;
+    private String sql;
+    private PreparedStatement stmt;
+    private ModelCliente cliente;
+    private ResultSet rs;
 
     public ControlCliente() {
         this.conexao = new ConexaoDao().getConnection();
@@ -27,7 +30,7 @@ public class ControlCliente {
 
     public void adiciona(ModelCliente cliente) {
 
-        String sql = "INSERT INTO lojaderoupa.clientes("
+        sql = "INSERT INTO lojaderoupa.clientes("
                 + "nome,email,telefone"
                 + ",cpf"//datanascimento"
                 + ",endereco,cep) "
@@ -35,7 +38,7 @@ public class ControlCliente {
 
         try {
 
-            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt = conexao.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEmail());
             stmt.setString(3, cliente.getTelefone());
@@ -54,11 +57,11 @@ public class ControlCliente {
 
     public void excluiCliente(ModelCliente cliente) throws Exception {
 
-        String sql = "DELETE FROM lojaderoupa.clientes"
-                + " WHERE idclientes= ?";//'"+cliente.getIdCliente()+"'";
+        sql = "DELETE FROM lojaderoupa.clientes"
+                + " WHERE idclientes= ?";
         try {
 
-            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, cliente.getIdCliente());
             stmt.execute();
             stmt.close();
@@ -68,21 +71,20 @@ public class ControlCliente {
         }
 
     }
-    
 
     public ModelCliente pesquisaCliente() {
-      ModelCliente cliente = new ModelCliente();
-        String sql = "SELECT  * FROM lojaderoupa.clientes WHERE nome= ?";
+        cliente = new ModelCliente();
+        sql = "SELECT  * FROM lojaderoupa.clientes WHERE nome LIKE ?";
 
         try {
 
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, Pesquisa());
-            ResultSet rs = stmt.executeQuery();
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, Pesquisa() + "%");
+            rs = stmt.executeQuery();
 
             if (rs.next()) {
 
-               cliente.setIdCliente(rs.getInt("idclientes"));
+                cliente.setIdCliente(rs.getInt("idclientes"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setTelefone(rs.getString("telefone"));
@@ -91,6 +93,7 @@ public class ControlCliente {
                 cliente.setCep(rs.getString("cep"));
 
             }
+
             rs.close();
             stmt.close();
 
@@ -100,24 +103,23 @@ public class ControlCliente {
 
         return cliente;
     }
-    
-    public void AtualizarCliente(ModelCliente cliente){
-        
-        String sql = "UPDATE lojaderoupa.clientes SET "+
-                "nome='"+cliente.getNome()+
-                "', email='"+cliente.getEmail()+
-                "', telefone='"+cliente.getTelefone()+
-                "', cpf='"+cliente.getCpf()+
-              //"', datanascimento='"+cliente.getEnderco()+
-                "', endereco='"+cliente.getEndereco()+
-                "', cep='"+cliente.getCep()+
-                "' WHERE idclientes="+cliente.getIdCliente();
-            
+
+    public void AtualizarCliente(ModelCliente cliente) {
+
+        sql = "UPDATE lojaderoupa.clientes SET "
+                + "nome='" + cliente.getNome()
+                + "', email='" + cliente.getEmail()
+                + "', telefone='" + cliente.getTelefone()
+                + "', cpf='" + cliente.getCpf()
+                + //"', datanascimento='"+cliente.getEnderco()+
+                "', endereco='" + cliente.getEndereco()
+                + "', cep='" + cliente.getCep()
+                + "' WHERE idclientes=" + cliente.getIdCliente();
 
         try {
 
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            
+            stmt = conexao.prepareStatement(sql);
+
             stmt.executeUpdate();
             stmt.close();
 

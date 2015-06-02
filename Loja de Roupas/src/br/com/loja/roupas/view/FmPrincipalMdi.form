@@ -39,11 +39,14 @@
             <Property name="text" type="java.lang.String" value="Produtos"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="subMenuCadProd">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuCadProd">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar Produtos"/>
+                <Property name="text" type="java.lang.String" value="Cadastro de Produtos"/>
               </Properties>
-            </Menu>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuCadProdActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="subMenuVenda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista de Produtos"/>
@@ -52,11 +55,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuVendaActionPerformed"/>
               </Events>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="subMenuCadPedido">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuCadPedido">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
-            </Menu>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuVenda">

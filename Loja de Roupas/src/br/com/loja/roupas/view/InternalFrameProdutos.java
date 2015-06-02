@@ -3,19 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.loja.roupas.view;
+
+import br.com.loja.roupas.control.ControlProduto;
+import br.com.loja.roupas.model.ModelProdutos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Eduardo Marcio
  */
-public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
+public class InternalFrameProdutos extends javax.swing.JInternalFrame {
+
+    private static String nomePesquisa;
+    private ModelProdutos produto;
+    private ControlProduto controle;
 
     /**
      * Creates new form InternalFrameCadastrarProdutos
      */
-    public InternalFrameCadastrarProdutos() {
+    public InternalFrameProdutos() {
         initComponents();
     }
 
@@ -77,6 +86,8 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
         btnPesquisarProduto = new javax.swing.JButton();
         txtCodigoFKFuncionario = new javax.swing.JTextField();
         txtNomeProduto = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(204, 204, 255));
 
         jInternalFrame1.setBackground(new java.awt.Color(204, 204, 255));
         jInternalFrame1.setPreferredSize(new java.awt.Dimension(750, 480));
@@ -630,20 +641,23 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         // TODO add your handling code here:
 
-    
 
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAlterar1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_btnExluirActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -656,6 +670,8 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
+
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -667,7 +683,7 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoProdutoActionPerformed
 
     private void txtPesquisaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
     }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
 
     private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
@@ -688,21 +704,111 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
 
     private void btnCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutoActionPerformed
         // TODO add your handling code here:
-        // TODO add your handling code here:
+        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
+        produto = new ModelProdutos();
+        controle = new ControlProduto();
 
-        
+        // fazendo a validação dos dados
+        if ((txtCodigoFKFuncionario.getText().isEmpty())
+                || (txtNomeProduto.getText().isEmpty())
+                || (txtDescricao.getText().isEmpty())
+                || (txtPrecoUnitario.getText().isEmpty())
+                || (txtCor.getText().isEmpty())
+                || (txtTamanho.getText().isEmpty())
+                || (txtMarca.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+
+            produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText()));
+            produto.setNome(txtNomeProduto.getText());
+            produto.setDescricao(txtDescricao.getText());
+            produto.setPrecounitario(Double.parseDouble(txtPrecoUnitario.getText()));
+            produto.setCor(txtCor.getText());
+            produto.setTamanho(txtTamanho.getText());
+            produto.setMarca(txtMarca.getText());
+
+            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+            controle.adicionaProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText() + " inserido com sucesso! ");
+        }
+
+        // apaga os dados preenchidos nos campos de texto
+        ApagaCampos();
+
+
     }//GEN-LAST:event_btnCadastroProdutoActionPerformed
 
     private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
         // TODO add your handling code here:
+        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
+        produto = new ModelProdutos();
+        controle = new ControlProduto();
+        
+
+        // fazendo a validação dos dados
+        if ((txtCodigoProduto.getText().isEmpty())
+                || (txtCodigoFKFuncionario.getText().isEmpty())
+                || (txtNomeProduto.getText().isEmpty())
+                || (txtDescricao.getText().isEmpty())
+                || (txtPrecoUnitario.getText().isEmpty())
+                || (txtCor.getText().isEmpty())
+                || (txtTamanho.getText().isEmpty())
+                || (txtMarca.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+
+            produto.setCodigoProdutos(Integer.valueOf(txtCodigoProduto.getText()));
+        produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText()));
+        produto.setNome(txtNomeProduto.getText());
+        produto.setDescricao(txtDescricao.getText());
+        produto.setPrecounitario(Double.parseDouble(txtPrecoUnitario.getText()));
+        produto.setCor(txtCor.getText());
+        produto.setTamanho(txtTamanho.getText());
+        produto.setMarca(txtMarca.getText());
+            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+            controle.AtualizarProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText() + " alterado com sucesso! ");
+        }
+
+        // apaga os dados preenchidos nos campos de texto
+        ApagaCampos();
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
 
     private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
         // TODO add your handling code here:
+        ApagaCampos();
     }//GEN-LAST:event_btnCancelarProdutoActionPerformed
 
     private void btnExluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirProdutoActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        // fazendo a validação dos dados
+        produto = new ModelProdutos();
+        controle = new ControlProduto();
+        if ((txtCodigoProduto.getText().isEmpty())
+                || (txtCodigoFKFuncionario.getText().isEmpty())
+                || (txtNomeProduto.getText().isEmpty())
+                || (txtDescricao.getText().isEmpty())
+                || (txtPrecoUnitario.getText().isEmpty())
+                || (txtCor.getText().isEmpty())
+                || (txtTamanho.getText().isEmpty())
+                || (txtMarca.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+            produto.setCodigoProdutos(Integer.parseInt(txtCodigoProduto.getText()));
+            try {
+                // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+                controle.excluiProduto(produto);
+            } catch (Exception ex) {
+                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex);
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Produto " + txtNomeProduto.getText() + " removido com sucesso! ");
+        }
+
+        // apaga os dados preenchidos nos campos de texto
+        ApagaCampos();
     }//GEN-LAST:event_btnExluirProdutoActionPerformed
 
     private void btnSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutoActionPerformed
@@ -715,6 +821,33 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
         // TODO add your handling code here:
+        // fazendo a validação dos dados
+
+        controle = new ControlProduto();
+
+        if ((txtPesquisaProduto.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+            try {
+                // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+                nomePesquisa = txtPesquisaProduto.getText();
+
+                txtCodigoProduto.setText(String.valueOf(controle.pesquisaProduto().getCodigoProdutos()));
+                txtCodigoFKFuncionario.setText(String.valueOf(controle.pesquisaProduto().getFkFuncionarios()));
+                txtNomeProduto.setText(controle.pesquisaProduto().getNome());
+                txtDescricao.setText(controle.pesquisaProduto().getDescricao());
+                txtPrecoUnitario.setText(String.valueOf(controle.pesquisaProduto().getPrecounitario()));
+                txtCor.setText(controle.pesquisaProduto().getCor());
+                txtTamanho.setText(controle.pesquisaProduto().getTamanho());
+                txtMarca.setText(controle.pesquisaProduto().getMarca());
+
+            } catch (Exception ex) {
+                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        txtPesquisaProduto.setText("");
+
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 
     private void txtCodigoFKFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoFKFuncionarioActionPerformed
@@ -724,6 +857,23 @@ public class InternalFrameCadastrarProdutos extends javax.swing.JInternalFrame {
     private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeProdutoActionPerformed
+
+    public static String pesquisaNome() {
+        String nome = nomePesquisa;
+        return nome;
+    }
+
+    public void ApagaCampos() {
+        txtCodigoProduto.setText(null);
+        txtCodigoFKFuncionario.setText(null);
+        txtNomeProduto.setText(null);
+        txtDescricao.setText(null);
+        txtPrecoUnitario.setText(null);
+        txtCor.setText(null);
+        txtTamanho.setText(null);
+        txtMarca.setText(null);
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
