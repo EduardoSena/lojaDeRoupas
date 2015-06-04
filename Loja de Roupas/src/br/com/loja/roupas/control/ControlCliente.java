@@ -24,8 +24,9 @@ public class ControlCliente {
     private ModelCliente cliente;
     private ResultSet rs;
 
-    public ControlCliente() {
-        this.conexao = new ConexaoDao().getConnection();
+    public ControlCliente()  {
+        this.conexao = ConexaoDao.conexaoDB();//.getConnection();
+      
     }
 
     public void adiciona(ModelCliente cliente) {

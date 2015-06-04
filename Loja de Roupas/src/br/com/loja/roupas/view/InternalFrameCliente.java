@@ -23,10 +23,13 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
      */
     private ModelCliente cliente;
     private static String nomePesquisa;
+    private ControlCliente controle;
 
     public InternalFrameCliente() {
         initComponents();
+        
         cliente = new ModelCliente();
+        controle=new ControlCliente();
     }
 
     /**
@@ -338,11 +341,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEnderecoActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-
-        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
-        ControlCliente controle = new ControlCliente();
+ 
 
         // fazendo a validação dos dados
         if ((txtNome.getText().isEmpty())
@@ -374,11 +373,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
-        // TODO add your handling code here:
-
-        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
-        ControlCliente controle = new ControlCliente();
-
+  
         // fazendo a validação dos dados
         if ((txtNome.getText().isEmpty())
                 || (txtEmail.getText().isEmpty())
@@ -409,9 +404,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlterar1ActionPerformed
 
     private void btnExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirActionPerformed
-        // TODO add your handling code here:
-        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
-        ControlCliente controle = new ControlCliente();
+
 
         // fazendo a validação dos dados
         if ((txtNome.getText().isEmpty())
@@ -457,7 +450,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
-        ControlCliente controle = new ControlCliente();
+ 
 
 // fazendo a validação dos dados
         if ((txtPesquisa.getText().isEmpty())) {

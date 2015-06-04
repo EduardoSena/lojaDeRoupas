@@ -26,6 +26,8 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
      */
     public InternalFrameProdutos() {
         initComponents();
+        produto=new ModelProdutos();
+        controle=new ControlProduto();
     }
 
     /**
@@ -703,12 +705,9 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTamanhoActionPerformed
 
     private void btnCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutoActionPerformed
-        // TODO add your handling code here:
-        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
-        produto = new ModelProdutos();
-        controle = new ControlProduto();
-
-        // fazendo a validação dos dados
+   
+            
+            // fazendo a validação dos dados
         if ((txtCodigoFKFuncionario.getText().isEmpty())
                 || (txtNomeProduto.getText().isEmpty())
                 || (txtDescricao.getText().isEmpty())
@@ -734,17 +733,18 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         // apaga os dados preenchidos nos campos de texto
         ApagaCampos();
+            
+            
+          
+            
+      
 
 
     }//GEN-LAST:event_btnCadastroProdutoActionPerformed
 
     private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-        // TODO add your handling code here:
-        // instanciando a classe Cliente do pacote modelo e criando sua variavel cliente
-        produto = new ModelProdutos();
-        controle = new ControlProduto();
-        
-
+      
+            
         // fazendo a validação dos dados
         if ((txtCodigoProduto.getText().isEmpty())
                 || (txtCodigoFKFuncionario.getText().isEmpty())
@@ -772,6 +772,8 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         // apaga os dados preenchidos nos campos de texto
         ApagaCampos();
+    
+
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
 
     private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
@@ -780,12 +782,8 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarProdutoActionPerformed
 
     private void btnExluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirProdutoActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        // fazendo a validação dos dados
-        produto = new ModelProdutos();
-        controle = new ControlProduto();
-        if ((txtCodigoProduto.getText().isEmpty())
+                
+            if ((txtCodigoProduto.getText().isEmpty())
                 || (txtCodigoFKFuncionario.getText().isEmpty())
                 || (txtNomeProduto.getText().isEmpty())
                 || (txtDescricao.getText().isEmpty())
@@ -809,6 +807,9 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         // apaga os dados preenchidos nos campos de texto
         ApagaCampos();
+            
+     
+        
     }//GEN-LAST:event_btnExluirProdutoActionPerformed
 
     private void btnSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutoActionPerformed
@@ -820,11 +821,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSairProdutoActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-        // TODO add your handling code here:
-        // fazendo a validação dos dados
-
-        controle = new ControlProduto();
-
+     
         if ((txtPesquisaProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
@@ -847,6 +844,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         }
         txtPesquisaProduto.setText("");
+   
 
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 

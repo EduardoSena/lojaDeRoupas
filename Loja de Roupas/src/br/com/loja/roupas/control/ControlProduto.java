@@ -25,8 +25,8 @@ public class ControlProduto {
     private ResultSet rs;
     private String sql;
 
-    public ControlProduto() {
-        this.conexao = new ConexaoDao().getConnection();
+    public ControlProduto()  {
+        this.conexao = ConexaoDao.conexaoDB();
     }
 
     public void adicionaProduto(ModelProdutos produto) {

@@ -22,14 +22,15 @@ import net.proteanit.sql.DbUtils;
 public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     private Connection conexao;
-   private static String nomePesquisa;
+    private PreparedStatement stmt;
+    private ResultSet rs;
 
     /**
      * Creates new form InternalFrameListarProdutos
      */
-    public InternalFrameListaProdutos() {
-        this.conexao = new ConexaoDao().getConnection();
+    public InternalFrameListaProdutos() {     
         initComponents();
+        this.conexao = ConexaoDao.conexaoDB();
     }
 
     /**
@@ -42,13 +43,12 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        dblojaPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("dblojaPU").createEntityManager();
-        produtosQuery = java.beans.Beans.isDesignTime() ? null : dblojaPUEntityManager.createQuery("SELECT p FROM Produtos p");
         produtosList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery.getResultList();
-        produtosQuery1 = java.beans.Beans.isDesignTime() ? null : dblojaPUEntityManager.createQuery("SELECT p FROM Produtos p");
-        produtosList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery1.getResultList();
-        produtosQuery2 = java.beans.Beans.isDesignTime() ? null : dblojaPUEntityManager.createQuery("SELECT p FROM Produtos p");
-        produtosList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery2.getResultList();
+        produtosList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : ((javax.persistence.Query)null).getResultList();
+        produtosList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : ((javax.persistence.Query)null).getResultList();
+        dblojaPUEntityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("dblojaPU").createEntityManager();
+        produtosQuery = java.beans.Beans.isDesignTime() ? null : dblojaPUEntityManager0.createQuery("SELECT p FROM Produtos p");
+        produtosList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery.getResultList();
         jPanelListarProduto = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtPesquisaProdutosLista = new javax.swing.JTextField();
@@ -87,35 +87,28 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
             }
         });
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, produtosList2, tabListaProdutos);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idprodutos}"));
-        columnBinding.setColumnName("Código do Produtos");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
-        columnBinding.setColumnName("Nome");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
-        columnBinding.setColumnName("Descricao");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${precounitario}"));
-        columnBinding.setColumnName("Preço Unitário");
-        columnBinding.setColumnClass(Double.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${marca}"));
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, produtosList3, tabListaProdutos);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${marca}"));
         columnBinding.setColumnName("Marca");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${tamanho}"));
         columnBinding.setColumnName("Tamanho");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cor}"));
         columnBinding.setColumnName("Cor");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${precounitario}"));
+        columnBinding.setColumnName("Precounitario");
+        columnBinding.setColumnClass(Double.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
+        columnBinding.setColumnName("Descricao");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idprodutos}"));
+        columnBinding.setColumnName("Idprodutos");
+        columnBinding.setColumnClass(Integer.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane1.setViewportView(tabListaProdutos);
@@ -188,7 +181,8 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     private void txtPesquisaProdutosListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutosListaActionPerformed
         // TODO add your handling code here:
-        
+        pesquisaProdutoLista();
+
     }//GEN-LAST:event_txtPesquisaProdutosListaActionPerformed
 
     private void btnSairProdutolListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutolListaActionPerformed
@@ -202,19 +196,17 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         // fazendo a validação dos dados
-        if ((txtPesquisaProdutosLista.getText().isEmpty()))
-        {
-            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-        }else{
-            try {
+//        if ((txtPesquisaProdutosLista.getText().isEmpty())) {
+//            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+//        } else {
+//            try {
                 pesquisaProdutoLista();
-                
 
-            } catch (Exception ex) {
-                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText() + " inserido com sucesso! ");
-        }
+//            } catch (Exception ex) {
+//                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            //JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText() + " inserido com sucesso! ");
+//        }
         txtPesquisaProdutosLista.setText("");
 
     }//GEN-LAST:event_btnPesquisarNomePActionPerformed
@@ -225,12 +217,10 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
         try {
 
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, txtPesquisaProdutosLista.getText() + "%");
-            ResultSet rs = stmt.executeQuery();
-            tabListaProdutos.setModel(DbUtils.resultSetToTableModel(rs));
-
-           
+            this.stmt = conexao.prepareStatement(sql);
+            this.stmt.setString(1, txtPesquisaProdutosLista.getText() + "%");
+            this.rs = stmt.executeQuery();
+            this.tabListaProdutos.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (SQLException u) {
             throw new RuntimeException(u);
@@ -242,16 +232,15 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisarNomeP;
     private javax.swing.JButton btnSairProdutolLista;
-    private javax.persistence.EntityManager dblojaPUEntityManager;
+    private javax.persistence.EntityManager dblojaPUEntityManager0;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelListarProduto;
     private javax.swing.JScrollPane jScrollPane1;
     private java.util.List<br.com.loja.roupas.view.Produtos> produtosList;
     private java.util.List<br.com.loja.roupas.view.Produtos> produtosList1;
     private java.util.List<br.com.loja.roupas.view.Produtos> produtosList2;
+    private java.util.List<br.com.loja.roupas.view.Produtos> produtosList3;
     private javax.persistence.Query produtosQuery;
-    private javax.persistence.Query produtosQuery1;
-    private javax.persistence.Query produtosQuery2;
     private javax.swing.JTable tabListaProdutos;
     private javax.swing.JTextField txtPesquisaProdutosLista;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;

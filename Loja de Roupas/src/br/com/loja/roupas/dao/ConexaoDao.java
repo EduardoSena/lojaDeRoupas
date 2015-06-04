@@ -3,48 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.loja.roupas.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo Marcio
  */
 public class ConexaoDao {
-    private String bancoDeDados="jdbc:postgresql://localhost:5432/dbloja";
-    private String login = "postgres";
-    private String senha="181977dudu";
-    
-    public Connection getConnection() {
+
+    private static String bancoDeDado = "jdbc:postgresql://localhost:5432/dbloja";
+    private static String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
+    private static String login = "postgres";
+    private static String senha = "181977dudu";
+
+    public static Connection conexaoDB() {
+
         try {
-            return DriverManager.getConnection(bancoDeDados,login,senha);
-                   // "jdbc:mysql://localhost/projetojava",
-                           
+            try {
+                Class.forName(driver);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ConexaoDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Connection conexao;
+            conexao = DriverManager.getConnection(bancoDeDado, login, senha);
+            JOptionPane.showMessageDialog(null, "Conexão efetuada com sucesso !");
+
+            return conexao;
+        } catch (SQLException erro) {
+
+            JOptionPane.showMessageDialog(null, erro);
+
         }
-        
-        
-        //instalar na biblioteca
-        //http://jdbc.postgresql.org/
-       //http://dev.mysql.com/downloads/file.php?id=404191#mirrors
-        catch(SQLException excecao) {
-            throw new RuntimeException(excecao);
-        }
-        
-        
+        return null;
+
     }
 }
-
-    
-
-// class TestaConexao {
-//
-//    public static void main(String[] args) throws SQLException {
-//        Connection connection = new ConexaoDao().getConnection();
-//        System.out.println("Conexão aberta!");
-//        connection.close();
-//    }
-//}
-    
-
