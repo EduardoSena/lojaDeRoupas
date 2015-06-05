@@ -193,20 +193,9 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSairProdutolListaActionPerformed
 
     private void btnPesquisarNomePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarNomePActionPerformed
-        // TODO add your handling code here:
 
-        // fazendo a validação dos dados
-//        if ((txtPesquisaProdutosLista.getText().isEmpty())) {
-//            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-//        } else {
-//            try {
                 pesquisaProdutoLista();
 
-//            } catch (Exception ex) {
-//                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            //JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText() + " inserido com sucesso! ");
-//        }
         txtPesquisaProdutosLista.setText("");
 
     }//GEN-LAST:event_btnPesquisarNomePActionPerformed
