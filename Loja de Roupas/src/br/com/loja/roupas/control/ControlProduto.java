@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static br.com.loja.roupas.view.InternalFrameProdutos.pesquisaNome;
+import br.com.loja.roupas.view.InternalFrameProdutos;
 
 /**
  *
@@ -24,9 +24,11 @@ public class ControlProduto {
     private PreparedStatement stmt;
     private ResultSet rs;
     private String sql;
+    private String pesquisa;
 
-    public ControlProduto()  {
+    public ControlProduto() {
         this.conexao = ConexaoDao.conexaoDB();
+
     }
 
     public void adicionaProduto(ModelProdutos produto) {
@@ -72,14 +74,14 @@ public class ControlProduto {
     }
 
     public ModelProdutos pesquisaProduto() {
-        produto = new ModelProdutos();
 
+        produto = new ModelProdutos();
         sql = "SELECT  * FROM lojaderoupa.produtos WHERE nome LIKE ?";
 
         try {
-
+            pesquisa = InternalFrameProdutos.pesquisaNome();
             stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, pesquisaNome() + "%");
+            stmt.setString(1, pesquisa + "%");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -105,7 +107,7 @@ public class ControlProduto {
     }
 
     public void AtualizarProduto(ModelProdutos produto) {
-       
+
         sql = "UPDATE lojaderoupa.produtos SET "
                 + "fkfuncionarios=?,nome=?,descricao=?"
                 + ",precounitario=?,cor=?,tamanho=?"

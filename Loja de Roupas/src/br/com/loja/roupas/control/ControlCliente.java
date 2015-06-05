@@ -7,7 +7,7 @@ package br.com.loja.roupas.control;
 
 import br.com.loja.roupas.dao.ConexaoDao;
 import br.com.loja.roupas.model.ModelCliente;
-import static br.com.loja.roupas.view.InternalFrameCliente.Pesquisa;
+import br.com.loja.roupas.view.InternalFrameCliente;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,10 +23,11 @@ public class ControlCliente {
     private PreparedStatement stmt;
     private ModelCliente cliente;
     private ResultSet rs;
+    private String pesquisa;
 
-    public ControlCliente()  {
-        this.conexao = ConexaoDao.conexaoDB();//.getConnection();
-      
+    public ControlCliente() {
+        this.conexao = ConexaoDao.conexaoDB();
+
     }
 
     public void adiciona(ModelCliente cliente) {
@@ -52,6 +53,7 @@ public class ControlCliente {
 
         } catch (SQLException u) {
             throw new RuntimeException(u);
+
         }
 
     }
@@ -78,9 +80,9 @@ public class ControlCliente {
         sql = "SELECT  * FROM lojaderoupa.clientes WHERE nome LIKE ?";
 
         try {
-
+            pesquisa = InternalFrameCliente.Pesquisa();
             stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, Pesquisa() + "%");
+            stmt.setString(1, pesquisa + "%");
             rs = stmt.executeQuery();
 
             if (rs.next()) {

@@ -13,10 +13,15 @@ public class ModelFuncionarios extends ModelUsuario{
 
     private double salario;
     private double comissao;
-    //private String dataAdmissao;
+    private String dataAdmissao;
+    private int idFuncionario;
     
-    
-    
+     public int getIdFuncionario() {
+        return idFuncionario;
+    }
+       public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
     
     @Override
     public String getNome() {
@@ -58,19 +63,27 @@ public class ModelFuncionarios extends ModelUsuario{
         super.setCpf(cpf); 
     }
 
+    public String getDataAdmissao() {
+        return dataAdmissao;
+    }
+
+    public void setDataAdmissao(String dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
+    }
+
  
-//    @Override
-//    public  Date getDatanasc() {
-//        return super.getDatanasc(); 
-//    }
-//
-//   
-//
-//
-//    @Override
-//    public void setDatanasc( Date datanasc) {
-//        super.setDatanasc(datanasc); 
-//    }
+    @Override
+    public  String getDatanasc() {
+        return super.getDatanasc(); 
+    }
+
+   
+
+
+    @Override
+    public void setDatanasc( String datanasc) {
+        super.setDatanasc(datanasc); 
+    }
 
     @Override
     public String getEndereco() {
@@ -84,32 +97,32 @@ public class ModelFuncionarios extends ModelUsuario{
 
     @Override
     public String getBairro() {
-        return super.getBairro(); //To change body of generated methods, choose Tools | Templates.
+        return super.getBairro(); 
     }
 
     @Override
     public void setBairro(String bairro) {
-        super.setBairro(bairro); //To change body of generated methods, choose Tools | Templates.
+        super.setBairro(bairro); 
     }
 
     @Override
     public String getCidade() {
-        return super.getCidade(); //To change body of generated methods, choose Tools | Templates.
+        return super.getCidade(); 
     }
 
     @Override
     public void setCidade(String cidade) {
-        super.setCidade(cidade); //To change body of generated methods, choose Tools | Templates.
+        super.setCidade(cidade); 
     }
 
     @Override
     public String getEstado() {
-        return super.getEstado(); //To change body of generated methods, choose Tools | Templates.
+        return super.getEstado(); 
     }
 
     @Override
     public void setEstado(String estado) {
-        super.setEstado(estado); //To change body of generated methods, choose Tools | Templates.
+        super.setEstado(estado); 
     }
 
       

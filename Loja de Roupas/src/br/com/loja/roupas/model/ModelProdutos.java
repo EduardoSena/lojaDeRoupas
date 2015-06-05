@@ -25,6 +25,7 @@ public class ModelProdutos {
      */
     public int getCodigoProdutos() {
         return codigoProdutos;
+        
     }
 
     /**

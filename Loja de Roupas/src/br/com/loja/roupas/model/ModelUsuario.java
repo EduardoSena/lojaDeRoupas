@@ -54,12 +54,12 @@ abstract public class ModelUsuario {
         this.cpf = cpf;
     }
 
-//    public String  getDatanasc() {
-//        return datanasc;
-//    }
-//    public void setDatanasc( String datanasc) {
-//        this.datanasc = datanasc;
-//    }
+    public String  getDatanasc() {
+        return datanasc;
+    }
+    public void setDatanasc( String datanasc) {
+        this.datanasc = datanasc;
+    }
     public String getEndereco() {
         return endereco;
     }

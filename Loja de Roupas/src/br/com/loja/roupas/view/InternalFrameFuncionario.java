@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.loja.roupas.view;
+
+import br.com.loja.roupas.control.ControlFuncionario;
+import javax.swing.JOptionPane;
+import br.com.loja.roupas.model.ModelFuncionarios;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,8 +21,14 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalFrameFuncionario
      */
+    private ControlFuncionario controle;
+    private ModelFuncionarios funcionario;
+    private static String nomePesquisa;
+
     public InternalFrameFuncionario() {
         initComponents();
+        funcionario = new ModelFuncionarios();
+        controle = new ControlFuncionario();
     }
 
     /**
@@ -37,14 +49,10 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        txtCodigoFunc1 = new javax.swing.JTextField();
+        txtCodigoFunc = new javax.swing.JTextField();
         txtPesquisaFunc = new javax.swing.JTextField();
         txtEmailFunc = new javax.swing.JTextField();
-        txtTelefoneFunc = new javax.swing.JTextField();
-        txtCpfFunc = new javax.swing.JTextField();
-        txtDataDeNascimentoFunc = new javax.swing.JTextField();
         txtEnderecoFunc = new javax.swing.JTextField();
-        txtCepFunc = new javax.swing.JTextField();
         btnCadastroFunc = new javax.swing.JButton();
         btnAlterarFunc = new javax.swing.JButton();
         btnCancelarFunc = new javax.swing.JButton();
@@ -52,18 +60,22 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         btnSairFunc = new javax.swing.JButton();
         btnPesquisarFunc = new javax.swing.JButton();
         txtNomeFunc = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtBairroFunc = new javax.swing.JTextField();
+        txtCidadeFunc = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        txtSalario = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        txtcomisao = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        txtDataAdmissao = new javax.swing.JTextField();
+        txtDataDeNascimentoFunc = new javax.swing.JFormattedTextField();
+        txtDataAdmissao = new javax.swing.JFormattedTextField();
+        txtTelefoneFunc = new javax.swing.JFormattedTextField();
+        txtCepFunc = new javax.swing.JFormattedTextField();
+        txtCpfFunc = new javax.swing.JFormattedTextField();
+        txtSalario = new javax.swing.JFormattedTextField();
+        txtComisao = new javax.swing.JFormattedTextField();
+        txtEstadoFunc = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(750, 480));
@@ -96,37 +108,31 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Cidade:");
 
-        txtCodigoFunc1.setEnabled(false);
-        txtCodigoFunc1.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigoFunc.setToolTipText("Código do funcionário");
+        txtCodigoFunc.setEnabled(false);
+        txtCodigoFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoFunc1ActionPerformed(evt);
+                txtCodigoFuncActionPerformed(evt);
             }
         });
 
+        txtPesquisaFunc.setToolTipText("Digite o nome iniciando com letra maiuscula");
         txtPesquisaFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaFuncActionPerformed(evt);
             }
         });
 
+        txtEmailFunc=DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyz1234567890@._-");
+        txtEmailFunc.setToolTipText("Digite o email do funcionário");
         txtEmailFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailFuncActionPerformed(evt);
             }
         });
 
-        txtTelefoneFunc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefoneFuncActionPerformed(evt);
-            }
-        });
-
-        txtCpfFunc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCpfFuncActionPerformed(evt);
-            }
-        });
-
+        txtEnderecoFunc=DefinirTiposCaracteresETamanho(60, " 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtEnderecoFunc.setToolTipText("Digite o endereço tipo rua e avenida do funcionário");
         txtEnderecoFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEnderecoFuncActionPerformed(evt);
@@ -135,6 +141,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         btnCadastroFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCadastroFunc.setText("Cadastrar");
+        btnCadastroFunc.setToolTipText("Cadastrar funcionário");
         btnCadastroFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroFuncActionPerformed(evt);
@@ -143,6 +150,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         btnAlterarFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAlterarFunc.setText("Alterar");
+        btnAlterarFunc.setToolTipText("Alterar o cadastro do funcionário");
         btnAlterarFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarFuncActionPerformed(evt);
@@ -151,6 +159,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         btnCancelarFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCancelarFunc.setText("Cancelar");
+        btnCancelarFunc.setToolTipText("Cancelar edição do cadastro");
         btnCancelarFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarFuncActionPerformed(evt);
@@ -159,6 +168,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         btnExluirFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExluirFunc.setText("Excluir");
+        btnExluirFunc.setToolTipText("Deletar o cadastro do funcionário");
         btnExluirFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExluirFuncActionPerformed(evt);
@@ -167,6 +177,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         btnSairFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSairFunc.setText("Sair");
+        btnSairFunc.setToolTipText("Sair da tela de cadastro de funcionário");
         btnSairFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairFuncActionPerformed(evt);
@@ -175,17 +186,26 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         btnPesquisarFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPesquisarFunc.setText("Pesquisar");
+        btnPesquisarFunc.setToolTipText("Pesquisar Funcionários por nome");
         btnPesquisarFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarFuncActionPerformed(evt);
             }
         });
 
+        txtNomeFunc=DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtNomeFunc.setToolTipText("Digite o nome do funcionário");
         txtNomeFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeFuncActionPerformed(evt);
             }
         });
+
+        txtBairroFunc=DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtBairroFunc.setToolTipText("Digite o bairro do funcionário");
+
+        txtCidadeFunc=DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtCidadeFunc.setToolTipText("Digite a cidade do funcionário");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setText("Bairro:");
@@ -194,16 +214,67 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         jLabel20.setText("Cep:");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setText("Estado");
+        jLabel21.setText("UF:");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Salário:");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setText("Comissão");
+        jLabel23.setText("Comissão:");
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Data  de Admissão:");
+
+        try {
+            txtDataDeNascimentoFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataDeNascimentoFunc.setToolTipText("Digite a data no formado 01/01/2000");
+
+        try {
+            txtDataAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataAdmissao.setToolTipText("Digite a data no formato 01/01/2000");
+
+        try {
+            txtTelefoneFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtTelefoneFunc.setToolTipText("Digite o numero do telefone do funcionário");
+
+        try {
+            txtCepFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCepFunc.setToolTipText("Digite o Cep do funcionário");
+
+        try {
+            txtCpfFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCpfFunc.setToolTipText("Digite o Cpf do funcionário");
+
+        try {
+            txtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("00####.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtSalario.setToolTipText("Digite o valor do sálario do funcionário");
+
+        try {
+            txtComisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtComisao.setToolTipText("Digite o valor da comisão do funcionário");
+
+        txtEstadoFunc.setToolTipText("Digite o uf do funcionário");
 
         javax.swing.GroupLayout jPanel2FuncionarioLayout = new javax.swing.GroupLayout(jPanel2Funcionario);
         jPanel2Funcionario.setLayout(jPanel2FuncionarioLayout);
@@ -232,8 +303,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigoFunc1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addComponent(txtPesquisaFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,41 +321,45 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomeFunc, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2FuncionarioLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                                .addComponent(jLabel21)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCepFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtEnderecoFunc, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
-                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtTelefoneFunc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                    .addComponent(txtCpfFunc, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTelefoneFunc)
+                                    .addComponent(txtCpfFunc, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel24))
-                                .addGap(18, 18, 18)
+                                .addGap(5, 5, 5)
                                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDataDeNascimentoFunc, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                    .addComponent(txtDataAdmissao)))
+                                    .addComponent(txtDataDeNascimentoFunc, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(txtDataAdmissao))
+                                .addGap(62, 62, 62))
                             .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
                                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmailFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
                                         .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGap(29, 29, 29)
                                         .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtComisao, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEmailFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2FuncionarioLayout.createSequentialGroup()
+                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCidadeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
+                                        .addComponent(jLabel21)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtcomisao, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(txtEstadoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCepFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())))
         );
         jPanel2FuncionarioLayout.setVerticalGroup(
@@ -295,7 +370,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addComponent(txtPesquisaFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarFunc)
-                    .addComponent(txtCodigoFunc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -307,15 +382,15 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(txtTelefoneFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(txtDataDeNascimentoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataDeNascimentoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefoneFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(txtCpfFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
-                    .addComponent(txtDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCpfFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEnderecoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,21 +398,21 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstadoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCidadeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCepFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(txtcomisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(jLabel23)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtComisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarFunc)
@@ -362,15 +437,15 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodigoFunc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoFunc1ActionPerformed
+    private void txtCodigoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoFuncActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoFunc1ActionPerformed
+    }//GEN-LAST:event_txtCodigoFuncActionPerformed
 
     private void txtPesquisaFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaFuncActionPerformed
         // TODO add your handling code here:
@@ -380,51 +455,230 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailFuncActionPerformed
 
-    private void txtTelefoneFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneFuncActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefoneFuncActionPerformed
-
-    private void txtCpfFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfFuncActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCpfFuncActionPerformed
-
     private void txtEnderecoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoFuncActionPerformed
 
     private void btnCadastroFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroFuncActionPerformed
         // TODO add your handling code here:
-        
-        
+
+        // fazendo a validação dos dados
+        if ((txtNomeFunc.getText().isEmpty())
+                || (txtEmailFunc.getText().isEmpty())
+                || (txtTelefoneFunc.getText().isEmpty())
+                || (txtCpfFunc.getText().isEmpty())
+                || (txtDataDeNascimentoFunc.getText().isEmpty())
+                || (txtDataAdmissao.getText().isEmpty())
+                || (txtSalario.getText().isEmpty())
+                || (txtComisao.getText().isEmpty())
+                || (txtEnderecoFunc.getText().isEmpty())
+                || (txtBairroFunc.getText().isEmpty())
+                || (txtCidadeFunc.getText().isEmpty())
+                || (txtCepFunc.getText().isEmpty())
+                || (txtEstadoFunc.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+
+        } else {
+
+            funcionario.setNome(txtNomeFunc.getText());
+            funcionario.setEmail(txtEmailFunc.getText());
+            funcionario.setTelefone(txtTelefoneFunc.getText());
+            funcionario.setCpf(txtCpfFunc.getText());
+            funcionario.setSalario(Double.parseDouble(txtSalario.getText()));
+            funcionario.setComissao(Double.parseDouble(txtComisao.getText()));
+            funcionario.setEndereco(txtEnderecoFunc.getText());
+            funcionario.setBairro(txtBairroFunc.getText());
+            funcionario.setCidade(txtCidadeFunc.getText());
+            funcionario.setCep(txtCepFunc.getText());
+            funcionario.setEstado(txtEstadoFunc.getText());
+            funcionario.setDatanasc(txtDataDeNascimentoFunc.getText());
+            funcionario.setDataAdmissao(txtDataAdmissao.getText());
+
+            controle.adiciona(funcionario);
+            JOptionPane.showMessageDialog(null, "Funcionario " + txtNomeFunc.getText().trim() + " inserido com sucesso! ");
+
+// apaga os dados preenchidos nos campos de texto
+            ApagaCampos();
+
+        }
+
+
     }//GEN-LAST:event_btnCadastroFuncActionPerformed
 
     private void btnAlterarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncActionPerformed
         // TODO add your handling code here:
+        // fazendo a validação dos dados
+        if ((txtNomeFunc.getText().isEmpty())
+                || (txtEmailFunc.getText().isEmpty())
+                || (txtTelefoneFunc.getText().isEmpty())
+                || (txtCpfFunc.getText().isEmpty())
+                || (txtDataDeNascimentoFunc.getText().isEmpty())
+                || (txtDataAdmissao.getText().isEmpty())
+                || (txtSalario.getText().isEmpty())
+                || (txtComisao.getText().isEmpty())
+                || (txtEnderecoFunc.getText().isEmpty())
+                || (txtBairroFunc.getText().isEmpty())
+                || (txtCidadeFunc.getText().isEmpty())
+                || (txtCepFunc.getText().isEmpty())
+                || (txtEstadoFunc.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+            funcionario.setIdFuncionario(Integer.parseInt(txtCodigoFunc.getText()));
+            funcionario.setNome(txtNomeFunc.getText());
+            funcionario.setEmail(txtEmailFunc.getText());
+            funcionario.setTelefone(txtTelefoneFunc.getText());
+            funcionario.setCpf(txtCpfFunc.getText());
+            funcionario.setSalario(Double.parseDouble(txtSalario.getText()));
+            funcionario.setComissao(Double.parseDouble(txtComisao.getText()));
+            funcionario.setEndereco(txtEnderecoFunc.getText());
+            funcionario.setBairro(txtBairroFunc.getText());
+            funcionario.setCidade(txtCidadeFunc.getText());
+            funcionario.setCep(txtCepFunc.getText());
+            funcionario.setEstado(txtEstadoFunc.getText());
+            funcionario.setDatanasc(txtDataDeNascimentoFunc.getText());
+            funcionario.setDataAdmissao(txtDataAdmissao.getText());
+
+            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+            controle.AtualizarFuncionario(funcionario);
+            JOptionPane.showMessageDialog(null, "Funcionário " + txtNomeFunc.getText().trim() + " Atualizado com sucesso! ");
+            // apaga os dados preenchidos nos campos de texto
+            ApagaCampos();
+        }
+
+
     }//GEN-LAST:event_btnAlterarFuncActionPerformed
 
     private void btnCancelarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFuncActionPerformed
         // TODO add your handling code here:
+        ApagaCampos();
     }//GEN-LAST:event_btnCancelarFuncActionPerformed
 
     private void btnExluirFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirFuncActionPerformed
         // TODO add your handling code here:
+        // fazendo a validação dos dados
+        if ((txtNomeFunc.getText().isEmpty())
+                || (txtEmailFunc.getText().isEmpty())
+                || (txtTelefoneFunc.getText().isEmpty())
+                || (txtCpfFunc.getText().isEmpty())
+                || (txtDataDeNascimentoFunc.getText().isEmpty())
+                || (txtDataAdmissao.getText().isEmpty())
+                || (txtSalario.getText().isEmpty())
+                || (txtComisao.getText().isEmpty())
+                || (txtEnderecoFunc.getText().isEmpty())
+                || (txtBairroFunc.getText().isEmpty())
+                || (txtCidadeFunc.getText().isEmpty())
+                || (txtCepFunc.getText().isEmpty())
+                || (txtEstadoFunc.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+            funcionario.setIdFuncionario(Integer.parseInt(txtCodigoFunc.getText()));
+            try {
+                // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+                controle.excluiFuncionario(funcionario);
+            } catch (Exception ex) {
+                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex);
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Funcionário " + txtNomeFunc.getText().trim() + " removido com sucesso! ");
+            // apaga os dados preenchidos nos campos de texto
+            ApagaCampos();
+        }
+
+
     }//GEN-LAST:event_btnExluirFuncActionPerformed
 
     private void btnSairFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairFuncActionPerformed
         // TODO add your handling code here:
        /*Controla a liberação do acesso ao menu funcionarios*/
-     FmPrincipalMdi.Acesso(true);
-       setVisible(false);
+        FmPrincipalMdi.Acesso(true);
+        setVisible(false);
     }//GEN-LAST:event_btnSairFuncActionPerformed
 
     private void btnPesquisarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFuncActionPerformed
         // TODO add your handling code here:
+        // fazendo a validação dos dados       
+        if ((txtPesquisaFunc.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+            try {
+                // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+                nomePesquisa = txtPesquisaFunc.getText();
+
+                txtCodigoFunc.setText(String.valueOf(controle.pesquisaFuncionario().getIdFuncionario()));
+                txtNomeFunc.setText(controle.pesquisaFuncionario().getNome());
+                txtEmailFunc.setText(controle.pesquisaFuncionario().getEmail());
+                txtTelefoneFunc.setText(controle.pesquisaFuncionario().getTelefone());
+                txtCpfFunc.setText(controle.pesquisaFuncionario().getCpf());
+                txtSalario.setText(String.valueOf(controle.pesquisaFuncionario().getSalario()));
+                txtComisao.setText(String.valueOf(controle.pesquisaFuncionario().getComissao()));
+                txtEnderecoFunc.setText(controle.pesquisaFuncionario().getEndereco());
+                txtBairroFunc.setText(controle.pesquisaFuncionario().getBairro());
+                txtCidadeFunc.setText(controle.pesquisaFuncionario().getCidade());
+                txtCepFunc.setText(controle.pesquisaFuncionario().getCep());
+                txtEstadoFunc.setText(controle.pesquisaFuncionario().getEstado());
+                txtDataDeNascimentoFunc.setText(controle.pesquisaFuncionario().getDatanasc());
+                txtDataAdmissao.setText(controle.pesquisaFuncionario().getDataAdmissao());
+
+            } catch (Exception ex) {
+                Logger.getLogger(InternalFrameFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        txtPesquisaFunc.setText("");
     }//GEN-LAST:event_btnPesquisarFuncActionPerformed
 
     private void txtNomeFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFuncActionPerformed
 
+    public static String Pesquisa() {
+        String nome = nomePesquisa;
+        return nome;
+    }
+
+    public void ApagaCampos() {
+        txtCodigoFunc.setText("");
+        txtNomeFunc.setText("");
+        txtEmailFunc.setText("");
+        txtTelefoneFunc.setText("");
+        txtCpfFunc.setText("");
+        txtDataDeNascimentoFunc.setText("");
+        txtSalario.setText("");
+        txtComisao.setText("");
+        txtEnderecoFunc.setText("");
+        txtBairroFunc.setText("");
+        txtCidadeFunc.setText("");
+        txtCepFunc.setText("");
+        txtEstadoFunc.setText("");
+        txtDataAdmissao.setText("");
+    }
+
+    
+    public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
+        try {
+            //defino a variável que vai guardar a quantidade de caracteres
+            String quantidade = "";
+
+		//defino um método de repetição para repetir o numero de
+            //vezes  do tamanho
+            for (int i = 0; i < tamanho; i++) {
+                quantidade = quantidade + "*";
+            }
+
+            javax.swing.text.MaskFormatter n = new javax.swing.text.MaskFormatter(quantidade);
+		//javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
+            //jTextFielddata = new javax.swing.JFormattedTextField(data);
+            n.setValidCharacters(caracteres);
+
+            return new javax.swing.JFormattedTextField(n);
+        } catch (Exception e) {
+            //mensagem se acontecer erro
+            JOptionPane.showMessageDialog(null, e);
+            //retorno um campo de texto comum  
+            return new JTextField();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarFunc;
@@ -448,20 +702,20 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel2Funcionario;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField txtCepFunc;
-    private javax.swing.JTextField txtCodigoFunc1;
-    private javax.swing.JTextField txtCpfFunc;
-    private javax.swing.JTextField txtDataAdmissao;
-    private javax.swing.JTextField txtDataDeNascimentoFunc;
+    private javax.swing.JTextField txtBairroFunc;
+    private javax.swing.JFormattedTextField txtCepFunc;
+    private javax.swing.JTextField txtCidadeFunc;
+    private javax.swing.JTextField txtCodigoFunc;
+    private javax.swing.JFormattedTextField txtComisao;
+    private javax.swing.JFormattedTextField txtCpfFunc;
+    private javax.swing.JFormattedTextField txtDataAdmissao;
+    private javax.swing.JFormattedTextField txtDataDeNascimentoFunc;
     private javax.swing.JTextField txtEmailFunc;
     private javax.swing.JTextField txtEnderecoFunc;
+    private javax.swing.JTextField txtEstadoFunc;
     private javax.swing.JTextField txtNomeFunc;
     private javax.swing.JTextField txtPesquisaFunc;
-    private javax.swing.JTextField txtSalario;
-    private javax.swing.JTextField txtTelefoneFunc;
-    private javax.swing.JTextField txtcomisao;
+    private javax.swing.JFormattedTextField txtSalario;
+    private javax.swing.JFormattedTextField txtTelefoneFunc;
     // End of variables declaration//GEN-END:variables
 }
