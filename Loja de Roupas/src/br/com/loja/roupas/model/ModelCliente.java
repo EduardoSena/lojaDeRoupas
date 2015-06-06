@@ -73,18 +73,18 @@ public class ModelCliente extends ModelUsuario {
     }
 
  
-//    @Override
-//    public  Date getDatanasc() {
-//        return super.getDatanasc(); 
-//    }
-//
-//   
-//
-//
-//    @Override
-//    public void setDatanasc( Date datanasc) {
-//        super.setDatanasc(datanasc); 
-//    }
+    @Override
+    public  String getDatanasc() {
+        return super.getDatanasc(); 
+    }
+
+   
+
+
+    @Override
+    public void setDatanasc( String datanasc) {
+        super.setDatanasc(datanasc); 
+    }
 
     @Override
     public String getEndereco() {

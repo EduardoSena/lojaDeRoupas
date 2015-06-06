@@ -344,7 +344,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEnderecoFuncActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtEnderecoFunc=DefinirTiposCaracteresETamanho(60, &quot; 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#xe7;&#xc7;&#xe9;&#xe1;&#xed;&#xfa;&#xf3;&#xc1;&#xc9;&#xd3;&#xcd;&#xda;&#xe3;&#xf5;&#xc3;&#xd5;&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtEnderecoFunc=DefinirTiposCaracteresETamanho(60, &quot; &#xba;.-:&#xaa;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#xe7;&#xc7;&#xe9;&#xe1;&#xed;&#xfa;&#xf3;&#xc1;&#xc9;&#xd3;&#xcd;&#xda;&#xe3;&#xf5;&#xc3;&#xd5;&quot;);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnCadastroFunc">

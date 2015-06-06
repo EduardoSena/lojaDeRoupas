@@ -11,6 +11,11 @@ import br.com.loja.roupas.view.InternalFrameCliente;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Date;
 
 /**
  *
@@ -24,6 +29,7 @@ public class ControlCliente {
     private ModelCliente cliente;
     private ResultSet rs;
     private String pesquisa;
+    private String dataAniversario;
 
     public ControlCliente() {
         this.conexao = ConexaoDao.conexaoDB();
@@ -32,11 +38,16 @@ public class ControlCliente {
 
     public void adiciona(ModelCliente cliente) {
 
+        Date dataAniv = null;
+        try {
+            dataAniv = new SimpleDateFormat("dd/MM/yyyy").parse(cliente.getDatanasc());
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         sql = "INSERT INTO lojaderoupa.clientes("
                 + "nome,email,telefone"
-                + ",cpf"//datanascimento"
-                + ",endereco,cep) "
-                + "VALUES(?,?,?,?,?,?)";
+                + ",cpf,endereco,cep,datanascimento) "
+                + "VALUES(?,?,?,?,?,?,?)";
 
         try {
 
@@ -45,9 +56,12 @@ public class ControlCliente {
             stmt.setString(2, cliente.getEmail());
             stmt.setString(3, cliente.getTelefone());
             stmt.setString(4, cliente.getCpf());
-            // stmt.setDate(5, cliente.getDatanasc());
             stmt.setString(5, cliente.getEndereco());
             stmt.setString(6, cliente.getCep());
+
+            dataAniversario = new SimpleDateFormat("yyyy-MM-dd").format(dataAniv);
+            stmt.setDate(7, java.sql.Date.valueOf(dataAniversario));
+
             stmt.execute();
             stmt.close();
 
@@ -95,6 +109,16 @@ public class ControlCliente {
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setCep(rs.getString("cep"));
 
+                Date dataAniv = null;
+                try {
+                    dataAniv = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("datanascimento"));
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                dataAniversario = new SimpleDateFormat("dd/MM/yyyy").format(dataAniv);
+                cliente.setDatanasc(dataAniversario);
+
             }
 
             rs.close();
@@ -109,14 +133,24 @@ public class ControlCliente {
 
     public void AtualizarCliente(ModelCliente cliente) {
 
+        Date dataAniv = null;
+
+        try {
+            dataAniv = new SimpleDateFormat("dd/MM/yyyy").parse(cliente.getDatanasc());
+
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dataAniversario = new SimpleDateFormat("yyyy-MM-dd").format(dataAniv);
+
         sql = "UPDATE lojaderoupa.clientes SET "
                 + "nome='" + cliente.getNome()
                 + "', email='" + cliente.getEmail()
                 + "', telefone='" + cliente.getTelefone()
                 + "', cpf='" + cliente.getCpf()
-                + //"', datanascimento='"+cliente.getEnderco()+
-                "', endereco='" + cliente.getEndereco()
+                + "', endereco='" + cliente.getEndereco()
                 + "', cep='" + cliente.getCep()
+                + "', datanascimento='" + dataAniversario
                 + "' WHERE idclientes=" + cliente.getIdCliente();
 
         try {

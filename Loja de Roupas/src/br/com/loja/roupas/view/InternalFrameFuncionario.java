@@ -131,7 +131,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        txtEnderecoFunc=DefinirTiposCaracteresETamanho(60, " 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtEnderecoFunc=DefinirTiposCaracteresETamanho(60, " º.-:ª0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
         txtEnderecoFunc.setToolTipText("Digite o endereço tipo rua e avenida do funcionário");
         txtEnderecoFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -603,6 +603,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         } else {
             try {
                 // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+               
                 nomePesquisa = txtPesquisaFunc.getText();
 
                 txtCodigoFunc.setText(String.valueOf(controle.pesquisaFuncionario().getIdFuncionario()));

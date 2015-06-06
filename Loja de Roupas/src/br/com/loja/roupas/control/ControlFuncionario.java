@@ -37,7 +37,6 @@ public class ControlFuncionario {
     public ControlFuncionario() {
         this.conexao = ConexaoDao.conexaoDB();
 
-
     }
 
     public void adiciona(ModelFuncionarios funcionario) {
@@ -106,7 +105,7 @@ public class ControlFuncionario {
     public ModelFuncionarios pesquisaFuncionario() {
         funcionario = new ModelFuncionarios();
 
-        sql = "SELECT  * FROM lojaderoupa.funcionarios WHERE nome LIKE ?";
+        sql = "SELECT  * FROM lojaderoupa.funcionarios WHERE nome LIKE ? ";
 
         try {
 
