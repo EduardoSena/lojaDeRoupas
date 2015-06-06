@@ -82,7 +82,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         jPanel2Funcionario.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2Funcionario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
-        jPanel2Funcionario.setPreferredSize(new java.awt.Dimension(697, 422));
+        jPanel2Funcionario.setPreferredSize(new java.awt.Dimension(680, 430));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Código do Funcionário: ");
@@ -260,19 +260,11 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         }
         txtCpfFunc.setToolTipText("Digite o Cpf do funcionário");
 
-        try {
-            txtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("00####.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtSalario.setToolTipText("Digite o valor do sálario do funcionário");
+        txtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtSalario.setToolTipText("Digite o valor do sálario R$ 0.000,00");
 
-        try {
-            txtComisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0##.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtComisao.setToolTipText("Digite o valor da comisão do funcionário");
+        txtComisao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtComisao.setToolTipText("Digite o valor da comisão R$ 0.000,00");
 
         txtEstadoFunc.setToolTipText("Digite o uf do funcionário");
 
@@ -304,7 +296,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtPesquisaFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,7 +405,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel23)
                     .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtComisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarFunc)
                     .addComponent(btnCancelarFunc)
@@ -427,17 +419,17 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -480,17 +472,17 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         } else {
 
-            funcionario.setNome(txtNomeFunc.getText());
-            funcionario.setEmail(txtEmailFunc.getText());
+            funcionario.setNome(txtNomeFunc.getText().trim());
+            funcionario.setEmail(txtEmailFunc.getText().trim());
             funcionario.setTelefone(txtTelefoneFunc.getText());
             funcionario.setCpf(txtCpfFunc.getText());
-            funcionario.setSalario(Double.parseDouble(txtSalario.getText()));
-            funcionario.setComissao(Double.parseDouble(txtComisao.getText()));
-            funcionario.setEndereco(txtEnderecoFunc.getText());
-            funcionario.setBairro(txtBairroFunc.getText());
-            funcionario.setCidade(txtCidadeFunc.getText());
+            funcionario.setSalario(Double.parseDouble(txtSalario.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+            funcionario.setComissao(Double.parseDouble(txtComisao.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+            funcionario.setEndereco(txtEnderecoFunc.getText().trim());
+            funcionario.setBairro(txtBairroFunc.getText().trim());
+            funcionario.setCidade(txtCidadeFunc.getText().trim());
             funcionario.setCep(txtCepFunc.getText());
-            funcionario.setEstado(txtEstadoFunc.getText());
+            funcionario.setEstado(txtEstadoFunc.getText().trim());
             funcionario.setDatanasc(txtDataDeNascimentoFunc.getText());
             funcionario.setDataAdmissao(txtDataAdmissao.getText());
 
@@ -524,17 +516,17 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
             funcionario.setIdFuncionario(Integer.parseInt(txtCodigoFunc.getText()));
-            funcionario.setNome(txtNomeFunc.getText());
-            funcionario.setEmail(txtEmailFunc.getText());
+            funcionario.setNome(txtNomeFunc.getText().trim());
+            funcionario.setEmail(txtEmailFunc.getText().trim());
             funcionario.setTelefone(txtTelefoneFunc.getText());
             funcionario.setCpf(txtCpfFunc.getText());
-            funcionario.setSalario(Double.parseDouble(txtSalario.getText()));
-            funcionario.setComissao(Double.parseDouble(txtComisao.getText()));
-            funcionario.setEndereco(txtEnderecoFunc.getText());
-            funcionario.setBairro(txtBairroFunc.getText());
-            funcionario.setCidade(txtCidadeFunc.getText());
+            funcionario.setSalario(Double.parseDouble(txtSalario.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+            funcionario.setComissao(Double.parseDouble(txtComisao.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+            funcionario.setEndereco(txtEnderecoFunc.getText().trim());
+            funcionario.setBairro(txtBairroFunc.getText().trim());
+            funcionario.setCidade(txtCidadeFunc.getText().trim());
             funcionario.setCep(txtCepFunc.getText());
-            funcionario.setEstado(txtEstadoFunc.getText());
+            funcionario.setEstado(txtEstadoFunc.getText().trim());
             funcionario.setDatanasc(txtDataDeNascimentoFunc.getText());
             funcionario.setDataAdmissao(txtDataAdmissao.getText());
 
@@ -611,8 +603,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 txtEmailFunc.setText(controle.pesquisaFuncionario().getEmail());
                 txtTelefoneFunc.setText(controle.pesquisaFuncionario().getTelefone());
                 txtCpfFunc.setText(controle.pesquisaFuncionario().getCpf());
-                txtSalario.setText(String.valueOf(controle.pesquisaFuncionario().getSalario()));
-                txtComisao.setText(String.valueOf(controle.pesquisaFuncionario().getComissao()));
+                txtSalario.setText("R$ "+String.valueOf(controle.pesquisaFuncionario().getSalario()).replace(".", ","));
+                txtComisao.setText("R$ "+String.valueOf(controle.pesquisaFuncionario().getComissao()).replace(".", ","));
                 txtEnderecoFunc.setText(controle.pesquisaFuncionario().getEndereco());
                 txtBairroFunc.setText(controle.pesquisaFuncionario().getBairro());
                 txtCidadeFunc.setText(controle.pesquisaFuncionario().getCidade());

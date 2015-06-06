@@ -10,6 +10,7 @@ import br.com.loja.roupas.model.ModelProdutos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -76,7 +77,6 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtCodigoProduto = new javax.swing.JTextField();
         txtPesquisaProduto = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
-        txtPrecoUnitario = new javax.swing.JTextField();
         txtCor = new javax.swing.JTextField();
         txtTamanho = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
@@ -86,10 +86,12 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         btnExluirProduto = new javax.swing.JButton();
         btnSairProduto = new javax.swing.JButton();
         btnPesquisarProduto = new javax.swing.JButton();
-        txtCodigoFKFuncionario = new javax.swing.JTextField();
         txtNomeProduto = new javax.swing.JTextField();
+        txtPrecoUnitario = new javax.swing.JFormattedTextField();
+        txtCodigoFKFuncionario = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
+        setPreferredSize(new java.awt.Dimension(750, 480));
 
         jInternalFrame1.setBackground(new java.awt.Color(204, 204, 255));
         jInternalFrame1.setPreferredSize(new java.awt.Dimension(750, 480));
@@ -369,6 +371,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Marca:");
 
+        txtCodigoProduto.setToolTipText("Código do produto");
         txtCodigoProduto.setEnabled(false);
         txtCodigoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,38 +379,43 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             }
         });
 
+        txtPesquisaProduto.setToolTipText("Digite o nome do produto com a primeira letra maicuscula");
         txtPesquisaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaProdutoActionPerformed(evt);
             }
         });
 
+        txtDescricao=DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtDescricao.setToolTipText("Digite as características do produto");
         txtDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescricaoActionPerformed(evt);
             }
         });
 
-        txtPrecoUnitario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecoUnitarioActionPerformed(evt);
-            }
-        });
-
+        txtCor=DefinirTiposCaracteresETamanho(15, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtCor.setToolTipText("Digite a cor do produto");
         txtCor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorActionPerformed(evt);
             }
         });
 
+        txtTamanho=DefinirTiposCaracteresETamanho(60, " º:-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtTamanho.setToolTipText("Digite o tamanho do produto");
         txtTamanho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTamanhoActionPerformed(evt);
             }
         });
 
+        txtMarca=DefinirTiposCaracteresETamanho(50, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtMarca.setToolTipText("Digite a marca do produto");
+
         btnCadastroProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCadastroProduto.setText("Cadastrar");
+        btnCadastroProduto.setToolTipText("Cadastrar produto");
         btnCadastroProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroProdutoActionPerformed(evt);
@@ -416,6 +424,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         btnAlterarProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAlterarProduto.setText("Alterar");
+        btnAlterarProduto.setToolTipText("Alterar características do produto");
         btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarProdutoActionPerformed(evt);
@@ -424,6 +433,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         btnCancelarProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCancelarProduto.setText("Cancelar");
+        btnCancelarProduto.setToolTipText("Cancelar operação de cadastro");
         btnCancelarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarProdutoActionPerformed(evt);
@@ -432,6 +442,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         btnExluirProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExluirProduto.setText("Excluir");
+        btnExluirProduto.setToolTipText("Deletar o produto do cadastro");
         btnExluirProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExluirProdutoActionPerformed(evt);
@@ -440,6 +451,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         btnSairProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSairProduto.setText("Sair");
+        btnSairProduto.setToolTipText("Sair da tela de cadastro de produtos");
         btnSairProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairProdutoActionPerformed(evt);
@@ -448,23 +460,25 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         btnPesquisarProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPesquisarProduto.setText("Pesquisar");
+        btnPesquisarProduto.setToolTipText("Pesquisa de produtos pelo nome");
         btnPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarProdutoActionPerformed(evt);
             }
         });
 
-        txtCodigoFKFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoFKFuncionarioActionPerformed(evt);
-            }
-        });
-
+        txtNomeProduto=DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        txtNomeProduto.setToolTipText("Digite o nome do produto");
         txtNomeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeProdutoActionPerformed(evt);
             }
         });
+
+        txtPrecoUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtPrecoUnitario.setToolTipText("Digite o valor Unitário R$ 0.000,00");
+
+        txtCodigoFKFuncionario=DefinirTiposCaracteresETamanho(20, " 0123456789");
 
         javax.swing.GroupLayout jPanelProdutoLayout = new javax.swing.GroupLayout(jPanelProduto);
         jPanelProduto.setLayout(jPanelProdutoLayout);
@@ -472,18 +486,6 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProdutoLayout.createSequentialGroup()
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
-                                .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProdutoLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(btnCadastroProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -501,31 +503,43 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                         .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelProdutoLayout.createSequentialGroup()
                                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtCodigoFKFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
                                         .addComponent(jLabel5)
-                                        .addGap(122, 122, 122))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCodigoFKFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanelProdutoLayout.createSequentialGroup()
                                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel13)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel17))
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel16))
                                 .addGap(65, 65, 65)
                                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNomeProduto)
                                     .addComponent(txtDescricao)
                                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
+                                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(jPanelProdutoLayout.createSequentialGroup()
+                                                .addComponent(txtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel17))
+                                            .addGroup(jPanelProdutoLayout.createSequentialGroup()
+                                                .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(148, 148, 148)
+                                                .addComponent(jLabel14)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                                .addComponent(txtCor, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtTamanho))
-                                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                            .addComponent(txtCor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProdutoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                        .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanelProdutoLayout.setVerticalGroup(
@@ -540,38 +554,36 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel11))
+                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtCodigoFKFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                        .addComponent(txtCodigoFKFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(31, 31, 31)
                         .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(15, 15, 15)
-                .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelProdutoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(jPanelProdutoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13))))
+                .addGap(25, 25, 25)
+                .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
                     .addComponent(jLabel17)
                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarProduto)
                     .addComponent(btnCancelarProduto)
@@ -585,7 +597,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGap(0, 734, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -599,17 +611,17 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 473, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 236, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 237, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(55, Short.MAX_VALUE)))
         );
 
         pack();
@@ -680,148 +692,12 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void txtCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProdutoActionPerformed
+    private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoProdutoActionPerformed
-
-    private void txtPesquisaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
-
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
-
-    private void txtPrecoUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoUnitarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecoUnitarioActionPerformed
-
-    private void txtCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorActionPerformed
-
-    private void txtTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTamanhoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTamanhoActionPerformed
-
-    private void btnCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutoActionPerformed
-   
-            
-            // fazendo a validação dos dados
-        if ((txtCodigoFKFuncionario.getText().isEmpty())
-                || (txtNomeProduto.getText().isEmpty())
-                || (txtDescricao.getText().isEmpty())
-                || (txtPrecoUnitario.getText().isEmpty())
-                || (txtCor.getText().isEmpty())
-                || (txtTamanho.getText().isEmpty())
-                || (txtMarca.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-        } else {
-
-            produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText()));
-            produto.setNome(txtNomeProduto.getText());
-            produto.setDescricao(txtDescricao.getText());
-            produto.setPrecounitario(Double.parseDouble(txtPrecoUnitario.getText()));
-            produto.setCor(txtCor.getText());
-            produto.setTamanho(txtTamanho.getText());
-            produto.setMarca(txtMarca.getText());
-
-            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
-            controle.adicionaProduto(produto);
-            JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText() + " inserido com sucesso! ");
-        }
-
-        // apaga os dados preenchidos nos campos de texto
-        ApagaCampos();
-            
-            
-          
-            
-      
-
-
-    }//GEN-LAST:event_btnCadastroProdutoActionPerformed
-
-    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-      
-            
-        // fazendo a validação dos dados
-        if ((txtCodigoProduto.getText().isEmpty())
-                || (txtCodigoFKFuncionario.getText().isEmpty())
-                || (txtNomeProduto.getText().isEmpty())
-                || (txtDescricao.getText().isEmpty())
-                || (txtPrecoUnitario.getText().isEmpty())
-                || (txtCor.getText().isEmpty())
-                || (txtTamanho.getText().isEmpty())
-                || (txtMarca.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-        } else {
-
-            produto.setCodigoProdutos(Integer.valueOf(txtCodigoProduto.getText()));
-        produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText()));
-        produto.setNome(txtNomeProduto.getText());
-        produto.setDescricao(txtDescricao.getText());
-        produto.setPrecounitario(Double.parseDouble(txtPrecoUnitario.getText()));
-        produto.setCor(txtCor.getText());
-        produto.setTamanho(txtTamanho.getText());
-        produto.setMarca(txtMarca.getText());
-            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
-            controle.AtualizarProduto(produto);
-            JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText() + " alterado com sucesso! ");
-        }
-
-        // apaga os dados preenchidos nos campos de texto
-        ApagaCampos();
-    
-
-    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
-
-    private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
-        // TODO add your handling code here:
-        ApagaCampos();
-    }//GEN-LAST:event_btnCancelarProdutoActionPerformed
-
-    private void btnExluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirProdutoActionPerformed
-                
-            if ((txtCodigoProduto.getText().isEmpty())
-                || (txtCodigoFKFuncionario.getText().isEmpty())
-                || (txtNomeProduto.getText().isEmpty())
-                || (txtDescricao.getText().isEmpty())
-                || (txtPrecoUnitario.getText().isEmpty())
-                || (txtCor.getText().isEmpty())
-                || (txtTamanho.getText().isEmpty())
-                || (txtMarca.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-        } else {
-            produto.setCodigoProdutos(Integer.parseInt(txtCodigoProduto.getText()));
-            try {
-                // instanciando a classe Cliente do pacote dao e criando seu objeto dao
-                controle.excluiProduto(produto);
-            } catch (Exception ex) {
-                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, ex);
-                return;
-            }
-            JOptionPane.showMessageDialog(null, "Produto " + txtNomeProduto.getText() + " removido com sucesso! ");
-        }
-
-        // apaga os dados preenchidos nos campos de texto
-        ApagaCampos();
-            
-     
-        
-    }//GEN-LAST:event_btnExluirProdutoActionPerformed
-
-    private void btnSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutoActionPerformed
-
-        /*Controla a liberação do acesso ao menu cliente*/
-        FmPrincipalMdi.Acesso(true);
-        setVisible(false);
-
-    }//GEN-LAST:event_btnSairProdutoActionPerformed
+    }//GEN-LAST:event_txtNomeProdutoActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-     
+
         if ((txtPesquisaProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
@@ -833,7 +709,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 txtCodigoFKFuncionario.setText(String.valueOf(controle.pesquisaProduto().getFkFuncionarios()));
                 txtNomeProduto.setText(controle.pesquisaProduto().getNome());
                 txtDescricao.setText(controle.pesquisaProduto().getDescricao());
-                txtPrecoUnitario.setText(String.valueOf(controle.pesquisaProduto().getPrecounitario()));
+                txtPrecoUnitario.setText("R$ "+String.valueOf(controle.pesquisaProduto().getPrecounitario()).replace(".", ","));
                 txtCor.setText(controle.pesquisaProduto().getCor());
                 txtTamanho.setText(controle.pesquisaProduto().getTamanho());
                 txtMarca.setText(controle.pesquisaProduto().getMarca());
@@ -844,17 +720,133 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         }
         txtPesquisaProduto.setText("");
-   
 
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 
-    private void txtCodigoFKFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoFKFuncionarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoFKFuncionarioActionPerformed
+    private void btnSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutoActionPerformed
 
-    private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
+        /*Controla a liberação do acesso ao menu cliente*/
+        FmPrincipalMdi.Acesso(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnSairProdutoActionPerformed
+
+    private void btnExluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirProdutoActionPerformed
+
+        if ((txtCodigoProduto.getText().isEmpty())
+            || (txtCodigoFKFuncionario.getText().isEmpty())
+            || (txtNomeProduto.getText().isEmpty())
+            || (txtDescricao.getText().isEmpty())
+            || (txtPrecoUnitario.getText().isEmpty())
+            || (txtCor.getText().isEmpty())
+            || (txtTamanho.getText().isEmpty())
+            || (txtMarca.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+            produto.setCodigoProdutos(Integer.parseInt(txtCodigoProduto.getText()));
+            try {
+                // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+                controle.excluiProduto(produto);
+            } catch (Exception ex) {
+                Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex);
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Produto " + txtNomeProduto.getText().trim() + " removido com sucesso! ");
+            // apaga os dados preenchidos nos campos de texto
+            ApagaCampos();
+
+        }
+
+    }//GEN-LAST:event_btnExluirProdutoActionPerformed
+
+    private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeProdutoActionPerformed
+        ApagaCampos();
+    }//GEN-LAST:event_btnCancelarProdutoActionPerformed
+
+    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
+
+        // fazendo a validação dos dados
+        if ((txtCodigoProduto.getText().isEmpty())
+            || (txtCodigoFKFuncionario.getText().isEmpty())
+            || (txtNomeProduto.getText().isEmpty())
+            || (txtDescricao.getText().isEmpty())
+            || (txtPrecoUnitario.getText().isEmpty())
+            || (txtCor.getText().isEmpty())
+            || (txtTamanho.getText().isEmpty())
+            || (txtMarca.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+
+            produto.setCodigoProdutos(Integer.valueOf(txtCodigoProduto.getText()));
+            produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText().trim()));
+            produto.setNome(txtNomeProduto.getText().trim());
+            produto.setDescricao(txtDescricao.getText().trim());
+            produto.setPrecounitario(Double.parseDouble(txtPrecoUnitario.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+            produto.setCor(txtCor.getText().trim());
+            produto.setTamanho(txtTamanho.getText().trim());
+            produto.setMarca(txtMarca.getText().trim());
+            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+            controle.AtualizarProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText().trim() + " alterado com sucesso! ");
+
+            // apaga os dados preenchidos nos campos de texto
+            ApagaCampos();
+
+        }
+
+    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
+
+    private void btnCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutoActionPerformed
+
+        // fazendo a validação dos dados
+        if ((txtCodigoFKFuncionario.getText().isEmpty())
+            || (txtNomeProduto.getText().isEmpty())
+            || (txtDescricao.getText().isEmpty())
+            || (txtPrecoUnitario.getText().isEmpty())
+            || (txtCor.getText().isEmpty())
+            || (txtTamanho.getText().isEmpty())
+            || (txtMarca.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+        } else {
+
+            produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText().trim()));
+            produto.setNome(txtNomeProduto.getText().trim());
+            produto.setDescricao(txtDescricao.getText().trim());
+            produto.setPrecounitario(Double.parseDouble(txtPrecoUnitario.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+            produto.setCor(txtCor.getText().trim());
+            produto.setTamanho(txtTamanho.getText().trim());
+            produto.setMarca(txtMarca.getText().trim());
+
+            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+            controle.adicionaProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText().trim() + " inserido com sucesso! ");
+            // apaga os dados preenchidos nos campos de texto
+            ApagaCampos();
+
+        }
+
+    }//GEN-LAST:event_btnCadastroProdutoActionPerformed
+
+    private void txtTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTamanhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTamanhoActionPerformed
+
+    private void txtCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorActionPerformed
+
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescricaoActionPerformed
+
+    private void txtPesquisaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoActionPerformed
+        // TODO add your handling code here
+    }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
+
+    private void txtCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoProdutoActionPerformed
 
     public static String pesquisaNome() {
         String nome = nomePesquisa;
@@ -872,6 +864,31 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtMarca.setText(null);
 
     }
+
+public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
+        try {
+            //defino a variável que vai guardar a quantidade de caracteres
+            String quantidade = "";
+
+            //defino um método de repetição para repetir o numero de
+            //vezes  do tamanho
+            for (int i = 0; i < tamanho; i++) {
+                quantidade = quantidade + "*";
+            }
+
+            javax.swing.text.MaskFormatter n = new javax.swing.text.MaskFormatter(quantidade);
+           
+            n.setValidCharacters(caracteres);
+
+            return new javax.swing.JFormattedTextField(n);
+        } catch (Exception e) {
+            //mensagem se acontecer erro
+            JOptionPane.showMessageDialog(null, e);
+            //retorno um campo de texto comum  
+            return new JTextField();
+        }
+    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -921,7 +938,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtPesquisaProduto;
-    private javax.swing.JTextField txtPrecoUnitario;
+    private javax.swing.JFormattedTextField txtPrecoUnitario;
     private javax.swing.JTextField txtTamanho;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables

@@ -72,6 +72,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
         jPanelClientes.setBackground(new java.awt.Color(204, 204, 255));
         jPanelClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanelClientes.setPreferredSize(new java.awt.Dimension(680, 430));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Código do Cliente: ");
@@ -240,7 +241,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
                         .addComponent(txtDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelClientesLayout.createSequentialGroup()
                         .addComponent(txtCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,7 +293,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(txtDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -300,7 +301,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar1)
                     .addComponent(btnExluir)
@@ -317,7 +318,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,11 +360,11 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
 
-            cliente.setNome(txtNome.getText());
-            cliente.setEmail(txtEmail.getText());
+            cliente.setNome(txtNome.getText().trim());
+            cliente.setEmail(txtEmail.getText().trim());
             cliente.setTelefone(txtTelefone.getText());
             cliente.setCpf(txtCpf.getText());
-            cliente.setEndereco(txtEndereco.getText());
+            cliente.setEndereco(txtEndereco.getText().trim());
             cliente.setCep(txtCep.getText());
             cliente.setDatanasc(txtDataDeNascimento.getText());
 
@@ -390,11 +391,11 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
             cliente.setIdCliente(Integer.parseInt(txtCodigoCliente.getText()));
-            cliente.setNome(txtNome.getText());
-            cliente.setEmail(txtEmail.getText());
+            cliente.setNome(txtNome.getText().trim());
+            cliente.setEmail(txtEmail.getText().trim());
             cliente.setTelefone(txtTelefone.getText());
             cliente.setCpf(txtCpf.getText());
-            cliente.setEndereco(txtEndereco.getText());
+            cliente.setEndereco(txtEndereco.getText().trim());
             cliente.setCep(txtCep.getText());
             cliente.setDatanasc(txtDataDeNascimento.getText());
 
