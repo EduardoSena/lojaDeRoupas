@@ -28,6 +28,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
     public InternalFrameCliente() {
         initComponents();
+        this.setLocation(150,99);
 
         cliente = new ModelCliente();
         controle = new ControlCliente();
@@ -68,6 +69,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
         txtCep = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
+        setIconifiable(true);
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jPanelClientes.setBackground(new java.awt.Color(204, 204, 255));
@@ -448,7 +450,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
 
         /*Controla a liberação do acesso ao menu cliente*/
-        FmPrincipalMdi.Acesso(true);
+       
         setVisible(false);
 
 

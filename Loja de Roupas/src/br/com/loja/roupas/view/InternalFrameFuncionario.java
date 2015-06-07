@@ -27,6 +27,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
     public InternalFrameFuncionario() {
         initComponents();
+        this.setLocation(150,99);
         funcionario = new ModelFuncionarios();
         controle = new ControlFuncionario();
     }
@@ -78,6 +79,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtEstadoFunc = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
+        setIconifiable(true);
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jPanel2Funcionario.setBackground(new java.awt.Color(204, 204, 255));
@@ -583,7 +585,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private void btnSairFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairFuncActionPerformed
         // TODO add your handling code here:
        /*Controla a liberação do acesso ao menu funcionarios*/
-        FmPrincipalMdi.Acesso(true);
+      
         setVisible(false);
     }//GEN-LAST:event_btnSairFuncActionPerformed
 

@@ -17,6 +17,7 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
      */
     public InternalFrameListarVendas() {
         initComponents();
+        this.setLocation(150, 99);
     }
 
     /**
@@ -41,6 +42,7 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
         jTableVendas = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 204, 255));
+        setIconifiable(true);
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jPanelListarVendas.setBackground(new java.awt.Color(204, 204, 255));
@@ -211,8 +213,7 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
     private void btnSairPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairPedidoActionPerformed
 
-        /*Controla a liberação do acesso ao menu cliente*/
-        FmPrincipalMdi.Acesso(true);
+ 
         setVisible(false);
     }//GEN-LAST:event_btnSairPedidoActionPerformed
 

@@ -11,7 +11,7 @@ package br.com.loja.roupas.view;
  */
 public class FmPrincipalMdi extends javax.swing.JFrame {
 
-    private static boolean controleAcesso;
+   
    
 
     /**
@@ -20,8 +20,9 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
     public FmPrincipalMdi() {
         
         initComponents();
-        setLocationRelativeTo(null);
-        FmPrincipalMdi.controleAcesso = true;
+        this.setLocationRelativeTo(null);
+        this.setExtendedState(MAXIMIZED_BOTH);
+       
 
     }
 
@@ -42,7 +43,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         subMenuFuncionario = new javax.swing.JMenuItem();
         menuProduto = new javax.swing.JMenu();
         subMenuCadProd = new javax.swing.JMenuItem();
-        subMenuVenda = new javax.swing.JMenuItem();
+        subMenuListaProdutos = new javax.swing.JMenuItem();
         subMenuCadPedido = new javax.swing.JMenuItem();
         menuVenda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -55,6 +56,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         menuCliente.setText("Clientes");
 
+        subMenuCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         subMenuCliente.setText("Cadastrar Cliente");
         subMenuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +69,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         menuFuncionario.setText("Funcionários");
 
+        subMenuFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         subMenuFuncionario.setText("Cadastrar Funcionário");
         subMenuFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +82,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         menuProduto.setText("Produtos");
 
+        subMenuCadProd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         subMenuCadProd.setText("Cadastro de Produtos");
         subMenuCadProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,14 +91,16 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         });
         menuProduto.add(subMenuCadProd);
 
-        subMenuVenda.setText("Lista de Produtos");
-        subMenuVenda.addActionListener(new java.awt.event.ActionListener() {
+        subMenuListaProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        subMenuListaProdutos.setText("Lista de Produtos");
+        subMenuListaProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subMenuVendaActionPerformed(evt);
+                subMenuListaProdutosActionPerformed(evt);
             }
         });
-        menuProduto.add(subMenuVenda);
+        menuProduto.add(subMenuListaProdutos);
 
+        subMenuCadPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         subMenuCadPedido.setText("Pedidos");
         menuProduto.add(subMenuCadPedido);
 
@@ -102,6 +108,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         menuVenda.setText("Vendas");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Lista de Vendas");
         menuVenda.add(jMenuItem1);
 
@@ -132,43 +139,40 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         // TODO add your handling code here: 
 
         InternalFrameCliente internoFrameCliente = new InternalFrameCliente();
-        if (FmPrincipalMdi.controleAcesso == true) {
+    
             DesktopPanePrincipal.add(internoFrameCliente);
             internoFrameCliente.setVisible(true);
-            FmPrincipalMdi.controleAcesso = false;
-        }
+       
 
     }//GEN-LAST:event_subMenuClienteActionPerformed
 
     private void subMenuFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuFuncionarioActionPerformed
         // TODO add your handling code here:
         InternalFrameFuncionario internoFuncionario = new InternalFrameFuncionario();
-        if (FmPrincipalMdi.controleAcesso == true) {
+     
             DesktopPanePrincipal.add(internoFuncionario);
             internoFuncionario.setVisible(true);
-            FmPrincipalMdi.controleAcesso = false;
-        }
-
+        
     }//GEN-LAST:event_subMenuFuncionarioActionPerformed
 
-    private void subMenuVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuVendaActionPerformed
+    private void subMenuListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuListaProdutosActionPerformed
         // TODO add your handling code here:
         InternalFrameListaProdutos internoListaProdutos=new InternalFrameListaProdutos();
-        if (FmPrincipalMdi.controleAcesso == true) {
+       
         DesktopPanePrincipal.add(internoListaProdutos);
          internoListaProdutos.setVisible(true);
-         FmPrincipalMdi.controleAcesso=false;
-        }
-    }//GEN-LAST:event_subMenuVendaActionPerformed
+         
+        
+    }//GEN-LAST:event_subMenuListaProdutosActionPerformed
 
     private void subMenuCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadProdActionPerformed
         // TODO add your handling code here:
         InternalFrameProdutos internoProdutos=new InternalFrameProdutos();
-        if (FmPrincipalMdi.controleAcesso == true) {
+        
         DesktopPanePrincipal.add(internoProdutos);
          internoProdutos.setVisible(true);
-         FmPrincipalMdi.controleAcesso=false;
-        }
+         
+        
         
     }//GEN-LAST:event_subMenuCadProdActionPerformed
 
@@ -218,12 +222,10 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
     private javax.swing.JMenuItem subMenuCadProd;
     private javax.swing.JMenuItem subMenuCliente;
     private javax.swing.JMenuItem subMenuFuncionario;
+    private javax.swing.JMenuItem subMenuListaProdutos;
     private javax.swing.JMenuBar subMenuListaVendas;
-    private javax.swing.JMenuItem subMenuVenda;
     // End of variables declaration//GEN-END:variables
 
-    public static void Acesso(boolean acesso) {
-        FmPrincipalMdi.controleAcesso = acesso;
-    }
+  
  
 }

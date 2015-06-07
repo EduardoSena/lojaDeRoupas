@@ -13,7 +13,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -24,13 +25,17 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     private Connection conexao;
     private PreparedStatement stmt;
     private ResultSet rs;
+    private String sql;
+  
 
     /**
-     * Creates new form InternalFrameListarProdutos
+     * Creates new form NewJInternalFrame
      */
-    public InternalFrameListaProdutos() {     
+    public InternalFrameListaProdutos() {
         initComponents();
+        this.setLocation(150, 99);
         this.conexao = ConexaoDao.conexaoDB();
+        listaDeProdutos();
     }
 
     /**
@@ -41,24 +46,18 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        produtosList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery.getResultList();
-        produtosList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : ((javax.persistence.Query)null).getResultList();
-        produtosList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : ((javax.persistence.Query)null).getResultList();
-        dblojaPUEntityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("dblojaPU").createEntityManager();
-        produtosQuery = java.beans.Beans.isDesignTime() ? null : dblojaPUEntityManager0.createQuery("SELECT p FROM Produtos p");
-        produtosList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtosQuery.getResultList();
         jPanelListarProduto = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtPesquisaProdutosLista = new javax.swing.JTextField();
-        btnSairProdutolLista = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabListaProdutos = new javax.swing.JTable();
         btnPesquisarNomeP = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableListaProdutos = new javax.swing.JTable();
+        btnSairProdutolLista1 = new javax.swing.JButton();
+        btnAtuTabela = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
-        setPreferredSize(new java.awt.Dimension(750, 480));
+        setIconifiable(true);
 
         jPanelListarProduto.setBackground(new java.awt.Color(204, 204, 255));
         jPanelListarProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
@@ -73,43 +72,6 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSairProdutolLista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSairProdutolLista.setText("Sair");
-        btnSairProdutolLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairProdutolListaActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, produtosList3, tabListaProdutos);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${marca}"));
-        columnBinding.setColumnName("Marca");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${tamanho}"));
-        columnBinding.setColumnName("Tamanho");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cor}"));
-        columnBinding.setColumnName("Cor");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${precounitario}"));
-        columnBinding.setColumnName("Precounitario");
-        columnBinding.setColumnClass(Double.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
-        columnBinding.setColumnName("Descricao");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
-        columnBinding.setColumnName("Nome");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idprodutos}"));
-        columnBinding.setColumnName("Idprodutos");
-        columnBinding.setColumnClass(Integer.class);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
-        jScrollPane1.setViewportView(tabListaProdutos);
-        if (tabListaProdutos.getColumnModel().getColumnCount() > 0) {
-            tabListaProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
-        }
-
         btnPesquisarNomeP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPesquisarNomeP.setText("Pesquisar");
         btnPesquisarNomeP.addActionListener(new java.awt.event.ActionListener() {
@@ -118,22 +80,57 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
             }
         });
 
+        jTableListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableListaProdutos);
+
+        btnSairProdutolLista1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSairProdutolLista1.setText("Sair");
+        btnSairProdutolLista1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairProdutolLista1ActionPerformed(evt);
+            }
+        });
+
+        btnAtuTabela.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAtuTabela.setText("Atualizar Tabela");
+        btnAtuTabela.setToolTipText("Atualiza os dados da tabela");
+        btnAtuTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtuTabelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelListarProdutoLayout = new javax.swing.GroupLayout(jPanelListarProduto);
         jPanelListarProduto.setLayout(jPanelListarProdutoLayout);
         jPanelListarProdutoLayout.setHorizontalGroup(
             jPanelListarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListarProdutoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelListarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelListarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelListarProdutoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisaProdutosLista, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnPesquisarNomeP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelListarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnSairProdutolLista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanelListarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelListarProdutoLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPesquisaProdutosLista, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnPesquisarNomeP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListarProdutoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAtuTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSairProdutolLista1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(113, 113, 113))
         );
         jPanelListarProdutoLayout.setVerticalGroup(
@@ -144,31 +141,27 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtPesquisaProdutosLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarNomeP))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSairProdutolLista)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanelListarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSairProdutolLista1)
+                    .addComponent(btnAtuTabela))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelListarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanelListarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelListarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelListarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,34 +169,54 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     private void txtPesquisaProdutosListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutosListaActionPerformed
         // TODO add your handling code here:
         pesquisaProdutoLista();
-
     }//GEN-LAST:event_txtPesquisaProdutosListaActionPerformed
-
-    private void btnSairProdutolListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutolListaActionPerformed
-
-        /*Controla a liberação do acesso ao menu cliente*/
-        FmPrincipalMdi.Acesso(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnSairProdutolListaActionPerformed
 
     private void btnPesquisarNomePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarNomePActionPerformed
 
-                pesquisaProdutoLista();
+        pesquisaProdutoLista();
 
         txtPesquisaProdutosLista.setText("");
-
     }//GEN-LAST:event_btnPesquisarNomePActionPerformed
+
+    private void btnSairProdutolLista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutolLista1ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_btnSairProdutolLista1ActionPerformed
+
+    private void btnAtuTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtuTabelaActionPerformed
+        // TODO add your handling code here:
+        listaDeProdutos();
+    }//GEN-LAST:event_btnAtuTabelaActionPerformed
+
+    
+
+    
+    public void listaDeProdutos() {
+
+        sql = "SELECT  * FROM lojaderoupa.produtos";
+
+        try {
+            this.stmt = conexao.prepareStatement(sql);
+            this.rs = stmt.executeQuery();
+            listaTable(this.rs);
+            
+        } catch (SQLException u) {
+
+            JOptionPane.showMessageDialog(null, u);
+        }
+    }
 
     public void pesquisaProdutoLista() {
 
-        String sql = "SELECT  * FROM lojaderoupa.produtos WHERE nome like ?";
+        sql = "SELECT  * FROM lojaderoupa.produtos WHERE nome like ?";
 
         try {
 
             this.stmt = conexao.prepareStatement(sql);
             this.stmt.setString(1, txtPesquisaProdutosLista.getText() + "%");
             this.rs = stmt.executeQuery();
-            this.tabListaProdutos.setModel(DbUtils.resultSetToTableModel(rs));
+            listaTable(this.rs);
+ 
 
         } catch (SQLException u) {
             throw new RuntimeException(u);
@@ -211,21 +224,58 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     }
 
+    
+    private void listaTable(ResultSet rs){
+        
+     DefaultTableModel tabela = new DefaultTableModel();
+
+            jTableListaProdutos.setModel(tabela);
+
+            tabela.addColumn("Código do Produto");
+            tabela.addColumn("Código do Funcionario");
+            tabela.addColumn("Nome");
+            tabela.addColumn("Descricao");
+            tabela.addColumn("Preço Unitário");
+            tabela.addColumn("Cor");
+            tabela.addColumn("Tamanho");
+            tabela.addColumn("Marca");
+
+            jTableListaProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(3).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(5).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(6).setPreferredWidth(50);
+            jTableListaProdutos.getColumnModel().getColumn(7).setPreferredWidth(50);
+
+        try {
+            while (this.rs.next()) {
+                String idprodutos = rs.getString("idprodutos");
+                String fkfunc = rs.getString("fkfuncionarios");
+                String nome = rs.getString("nome");
+                String descricao = rs.getString("descricao");
+                String preUnitario = rs.getString("precounitario");
+                String cor = rs.getString("cor");
+                String tamanho = rs.getString("tamanho");
+                String marca = rs.getString("marca");
+
+                tabela.addRow(new Object[]{idprodutos,fkfunc,nome, descricao, preUnitario, cor, tamanho, marca});
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InternalFrameListaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtuTabela;
     private javax.swing.JButton btnPesquisarNomeP;
-    private javax.swing.JButton btnSairProdutolLista;
-    private javax.persistence.EntityManager dblojaPUEntityManager0;
+    private javax.swing.JButton btnSairProdutolLista1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelListarProduto;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.util.List<br.com.loja.roupas.view.Produtos> produtosList;
-    private java.util.List<br.com.loja.roupas.view.Produtos> produtosList1;
-    private java.util.List<br.com.loja.roupas.view.Produtos> produtosList2;
-    private java.util.List<br.com.loja.roupas.view.Produtos> produtosList3;
-    private javax.persistence.Query produtosQuery;
-    private javax.swing.JTable tabListaProdutos;
+    private javax.swing.JTable jTableListaProdutos;
     private javax.swing.JTextField txtPesquisaProdutosLista;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
