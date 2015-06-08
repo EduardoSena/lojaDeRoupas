@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +43,7 @@ public class ControlCliente {
         try {
             dataAniv = new SimpleDateFormat("dd/MM/yyyy").parse(cliente.getDatanasc());
         } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex);
             Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         sql = "INSERT INTO lojaderoupa.clientes("
@@ -66,7 +68,7 @@ public class ControlCliente {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
 
         }
 
@@ -84,7 +86,7 @@ public class ControlCliente {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+           JOptionPane.showMessageDialog(null, u);
         }
 
     }
@@ -114,6 +116,7 @@ public class ControlCliente {
                     dataAniv = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("datanascimento"));
 
                 } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
                     Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dataAniversario = new SimpleDateFormat("dd/MM/yyyy").format(dataAniv);
@@ -125,6 +128,7 @@ public class ControlCliente {
             stmt.close();
 
         } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
             throw new RuntimeException(u);
         }
 
@@ -139,6 +143,7 @@ public class ControlCliente {
             dataAniv = new SimpleDateFormat("dd/MM/yyyy").parse(cliente.getDatanasc());
 
         } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex);
             Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         dataAniversario = new SimpleDateFormat("yyyy-MM-dd").format(dataAniv);
@@ -161,7 +166,7 @@ public class ControlCliente {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
         }
     }
 

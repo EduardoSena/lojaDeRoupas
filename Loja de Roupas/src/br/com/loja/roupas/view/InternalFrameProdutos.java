@@ -90,9 +90,12 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtNomeProduto = new javax.swing.JTextField();
         txtPrecoUnitario = new javax.swing.JFormattedTextField();
         txtCodigoFKFuncionario = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        txtQuantidade = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
+        setMinimumSize(new java.awt.Dimension(750, 480));
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jInternalFrame1.setBackground(new java.awt.Color(204, 204, 255));
@@ -482,6 +485,12 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
         txtCodigoFKFuncionario=DefinirTiposCaracteresETamanho(20, " 0123456789");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("Quantidade:");
+
+        txtQuantidade=DefinirTiposCaracteresETamanho(20, " 0123456789");
+        txtQuantidade.setToolTipText("Quantidade do produto em estoque");
+
         javax.swing.GroupLayout jPanelProdutoLayout = new javax.swing.GroupLayout(jPanelProduto);
         jPanelProduto.setLayout(jPanelProdutoLayout);
         jPanelProdutoLayout.setHorizontalGroup(
@@ -499,7 +508,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                         .addComponent(btnCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSairProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -516,29 +525,31 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel11)
-                                    .addComponent(jLabel16))
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15))
                                 .addGap(65, 65, 65)
                                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNomeProduto)
                                     .addComponent(txtDescricao)
                                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
                                         .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                                                .addComponent(txtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel17))
-                                            .addGroup(jPanelProdutoLayout.createSequentialGroup()
-                                                .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(148, 148, 148)
-                                                .addComponent(jLabel14)))
+                                            .addComponent(txtTamanho, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                            .addComponent(txtPrecoUnitario))
+                                        .addGap(138, 138, 138)
+                                        .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtCor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                            .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanelProdutoLayout.createSequentialGroup()
+                                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProdutoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -580,11 +591,15 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                             .addComponent(jLabel13))))
                 .addGap(25, 25, 25)
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
                     .addComponent(jLabel17)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(31, 31, 31)
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarProduto)
                     .addComponent(btnCancelarProduto)
@@ -607,12 +622,12 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanelProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 453, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 226, Short.MAX_VALUE)
@@ -622,7 +637,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(32, Short.MAX_VALUE)))
+                    .addContainerGap(23, Short.MAX_VALUE)))
         );
 
         pack();
@@ -712,8 +727,10 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 txtCor.setText(controle.pesquisaProduto().getCor());
                 txtTamanho.setText(controle.pesquisaProduto().getTamanho());
                 txtMarca.setText(controle.pesquisaProduto().getMarca());
+                txtQuantidade.setText(String.valueOf(controle.pesquisaProduto().getQuantidade()));
 
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
                 Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -736,6 +753,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 || (txtPrecoUnitario.getText().isEmpty())
                 || (txtCor.getText().isEmpty())
                 || (txtTamanho.getText().isEmpty())
+                || (txtQuantidade.getText().isEmpty())
                 || (txtMarca.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
@@ -771,6 +789,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 || (txtPrecoUnitario.getText().isEmpty())
                 || (txtCor.getText().isEmpty())
                 || (txtTamanho.getText().isEmpty())
+                 || (txtQuantidade.getText().isEmpty())
                 || (txtMarca.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
@@ -783,7 +802,8 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             produto.setCor(txtCor.getText().trim());
             produto.setTamanho(txtTamanho.getText().trim());
             produto.setMarca(txtMarca.getText().trim());
-            // instanciando a classe Cliente do pacote dao e criando seu objeto dao
+            produto.setQuantidade(Integer.parseInt(txtQuantidade.getText().trim()));
+           
             controle.AtualizarProduto(produto);
             JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText().trim() + " alterado com sucesso! ");
 
@@ -803,6 +823,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 || (txtPrecoUnitario.getText().isEmpty())
                 || (txtCor.getText().isEmpty())
                 || (txtTamanho.getText().isEmpty())
+                || (txtQuantidade.getText().isEmpty())
                 || (txtMarca.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
@@ -814,13 +835,14 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             produto.setCor(txtCor.getText().trim());
             produto.setTamanho(txtTamanho.getText().trim());
             produto.setMarca(txtMarca.getText().trim());
+            produto.setQuantidade(Integer.parseInt(txtQuantidade.getText().trim()));
 
             // instanciando a classe Cliente do pacote dao e criando seu objeto dao
             controle.adicionaProduto(produto);
             JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText().trim() + " inserido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
-     
+
         }
 
     }//GEN-LAST:event_btnCadastroProdutoActionPerformed
@@ -859,6 +881,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtCor.setText(null);
         txtTamanho.setText(null);
         txtMarca.setText(null);
+        txtQuantidade.setText(null);
 
     }
 
@@ -907,6 +930,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
@@ -935,6 +959,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtPesquisaProduto;
     private javax.swing.JFormattedTextField txtPrecoUnitario;
+    private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtTamanho;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import br.com.loja.roupas.view.InternalFrameProdutos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,8 +36,8 @@ public class ControlProduto {
 
         sql = "INSERT INTO lojaderoupa.produtos("
                 + "fkfuncionarios,nome,descricao"
-                + ",precounitario,cor,tamanho,marca)"
-                + " VALUES(?,?,?,?,?,?,?)";
+                + ",precounitario,cor,tamanho,marca,quantidade)"
+                + " VALUES(?,?,?,?,?,?,?,?)";
 
         try {
 
@@ -48,11 +49,13 @@ public class ControlProduto {
             stmt.setString(5, produto.getCor());
             stmt.setString(6, produto.getTamanho());
             stmt.setString(7, produto.getMarca());
+            stmt.setInt(8, produto.getQuantidade());
+            
             stmt.execute();
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+           JOptionPane.showMessageDialog(null, u);
         }
 
     }
@@ -68,7 +71,7 @@ public class ControlProduto {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
         }
 
     }
@@ -94,13 +97,14 @@ public class ControlProduto {
                 produto.setCor(rs.getString("cor"));
                 produto.setTamanho(rs.getString("tamanho"));
                 produto.setMarca(rs.getString("marca"));
+                produto.setQuantidade(rs.getInt("quantidade"));
             }
 
             rs.close();
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
         }
 
         return produto;
@@ -111,7 +115,7 @@ public class ControlProduto {
         sql = "UPDATE lojaderoupa.produtos SET "
                 + "fkfuncionarios=?,nome=?,descricao=?"
                 + ",precounitario=?,cor=?,tamanho=?"
-                + ",marca=? WHERE idprodutos=?";
+                + ",marca=?,quantidade WHERE idprodutos=?";
 
         try {
 
@@ -124,12 +128,14 @@ public class ControlProduto {
             stmt.setString(5, produto.getCor());
             stmt.setString(6, produto.getTamanho());
             stmt.setString(7, produto.getMarca());
-            stmt.setInt(8, produto.getCodigoProdutos());
+            stmt.setInt(8, produto.getQuantidade());
+            stmt.setInt(9, produto.getCodigoProdutos());
+            
             stmt.executeUpdate();
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
         }
     }
 

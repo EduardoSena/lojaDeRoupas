@@ -80,6 +80,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
+        setMinimumSize(new java.awt.Dimension(750, 480));
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jPanel2Funcionario.setBackground(new java.awt.Color(204, 204, 255));
@@ -298,7 +299,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(txtPesquisaFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,8 +424,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -616,6 +617,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 txtDataAdmissao.setText(controle.pesquisaFuncionario().getDataAdmissao());
 
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
                 Logger.getLogger(InternalFrameFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
 

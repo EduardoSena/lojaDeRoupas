@@ -47,6 +47,7 @@ public class ControlFuncionario {
             dataAniv = new SimpleDateFormat("dd/MM/yyyy").parse(funcionario.getDatanasc());
             dataAdmin = new SimpleDateFormat("dd/MM/yyyy").parse(funcionario.getDataAdmissao());
         } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex);
             Logger.getLogger(ControlFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -79,7 +80,6 @@ public class ControlFuncionario {
             stmt.close();
 
         } catch (SQLException u) {
-            // throw new RuntimeException(u);
             JOptionPane.showMessageDialog(null, u);
         }
 
@@ -97,7 +97,7 @@ public class ControlFuncionario {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
         }
 
     }
@@ -135,6 +135,7 @@ public class ControlFuncionario {
                     dataAniv = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("datanascimento"));
                     dataAdmin = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("dataadmissao"));
                 } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
                     Logger.getLogger(ControlFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dataAniversario = new SimpleDateFormat("dd/MM/yyyy").format(dataAniv);
@@ -149,7 +150,7 @@ public class ControlFuncionario {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+       JOptionPane.showMessageDialog(null, u);
         }
 
         return funcionario;
@@ -190,7 +191,7 @@ public class ControlFuncionario {
             stmt.close();
 
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            JOptionPane.showMessageDialog(null, u);
         }
     }
 

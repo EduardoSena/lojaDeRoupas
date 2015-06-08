@@ -43,6 +43,7 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
+        setMinimumSize(new java.awt.Dimension(750, 480));
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jPanelListarVendas.setBackground(new java.awt.Color(204, 204, 255));
@@ -136,7 +137,7 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
                         .addComponent(btnCancelarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSairPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(jPanelListarVendasLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
@@ -176,8 +177,8 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelListarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelListarVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

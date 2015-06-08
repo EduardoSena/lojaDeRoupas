@@ -70,6 +70,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
+        setMinimumSize(new java.awt.Dimension(750, 480));
         setPreferredSize(new java.awt.Dimension(750, 480));
 
         jPanelClientes.setBackground(new java.awt.Color(204, 204, 255));
@@ -243,7 +244,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
                         .addComponent(txtDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelClientesLayout.createSequentialGroup()
                         .addComponent(txtCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -319,8 +320,8 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,6 +477,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
                 txtDataDeNascimento.setText(controle.pesquisaCliente().getDatanasc());
 
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
                 Logger.getLogger(InternalFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
 

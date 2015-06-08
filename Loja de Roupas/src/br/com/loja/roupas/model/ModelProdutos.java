@@ -19,6 +19,7 @@ public class ModelProdutos {
     private String cor;
     private String tamanho;
     private String marca;
+    private int quantidade;
 
     /**
      * @return the codigoProdutos
@@ -131,6 +132,14 @@ public class ModelProdutos {
      */
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
     }
 
 }

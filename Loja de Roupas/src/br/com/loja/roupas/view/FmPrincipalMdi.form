@@ -74,6 +74,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuCadPedidoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

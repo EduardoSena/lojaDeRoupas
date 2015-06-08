@@ -102,6 +102,11 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         subMenuCadPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         subMenuCadPedido.setText("Pedidos");
+        subMenuCadPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuCadPedidoActionPerformed(evt);
+            }
+        });
         menuProduto.add(subMenuCadPedido);
 
         subMenuListaVendas.add(menuProduto);
@@ -175,6 +180,11 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_subMenuCadProdActionPerformed
+
+    private void subMenuCadPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadPedidoActionPerformed
+        
+        
+    }//GEN-LAST:event_subMenuCadPedidoActionPerformed
 
     /**
      * @param args the command line arguments
