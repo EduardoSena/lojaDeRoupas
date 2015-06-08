@@ -48,7 +48,7 @@ public class FmLogin extends javax.swing.JFrame {
         bntLogar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Loga de Roupa");
+        setTitle("Loja de Roupa");
         setType(java.awt.Window.Type.UTILITY);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login de Usuários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 18))); // NOI18N

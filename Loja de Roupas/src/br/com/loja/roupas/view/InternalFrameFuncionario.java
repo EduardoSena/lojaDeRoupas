@@ -80,6 +80,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
+        setTitle("Cadastro de Funcionário");
         setMinimumSize(new java.awt.Dimension(750, 480));
         setPreferredSize(new java.awt.Dimension(750, 480));
 

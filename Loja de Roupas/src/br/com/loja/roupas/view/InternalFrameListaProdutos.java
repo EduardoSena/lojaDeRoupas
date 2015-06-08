@@ -6,8 +6,10 @@
 package br.com.loja.roupas.view;
 
 import br.com.loja.roupas.control.ControlPedido;
+import br.com.loja.roupas.control.ControlProduto;
 import br.com.loja.roupas.dao.ConexaoDao;
 import br.com.loja.roupas.model.ModelPedidos;
+import br.com.loja.roupas.model.ModelProdutos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,6 +90,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
+        setTitle("Lista Produtos e Pedidos");
         setMinimumSize(new java.awt.Dimension(750, 480));
         setPreferredSize(new java.awt.Dimension(750, 480));
 
@@ -450,7 +453,11 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     private void btnConfirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarPedidoActionPerformed
 
-        // fazendo a validação dos dados
+        if (atualizarQuantidadeDeProduto() > 0) {
+
+            atualizarQuantidadeDeProduto();
+            
+            // fazendo a validação dos dados
         if ((txtDataPedido.getText().isEmpty())
                 || (txtValorTotalPedido.getText().isEmpty())
                 || (txtPrecoProdutoPedido.getText().isEmpty())
@@ -466,7 +473,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         } else {
 
             pedido.setDataPedido(txtDataPedido.getText());
-            pedido.setValorPedido(Double.parseDouble(txtValorTotalPedido.getText().replace("R$","").replace(".","").replace(",",".")));
+            pedido.setValorPedido(Double.parseDouble(txtValorTotalPedido.getText().replace("R$", "").replace(".", "").replace(",", ".")));
             pedido.setQuantidadePedido(Integer.parseInt(txtQuantidadeCompra.getText().trim()));
             pedido.setNomeProduto(txtNomeProdutoPedido.getText());
             pedido.setNomeCliente(txtNomeClientePedido.getText());
@@ -477,29 +484,19 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
             controle.confirmaPedido(pedido);
             //controle.atualizarQuantidadeProduto( pedido.setQuantidadePedido(Integer.parseInt(txtQuantidadeCompra.getText().trim())));
-         JOptionPane.showMessageDialog(null, "Pedido efetuado com sucesso! ");
-         
-           sql = "SELECT clientes.nome  FROM  lojaderoupa.clientes WHERE idclientes=?";
+            JOptionPane.showMessageDialog(null, "Pedido efetuado com sucesso! ");
 
-        try {
-
-            this.stmt = conexao.prepareStatement(sql);
-            this.stmt.setInt(1, Integer.parseInt(txtFKCliPedido.getText().trim()));
-            this.rs = stmt.executeQuery();
-            if (rs.next()) {
-                txtNomeClientePedido.setText(rs.getString("nome"));
-            }
-        } catch (SQLException u) {
-            JOptionPane.showMessageDialog(null, u);
-
-        }
-         
-         
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
-            
-            
+
         }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor maior que do estoque! ");
+
+        }
+
+        
     }//GEN-LAST:event_btnConfirmarPedidoActionPerformed
 
     private void btnCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPedidoActionPerformed
@@ -515,6 +512,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     private void txtNomeProdutoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoPedidoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNomeProdutoPedidoActionPerformed
 
     private void txtFKProdPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFKProdPedidoActionPerformed
@@ -574,7 +572,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         calculaValorTotal();
     }//GEN-LAST:event_txtQuantidadeCompraActionPerformed
 
-    public void listaDeProdutos() {
+    private void listaDeProdutos() {
 
         sql = "SELECT  * FROM lojaderoupa.produtos";
 
@@ -589,7 +587,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         }
     }
 
-    public void pesquisaProdutoLista() {
+    private void pesquisaProdutoLista() {
 
         sql = "SELECT  * FROM lojaderoupa.produtos WHERE nome like ?";
 
@@ -653,7 +651,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         }
     }
 
-    public void ApagaCampos() {
+    private void ApagaCampos() {
         txtDataPedido.setText("");
         txtQuantidadeCompra.setText("");
         txtValorTotalPedido.setText("");
@@ -667,20 +665,17 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     }
 
-    public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
+    private JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres
             String quantidade = "";
 
-            //defino um método de repetição para repetir o numero de
-            //vezes  do tamanho
             for (int i = 0; i < tamanho; i++) {
                 quantidade = quantidade + "*";
             }
 
             javax.swing.text.MaskFormatter n = new javax.swing.text.MaskFormatter(quantidade);
-            //javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
-            //jTextFielddata = new javax.swing.JFormattedTextField(data);
+
             n.setValidCharacters(caracteres);
 
             return new javax.swing.JFormattedTextField(n);
@@ -701,7 +696,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     }
 
-    public void calculaValorTotal() {
+    private void calculaValorTotal() {
         DecimalFormat digitos = new DecimalFormat("0.00");
         int quantidade;
         double precoProduto;
@@ -712,7 +707,31 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
                 digitos.format(precoProduto * quantidade)).replace(".", ","));
     }
 
+    private int atualizarQuantidadeDeProduto() {
 
+        int quantidadeComprada = Integer.parseInt(txtQuantidadeCompra.getText().trim());
+        int escolher = jTableListaProdutos.getSelectedRow();
+        int quantidadeProduto = Integer.valueOf(jTableListaProdutos.getModel().getValueAt(escolher, 8).toString());
+        int idProduto = Integer.valueOf(jTableListaProdutos.getModel().getValueAt(escolher, 0).toString());
+        int novoValor = quantidadeProduto - quantidadeComprada;
+      
+
+        sql = "UPDATE lojaderoupa.produtos SET "
+                + "quantidade='" + novoValor + "' WHERE idprodutos=" + idProduto;
+
+        try {
+
+            stmt = conexao.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+
+        } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
+        }
+
+        return novoValor;
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtuTabela;
     private javax.swing.JButton btnCancelarPedido;

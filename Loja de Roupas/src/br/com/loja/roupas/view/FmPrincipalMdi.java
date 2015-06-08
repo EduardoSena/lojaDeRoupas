@@ -44,7 +44,6 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         menuProduto = new javax.swing.JMenu();
         subMenuCadProd = new javax.swing.JMenuItem();
         subMenuListaProdutos = new javax.swing.JMenuItem();
-        subMenuCadPedido = new javax.swing.JMenuItem();
         menuVenda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -99,15 +98,6 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
             }
         });
         menuProduto.add(subMenuListaProdutos);
-
-        subMenuCadPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        subMenuCadPedido.setText("Pedidos");
-        subMenuCadPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subMenuCadPedidoActionPerformed(evt);
-            }
-        });
-        menuProduto.add(subMenuCadPedido);
 
         subMenuListaVendas.add(menuProduto);
 
@@ -181,11 +171,6 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         
     }//GEN-LAST:event_subMenuCadProdActionPerformed
 
-    private void subMenuCadPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadPedidoActionPerformed
-        
-        
-    }//GEN-LAST:event_subMenuCadPedidoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -228,7 +213,6 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
     private javax.swing.JMenu menuFuncionario;
     private javax.swing.JMenu menuProduto;
     private javax.swing.JMenu menuVenda;
-    private javax.swing.JMenuItem subMenuCadPedido;
     private javax.swing.JMenuItem subMenuCadProd;
     private javax.swing.JMenuItem subMenuCliente;
     private javax.swing.JMenuItem subMenuFuncionario;
