@@ -10,7 +10,9 @@ package br.com.loja.roupas.model;
  * @author Eduardo Marcio
  */
 abstract public class ModelUsuario {
-
+/**
+ * atributos da classe ModelUsuario
+ */
     private String nome;
     private String email;
     private String telefone;
@@ -21,7 +23,10 @@ abstract public class ModelUsuario {
     private String cidade;
     private String estado;
     private String cep;
-
+/**
+ * método que recebe o nome do usuário
+ * @return 
+ */
     public String getNome() {
         return nome;
     }
