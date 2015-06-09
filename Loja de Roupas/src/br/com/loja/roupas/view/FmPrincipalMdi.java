@@ -91,7 +91,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         menuProduto.add(subMenuCadProd);
 
         subMenuListaProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        subMenuListaProdutos.setText("Lista de Produtos");
+        subMenuListaProdutos.setText("Lista de Produtos e Pedido");
         subMenuListaProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subMenuListaProdutosActionPerformed(evt);
@@ -105,6 +105,11 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Lista de Vendas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         menuVenda.add(jMenuItem1);
 
         subMenuListaVendas.add(menuVenda);
@@ -152,7 +157,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
     private void subMenuListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuListaProdutosActionPerformed
         // TODO add your handling code here:
-        InternalFrameListaProdutos internoListaProdutos=new InternalFrameListaProdutos();
+        InternalFrameListaProdutoPedido internoListaProdutos=new InternalFrameListaProdutoPedido();
        
         DesktopPanePrincipal.add(internoListaProdutos);
          internoListaProdutos.setVisible(true);
@@ -170,6 +175,15 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_subMenuCadProdActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        InternalFrameListarVendas listaVendas=new InternalFrameListarVendas();
+        
+        DesktopPanePrincipal.add(listaVendas);
+         listaVendas.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

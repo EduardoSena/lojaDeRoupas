@@ -3,8 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.loja.roupas.view;
+
+import br.com.loja.roupas.dao.ConexaoDao;
+import java.sql.*;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,12 +19,23 @@ package br.com.loja.roupas.view;
  */
 public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
+    private String sql;
+    private PreparedStatement stmt;
+    private ResultSet rs;
+    private Connection conexao;
+
     /**
      * Creates new form InternalFrameListarVendas
      */
     public InternalFrameListarVendas() {
         initComponents();
         this.setLocation(150, 99);
+        this.conexao = ConexaoDao.conexaoDB();
+        quantidadeProdutoEstoque();
+        valorTotalProdutosEstoque();
+        quantidadePedidosRealizados();
+        valorPedidosRealizados();
+        listaDePedidos();
     }
 
     /**
@@ -31,15 +49,21 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
         jPanelListarVendas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtCodigoPedido = new javax.swing.JTextField();
-        btnCadastroPedido = new javax.swing.JButton();
-        btnAlterarPedido = new javax.swing.JButton();
-        btnCancelarPedido = new javax.swing.JButton();
-        btnExluirPedido = new javax.swing.JButton();
+        txtPesquisaPedidoVenda = new javax.swing.JTextField();
+        btnAtualizarTela = new javax.swing.JButton();
         btnSairPedido = new javax.swing.JButton();
         btnPesquisarVendaCodigo = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableVendas = new javax.swing.JTable();
+        jTablePedidosVendas = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        txtQuantidadeProdutos = new javax.swing.JTextField();
+        txtValorTotalProdutos = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtQuantidadePedidos = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtValorPedidosRealizados = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
@@ -52,43 +76,20 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
         jPanelListarVendas.setPreferredSize(new java.awt.Dimension(680, 430));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Código da Venda: ");
+        jLabel2.setText("Código do Pedido: ");
 
-        txtCodigoPedido.addActionListener(new java.awt.event.ActionListener() {
+        txtPesquisaPedidoVenda.setToolTipText("Digite o código do pedido procurado");
+        txtPesquisaPedidoVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoPedidoActionPerformed(evt);
+                txtPesquisaPedidoVendaActionPerformed(evt);
             }
         });
 
-        btnCadastroPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCadastroPedido.setText("Cadastrar");
-        btnCadastroPedido.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizarTela.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAtualizarTela.setText("Altualizar tela");
+        btnAtualizarTela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastroPedidoActionPerformed(evt);
-            }
-        });
-
-        btnAlterarPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnAlterarPedido.setText("Alterar");
-        btnAlterarPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarPedidoActionPerformed(evt);
-            }
-        });
-
-        btnCancelarPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCancelarPedido.setText("Cancelar");
-        btnCancelarPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarPedidoActionPerformed(evt);
-            }
-        });
-
-        btnExluirPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnExluirPedido.setText("Excluir");
-        btnExluirPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExluirPedidoActionPerformed(evt);
+                btnAtualizarTelaActionPerformed(evt);
             }
         });
 
@@ -102,13 +103,17 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
         btnPesquisarVendaCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPesquisarVendaCodigo.setText("Pesquisar");
+        btnPesquisarVendaCodigo.setToolTipText("Pesquisar código do pedido");
         btnPesquisarVendaCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarVendaCodigoActionPerformed(evt);
             }
         });
 
-        jTableVendas.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Pedidos Realizados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14))); // NOI18N
+
+        jTablePedidosVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -119,38 +124,101 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableVendas);
+        jScrollPane1.setViewportView(jTablePedidosVendas);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+        );
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Quantidade de produtos no estoque:");
+
+        txtQuantidadeProdutos.setToolTipText("Quantidade de produtos estocados");
+        txtQuantidadeProdutos.setEnabled(false);
+        txtQuantidadeProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantidadeProdutosActionPerformed(evt);
+            }
+        });
+
+        txtValorTotalProdutos.setToolTipText("Valor de todos produtos do estoque");
+        txtValorTotalProdutos.setEnabled(false);
+        txtValorTotalProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorTotalProdutosActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Valor total de produtos no estoque:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Quantidade de pedidos realizados:");
+
+        txtQuantidadePedidos.setToolTipText("Qantidade de compras realizadas");
+        txtQuantidadePedidos.setEnabled(false);
+        txtQuantidadePedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantidadePedidosActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Valor total dos pedidos realizados:");
+
+        txtValorPedidosRealizados.setToolTipText("Valor total de vendas concluidas");
+        txtValorPedidosRealizados.setEnabled(false);
+        txtValorPedidosRealizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorPedidosRealizadosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelListarVendasLayout = new javax.swing.GroupLayout(jPanelListarVendas);
         jPanelListarVendas.setLayout(jPanelListarVendasLayout);
         jPanelListarVendasLayout.setHorizontalGroup(
             jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListarVendasLayout.createSequentialGroup()
-                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelListarVendasLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(btnCadastroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAlterarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExluirPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnCancelarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSairPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 45, Short.MAX_VALUE))
-                    .addGroup(jPanelListarVendasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAtualizarTela)
+                .addGap(18, 18, 18)
+                .addComponent(btnSairPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
             .addGroup(jPanelListarVendasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txtCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPesquisarVendaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelListarVendasLayout.createSequentialGroup()
+                        .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelListarVendasLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPesquisaPedidoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPesquisarVendaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addGroup(jPanelListarVendasLayout.createSequentialGroup()
+                                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtValorTotalProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtQuantidadeProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtQuantidadePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel7)
+                            .addGroup(jPanelListarVendasLayout.createSequentialGroup()
+                                .addGap(245, 245, 245)
+                                .addComponent(txtValorPedidosRealizados, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelListarVendasLayout.setVerticalGroup(
             jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,16 +226,29 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisaPedidoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarVendaCodigo))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAlterarPedido)
-                    .addComponent(btnCancelarPedido)
-                    .addComponent(btnExluirPedido)
-                    .addComponent(btnCadastroPedido)
+                    .addComponent(jLabel3)
+                    .addComponent(txtQuantidadeProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtValorTotalProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtQuantidadePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtValorPedidosRealizados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAtualizarTela)
                     .addComponent(btnSairPedido))
                 .addGap(27, 27, 27))
         );
@@ -192,49 +273,210 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodigoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPedidoActionPerformed
+    private void txtPesquisaPedidoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaPedidoVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoPedidoActionPerformed
+    }//GEN-LAST:event_txtPesquisaPedidoVendaActionPerformed
 
-    private void btnCadastroPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroPedidoActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastroPedidoActionPerformed
-
-    private void btnAlterarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarPedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarPedidoActionPerformed
-
-    private void btnCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarPedidoActionPerformed
-
-    private void btnExluirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirPedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExluirPedidoActionPerformed
+    private void btnAtualizarTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarTelaActionPerformed
+        listaDePedidos();
+    }//GEN-LAST:event_btnAtualizarTelaActionPerformed
 
     private void btnSairPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairPedidoActionPerformed
 
- 
         setVisible(false);
     }//GEN-LAST:event_btnSairPedidoActionPerformed
 
     private void btnPesquisarVendaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarVendaCodigoActionPerformed
         // TODO add your handling code here:
+        pesquisaPedidosLista();
     }//GEN-LAST:event_btnPesquisarVendaCodigoActionPerformed
 
+    private void txtQuantidadeProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeProdutosActionPerformed
 
+    }//GEN-LAST:event_txtQuantidadeProdutosActionPerformed
+
+    private void txtValorTotalProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorTotalProdutosActionPerformed
+
+    private void txtQuantidadePedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadePedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantidadePedidosActionPerformed
+
+    private void txtValorPedidosRealizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorPedidosRealizadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorPedidosRealizadosActionPerformed
+
+    private void quantidadeProdutoEstoque() {
+        // TODO add your handling code here:
+
+        sql = "SELECT SUM (produtos.quantidade)  FROM  lojaderoupa.produtos";
+
+        try {
+
+            this.stmt = conexao.prepareStatement(sql);
+
+            this.rs = stmt.executeQuery();
+            if (rs.next()) {
+                txtQuantidadeProdutos.setText(rs.getString("SUM"));
+            }
+        } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
+
+        }
+    }
+
+    private void valorTotalProdutosEstoque() {
+        sql = "SELECT SUM (produtos.precounitario * produtos.quantidade)  FROM  lojaderoupa.produtos";
+
+        try {
+
+            this.stmt = conexao.prepareStatement(sql);
+
+            this.rs = stmt.executeQuery();
+            if (rs.next()) {
+                txtValorTotalProdutos.setText("R$ " + rs.getString("SUM").replace(".", ","));
+            }
+        } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
+
+        }
+
+    }
+
+    public void listaDePedidos() {
+
+        sql = "SELECT  * FROM lojaderoupa.pedidos";
+
+        try {
+            this.stmt = conexao.prepareStatement(sql);
+            this.rs = stmt.executeQuery();
+            tabelaPedidos(this.rs);
+
+        } catch (SQLException u) {
+
+            JOptionPane.showMessageDialog(null, u);
+        }
+    }
+
+    private void pesquisaPedidosLista() {
+
+        sql = "SELECT  * FROM lojaderoupa.pedidos WHERE idpedidos=?";
+
+        try {
+
+            this.stmt = conexao.prepareStatement(sql);
+            this.stmt.setInt(1, Integer.parseInt(txtPesquisaPedidoVenda.getText()));
+            this.rs = stmt.executeQuery();
+            tabelaPedidos(this.rs);
+
+        } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
+        }
+
+    }
+
+    private void tabelaPedidos(ResultSet rs) {
+
+        DefaultTableModel tabela = new DefaultTableModel();
+
+        jTablePedidosVendas.setModel(tabela);
+
+        tabela.addColumn("Código do Pedido");
+        tabela.addColumn("Data do Pedido");
+        tabela.addColumn("Valor do Pedido");
+        tabela.addColumn("Quantidade Pedida");
+        tabela.addColumn("Nome do Produto");
+        tabela.addColumn("Nome do Cliente");
+        tabela.addColumn("Nome do Funcionário");
+        tabela.addColumn("Código do Produto");
+        tabela.addColumn("Código do Cliente");
+        tabela.addColumn("Código do Funcionário");
+
+        jTablePedidosVendas.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(1).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(2).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(4).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(5).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(6).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(7).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(8).setPreferredWidth(50);
+        jTablePedidosVendas.getColumnModel().getColumn(9).setPreferredWidth(50);
+        try {
+            while (this.rs.next()) {
+                String idpedidos = rs.getString("idpedidos");
+                String datapedido = rs.getString("datapedido");
+                String valorpedido = rs.getString("valorpedido");
+                String quantidade = rs.getString("quantidade");
+                String nomeproduto = rs.getString("nomeproduto");
+                String nomecliente = rs.getString("nomecliente");
+                String nomefunc = rs.getString("nomefunc");
+                String fkproduto = rs.getString("fkproduto");
+                String fkcliente = rs.getString("fkcliente");
+                String fkfunc = rs.getString("fkfunc");
+
+                tabela.addRow(new Object[]{idpedidos, datapedido, valorpedido, quantidade, nomeproduto, nomecliente, nomefunc, fkproduto, fkcliente, fkfunc});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            Logger.getLogger(InternalFrameListaProdutoPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void quantidadePedidosRealizados() {
+
+        sql = "SELECT COUNT(*)  FROM  lojaderoupa.pedidos";
+
+        try {
+
+            this.stmt = conexao.prepareStatement(sql);
+
+            this.rs = stmt.executeQuery();
+            if (rs.next()) {
+                txtQuantidadePedidos.setText(rs.getString("COUNT"));
+            }
+        } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
+
+        }
+    }
+
+   
+    private void valorPedidosRealizados() {
+
+        sql = "SELECT SUM(pedidos.valorpedido)  FROM  lojaderoupa.pedidos";
+
+        try {
+
+            this.stmt = conexao.prepareStatement(sql);
+
+            this.rs = stmt.executeQuery();
+            if (rs.next()) {
+                txtValorPedidosRealizados.setText("R$ " + rs.getString("SUM").replace(".", ","));
+            }
+        } catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, u);
+
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterarPedido;
-    private javax.swing.JButton btnCadastroPedido;
-    private javax.swing.JButton btnCancelarPedido;
-    private javax.swing.JButton btnExluirPedido;
+    private javax.swing.JButton btnAtualizarTela;
     private javax.swing.JButton btnPesquisarVendaCodigo;
     private javax.swing.JButton btnSairPedido;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelListarVendas;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableVendas;
-    private javax.swing.JTextField txtCodigoPedido;
+    private javax.swing.JTable jTablePedidosVendas;
+    private javax.swing.JTextField txtPesquisaPedidoVenda;
+    private javax.swing.JTextField txtQuantidadePedidos;
+    private javax.swing.JTextField txtQuantidadeProdutos;
+    private javax.swing.JTextField txtValorPedidosRealizados;
+    private javax.swing.JTextField txtValorTotalProdutos;
     // End of variables declaration//GEN-END:variables
 }

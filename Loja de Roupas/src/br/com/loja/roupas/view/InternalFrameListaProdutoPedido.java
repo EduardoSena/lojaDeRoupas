@@ -6,10 +6,8 @@
 package br.com.loja.roupas.view;
 
 import br.com.loja.roupas.control.ControlPedido;
-import br.com.loja.roupas.control.ControlProduto;
 import br.com.loja.roupas.dao.ConexaoDao;
 import br.com.loja.roupas.model.ModelPedidos;
-import br.com.loja.roupas.model.ModelProdutos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Eduardo Marcio
  */
-public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
+public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame {
 
     private Connection conexao;
     private PreparedStatement stmt;
@@ -37,7 +35,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrame
      */
-    public InternalFrameListaProdutos() {
+    public InternalFrameListaProdutoPedido() {
         initComponents();
         this.setLocation(150, 99);
         this.conexao = ConexaoDao.conexaoDB();
@@ -365,11 +363,12 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(txtFKProdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeProdutoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNomeProdutoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(jLabel20)
+                        .addComponent(txtFKProdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -456,47 +455,47 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         if (atualizarQuantidadeDeProduto() > 0) {
 
             atualizarQuantidadeDeProduto();
-            
+
             // fazendo a validação dos dados
-        if ((txtDataPedido.getText().isEmpty())
-                || (txtValorTotalPedido.getText().isEmpty())
-                || (txtPrecoProdutoPedido.getText().isEmpty())
-                || (txtNomeProdutoPedido.getText().isEmpty())
-                || (txtNomeClientePedido.getText().isEmpty())
-                || (txtNomeFuncPedido2.getText().isEmpty())
-                || (txtFKProdPedido.getText().isEmpty())
-                || (txtFKCliPedido.getText().isEmpty())
-                || (txtFKFunc.getText().isEmpty())
-                || (txtQuantidadeCompra.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+            if ((txtDataPedido.getText().isEmpty())
+                    || (txtValorTotalPedido.getText().isEmpty())
+                    || (txtPrecoProdutoPedido.getText().isEmpty())
+                    || (txtNomeProdutoPedido.getText().isEmpty())
+                    || (txtNomeClientePedido.getText().isEmpty())
+                    || (txtNomeFuncPedido2.getText().isEmpty())
+                    || (txtFKProdPedido.getText().isEmpty())
+                    || (txtFKCliPedido.getText().isEmpty())
+                    || (txtFKFunc.getText().isEmpty())
+                    || (txtQuantidadeCompra.getText().isEmpty())) {
+                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
 
-        } else {
+            } else {
 
-            pedido.setDataPedido(txtDataPedido.getText());
-            pedido.setValorPedido(Double.parseDouble(txtValorTotalPedido.getText().replace("R$", "").replace(".", "").replace(",", ".")));
-            pedido.setQuantidadePedido(Integer.parseInt(txtQuantidadeCompra.getText().trim()));
-            pedido.setNomeProduto(txtNomeProdutoPedido.getText());
-            pedido.setNomeCliente(txtNomeClientePedido.getText());
-            pedido.setNomeFunc(txtNomeFuncPedido2.getText().trim());
-            pedido.setFkProduto(Integer.parseInt(txtFKProdPedido.getText()));
-            pedido.setFkCliente(Integer.parseInt(txtFKCliPedido.getText().trim()));
-            pedido.setFkFunc(Integer.parseInt(txtFKFunc.getText().trim()));
+                pedido.setDataPedido(txtDataPedido.getText());
+                pedido.setValorPedido(Double.parseDouble(txtValorTotalPedido.getText().replace("R$", "").replace(".", "").replace(",", ".")));
+                pedido.setQuantidadePedido(Integer.parseInt(txtQuantidadeCompra.getText().trim()));
+                pedido.setNomeProduto(txtNomeProdutoPedido.getText());
+                pedido.setNomeCliente(txtNomeClientePedido.getText());
+                pedido.setNomeFunc(txtNomeFuncPedido2.getText().trim());
+                pedido.setFkProduto(Integer.parseInt(txtFKProdPedido.getText()));
+                pedido.setFkCliente(Integer.parseInt(txtFKCliPedido.getText().trim()));
+                pedido.setFkFunc(Integer.parseInt(txtFKFunc.getText().trim()));
 
-            controle.confirmaPedido(pedido);
-            //controle.atualizarQuantidadeProduto( pedido.setQuantidadePedido(Integer.parseInt(txtQuantidadeCompra.getText().trim())));
-            JOptionPane.showMessageDialog(null, "Pedido efetuado com sucesso! ");
+                controle.confirmaPedido(pedido);
+                //controle.atualizarQuantidadeProduto( pedido.setQuantidadePedido(Integer.parseInt(txtQuantidadeCompra.getText().trim())));
+                JOptionPane.showMessageDialog(null, "Pedido efetuado com sucesso! ");
 
-            // apaga os dados preenchidos nos campos de texto
-            ApagaCampos();
+                // apaga os dados preenchidos nos campos de texto
+                ApagaCampos();
 
-        }
+            }
 
         } else {
             JOptionPane.showMessageDialog(null, "Valor maior que do estoque! ");
 
         }
 
-        
+
     }//GEN-LAST:event_btnConfirmarPedidoActionPerformed
 
     private void btnCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPedidoActionPerformed
@@ -507,12 +506,12 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
     private void jTableListaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaProdutosMouseClicked
         // TODO add your handling code here:
         escolherLinhaTable();
-        calculaValorTotal();
+        calculaValorTotalPedido();
     }//GEN-LAST:event_jTableListaProdutosMouseClicked
 
     private void txtNomeProdutoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoPedidoActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtNomeProdutoPedidoActionPerformed
 
     private void txtFKProdPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFKProdPedidoActionPerformed
@@ -569,17 +568,17 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     private void txtQuantidadeCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeCompraActionPerformed
         // TODO add your handling code here:
-        calculaValorTotal();
+        calculaValorTotalPedido();
     }//GEN-LAST:event_txtQuantidadeCompraActionPerformed
 
-    private void listaDeProdutos() {
+    public void listaDeProdutos() {
 
         sql = "SELECT  * FROM lojaderoupa.produtos";
 
         try {
             this.stmt = conexao.prepareStatement(sql);
             this.rs = stmt.executeQuery();
-            listaTable(this.rs);
+            tabelaProdutos(this.rs);
 
         } catch (SQLException u) {
 
@@ -596,7 +595,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
             this.stmt = conexao.prepareStatement(sql);
             this.stmt.setString(1, txtPesquisaProdutosLista.getText() + "%");
             this.rs = stmt.executeQuery();
-            listaTable(this.rs);
+            tabelaProdutos(this.rs);
 
         } catch (SQLException u) {
             JOptionPane.showMessageDialog(null, u);
@@ -604,7 +603,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         escolherLinhaTable();
     }
 
-    private void listaTable(ResultSet rs) {
+    private void tabelaProdutos(ResultSet rs) {
 
         DefaultTableModel tabela = new DefaultTableModel();
 
@@ -647,7 +646,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
-            Logger.getLogger(InternalFrameListaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InternalFrameListaProdutoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -696,7 +695,7 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
 
     }
 
-    private void calculaValorTotal() {
+    private void calculaValorTotalPedido() {
         DecimalFormat digitos = new DecimalFormat("0.00");
         int quantidade;
         double precoProduto;
@@ -714,7 +713,6 @@ public class InternalFrameListaProdutos extends javax.swing.JInternalFrame {
         int quantidadeProduto = Integer.valueOf(jTableListaProdutos.getModel().getValueAt(escolher, 8).toString());
         int idProduto = Integer.valueOf(jTableListaProdutos.getModel().getValueAt(escolher, 0).toString());
         int novoValor = quantidadeProduto - quantidadeComprada;
-      
 
         sql = "UPDATE lojaderoupa.produtos SET "
                 + "quantidade='" + novoValor + "' WHERE idprodutos=" + idProduto;

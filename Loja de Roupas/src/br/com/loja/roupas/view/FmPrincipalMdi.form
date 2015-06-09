@@ -61,7 +61,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Alt+L"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Lista de Produtos"/>
+                <Property name="text" type="java.lang.String" value="Lista de Produtos e Pedido"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuListaProdutosActionPerformed"/>
@@ -81,6 +81,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lista de Vendas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
