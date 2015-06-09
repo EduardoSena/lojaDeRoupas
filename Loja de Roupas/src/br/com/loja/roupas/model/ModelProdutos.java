@@ -10,7 +10,9 @@ package br.com.loja.roupas.model;
  * @author Eduardo, Gustavo e Ludimila
  */
 public class ModelProdutos {
-
+/**
+ * atributos exclusivos da classe ModelProdutos
+ */
     private int codigoProdutos;
     private int fkFuncionarios;
     private String nome;

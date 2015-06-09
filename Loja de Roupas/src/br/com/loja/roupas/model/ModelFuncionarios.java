@@ -9,8 +9,11 @@ package br.com.loja.roupas.model;
  *
  * @author Eduardo, Gustavo e Ludimila
  */
-public class ModelFuncionarios extends ModelUsuario{
 
+public class ModelFuncionarios extends ModelUsuario{
+/**
+ * atributos que existem apenas na classe ModelFuncionarios
+ */
     private double salario;
     private double comissao;
     private String dataAdmissao;
@@ -22,7 +25,10 @@ public class ModelFuncionarios extends ModelUsuario{
        public void setIdFuncionario(int idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
-    
+    /**
+     * métodos que enviam e recebem informações
+     * @return 
+     */
     @Override
     public String getNome() {
         return super.getNome(); 

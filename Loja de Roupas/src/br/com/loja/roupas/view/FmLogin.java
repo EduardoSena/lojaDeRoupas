@@ -181,7 +181,9 @@ public class FmLogin extends javax.swing.JFrame {
             }
         });
     }
-
+/**
+ * verifica no banco de dados se usuário e login são verdadeiros
+ */
    public void validarLogin() {
 
          sql = "SELECT * FROM lojaderoupa.login WHERE usuario = ? AND senha= ? ";
@@ -197,7 +199,9 @@ public class FmLogin extends javax.swing.JFrame {
                 FmPrincipalMdi fmprincipal=new FmPrincipalMdi();
                 fmprincipal.setVisible(true);
                 dispose();
-                
+            /**
+             * retorna erro
+             */    
             }else{
                 JOptionPane.showMessageDialog(null, "Favor verificar Usuario e Senha");
             }

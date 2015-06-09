@@ -12,10 +12,15 @@ package br.com.loja.roupas.model;
  * @author Eduardo, Gustavo e Ludimila
  */
 public class ModelCliente extends ModelUsuario {
-
+/**
+ * atributos privados declarados
+ */
     private int idCliente;
     private double desconto;
-
+/**
+ * métodos que recebem e enviam informações que existem apenas na classe ModelCliente
+ * @return 
+ */
     public int getIdCliente() {
         return idCliente;
     }
@@ -31,7 +36,10 @@ public class ModelCliente extends ModelUsuario {
     public void setDesconto(double desconto) {
         this.desconto = desconto;
     }
-
+/**
+ * métodos que recebem e enviam informações
+ * @return 
+ */
     @Override
     public String getNome() {
         return super.getNome(); 

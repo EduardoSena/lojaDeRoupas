@@ -12,7 +12,9 @@ package br.com.loja.roupas.model;
  */
 public class ModelPedidos {
     
-    
+    /**
+     * atributos privados que existem apenas na classe ModelPedidos
+     */
 private int codigoPedido;
 private String dataPedido;
 private double valorPedido;
