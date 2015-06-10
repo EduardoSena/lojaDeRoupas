@@ -31,10 +31,11 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
      */
     public InternalFrameCliente() {
         initComponents();
-      this.setLocation(150,99);
-
         cliente = new ModelCliente();
         controle = new ControlCliente();
+        btnCadastro.setEnabled(true);
+        btnAlterar1.setEnabled(false);
+        btnExluir.setEnabled(false);
     }
 
     /**
@@ -450,6 +451,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText().trim() + " removido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+           
         }
 
 
@@ -474,10 +476,13 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
  * @param evt 
  */
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
+btnCadastro.setEnabled(false);
+        btnAlterar1.setEnabled(true);
+        btnExluir.setEnabled(true);
 // fazendo a validação dos dados
         if ((txtPesquisa.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+            btnCadastro.setEnabled(true);
         } else {
             try {
                 // instanciando a classe Cliente do pacote dao e criando seu objeto dao
@@ -507,6 +512,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
+       
     }//GEN-LAST:event_btnCancelarActionPerformed
 /**
  * Método static de pesquisa que retorna o nome adicionado no campo txtNome.getText();
@@ -528,6 +534,9 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
         txtDataDeNascimento.setText("");
         txtEndereco.setText("");
         txtCep.setText("");
+         btnCadastro.setEnabled(true);
+         btnAlterar1.setEnabled(false);
+        btnExluir.setEnabled(false);
     }
 /**
    * Método que mascara um campo de digitação 

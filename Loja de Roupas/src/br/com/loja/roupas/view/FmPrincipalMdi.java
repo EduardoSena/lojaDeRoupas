@@ -5,7 +5,7 @@
  */
 package br.com.loja.roupas.view;
 
-
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -13,19 +13,14 @@ package br.com.loja.roupas.view;
  */
 public class FmPrincipalMdi extends javax.swing.JFrame {
 
-   
-   
-
     /**
-     * Método construtor da clsasse FmPrincipal
-     * com conexão com o banco
+     * Método construtor da clsasse FmPrincipal com conexão com o banco
      */
     public FmPrincipalMdi() {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
-       
 
     }
 
@@ -133,74 +128,81 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-/**
- * Botão que abre o cadasstro de Clientes
- * @param evt 
- */
+    /**
+     * Botão que abre o cadasstro de Clientes
+     *
+     * @param evt
+     */
     /**
      * Botão de Menu cliente para abrir tela de cadastro cliente
-     * @param evt 
+     *
+     * @param evt
      */
     private void subMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuClienteActionPerformed
         // TODO add your handling code here: 
 
         InternalFrameCliente internoFrameCliente = new InternalFrameCliente();
-    
-            DesktopPanePrincipal.add(internoFrameCliente);         
-            internoFrameCliente.setVisible(true);
-     
+
+        DesktopPanePrincipal.add(internoFrameCliente);
+        internoFrameCliente.setVisible(true);
+        centraliza(internoFrameCliente);
 
     }//GEN-LAST:event_subMenuClienteActionPerformed
-/**
+
+    /**
      * Botão de Menu funcionário para abrir tela de cadastro funcionário
-     * @param evt 
+     *
+     * @param evt
      */
     private void subMenuFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuFuncionarioActionPerformed
         // TODO add your handling code here:
         InternalFrameFuncionario internoFuncionario = new InternalFrameFuncionario();
-     
-            DesktopPanePrincipal.add(internoFuncionario);
-            internoFuncionario.setVisible(true);
-        
+
+        DesktopPanePrincipal.add(internoFuncionario);
+        internoFuncionario.setVisible(true);
+        centraliza(internoFuncionario);
     }//GEN-LAST:event_subMenuFuncionarioActionPerformed
-/**
+    /**
      * Botão de Menu produtos para abrir tela de lista produtos
-     * @param evt 
+     *
+     * @param evt
      */
     private void subMenuListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuListaProdutosActionPerformed
         // TODO add your handling code here:
-        InternalFrameListaProdutoPedido internoListaProdutos=new InternalFrameListaProdutoPedido();
-       
+        InternalFrameListaProdutoPedido internoListaProdutos = new InternalFrameListaProdutoPedido();
+
         DesktopPanePrincipal.add(internoListaProdutos);
-         internoListaProdutos.setVisible(true);
-         
-        
+        internoListaProdutos.setVisible(true);
+        centraliza(internoListaProdutos);
+
     }//GEN-LAST:event_subMenuListaProdutosActionPerformed
-/**
+    /**
      * Botão de Menu produtos para abrir tela de cadastro produto
-     * @param evt 
+     *
+     * @param evt
      */
     private void subMenuCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadProdActionPerformed
         // TODO add your handling code here:
-        InternalFrameProdutos internoProdutos=new InternalFrameProdutos();
-        
+        InternalFrameProdutos internoProdutos = new InternalFrameProdutos();
+
         DesktopPanePrincipal.add(internoProdutos);
-         internoProdutos.setVisible(true);
-         
-        
-        
+        internoProdutos.setVisible(true);
+
+        centraliza(internoProdutos);
+
     }//GEN-LAST:event_subMenuCadProdActionPerformed
-/**
- * Botão de Menu vendas para abrir lista de vendas
- * @param evt 
- */
+    /**
+     * Botão de Menu vendas para abrir lista de vendas
+     *
+     * @param evt
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        InternalFrameListarVendas listaVendas=new InternalFrameListarVendas();
-        
+        InternalFrameListarVendas listaVendas = new InternalFrameListarVendas();
+
         DesktopPanePrincipal.add(listaVendas);
-         listaVendas.setVisible(true);
-        
+        listaVendas.setVisible(true);
+        centraliza(listaVendas);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -238,9 +240,21 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         });
     }
 
-    
-   
-    
+    /**
+     * Método que centraliza s JInternalFrames
+     *
+     * @param janela
+     */
+    public void centraliza(JInternalFrame janela) {
+        // centraliza no JDesktopPane  
+        int larguraDesk = DesktopPanePrincipal.getWidth();
+        int alturaDesk = DesktopPanePrincipal.getHeight();
+        int larguraIFrame = janela.getWidth();
+        int alturaIFrame = janela.getHeight();
+
+        janela.setLocation(larguraDesk / 2 - larguraIFrame / 2, alturaDesk / 2 - alturaIFrame / 2);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPanePrincipal;
     private javax.swing.JMenuItem jMenuItem1;
@@ -255,6 +269,4 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
     private javax.swing.JMenuBar subMenuListaVendas;
     // End of variables declaration//GEN-END:variables
 
-  
- 
 }

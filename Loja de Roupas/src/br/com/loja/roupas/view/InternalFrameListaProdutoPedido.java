@@ -37,7 +37,6 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
      */
     public InternalFrameListaProdutoPedido() {
         initComponents();
-        this.setLocation(150, 99);
         this.conexao = ConexaoDao.conexaoDB();
         listaDeProdutos();
         pedido = new ModelPedidos();

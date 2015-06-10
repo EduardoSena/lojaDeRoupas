@@ -130,7 +130,7 @@ public class ControlProduto {
         sql = "UPDATE lojaderoupa.produtos SET "
                 + "fkfuncionarios=?,nome=?,descricao=?"
                 + ",precounitario=?,cor=?,tamanho=?"
-                + ",marca=?,quantidade WHERE idprodutos=?";
+                + ",marca=?,quantidade=? WHERE idprodutos=?";
 
         try {
 

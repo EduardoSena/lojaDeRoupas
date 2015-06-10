@@ -29,7 +29,6 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
      */
     public InternalFrameListarVendas() {
         initComponents();
-        this.setLocation(150, 99);
         this.conexao = ConexaoDao.conexaoDB();
         quantidadeProdutoEstoque();
         valorTotalProdutosEstoque();

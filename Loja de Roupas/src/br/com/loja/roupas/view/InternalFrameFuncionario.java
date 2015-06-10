@@ -30,9 +30,11 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
      */
     public InternalFrameFuncionario() {
         initComponents();
-        this.setLocation(150,99);
         funcionario = new ModelFuncionarios();
         controle = new ControlFuncionario();
+        btnCadastroFunc.setEnabled(true);
+        btnAlterarFunc.setEnabled(false);
+        btnExluirFunc.setEnabled(false);
     }
 
     /**
@@ -457,10 +459,11 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private void txtEnderecoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoFuncActionPerformed
-/**
- * Botão de cadastro de Funcionarios
- * @param evt 
- */
+    /**
+     * Botão de cadastro de Funcionarios
+     *
+     * @param evt
+     */
     private void btnCadastroFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroFuncActionPerformed
         // TODO add your handling code here:
 
@@ -506,10 +509,11 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnCadastroFuncActionPerformed
-/**
- * Botão de Alterar o cadastro de funcionário
- * @param evt 
- */
+    /**
+     * Botão de Alterar o cadastro de funcionário
+     *
+     * @param evt
+     */
     private void btnAlterarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncActionPerformed
         // TODO add your handling code here:
         // fazendo a validação dos dados
@@ -552,18 +556,21 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnAlterarFuncActionPerformed
-/**
- * Botão de cancelar cadastro de funcionário
- * @param evt 
- */
+    /**
+     * Botão de cancelar cadastro de funcionário
+     *
+     * @param evt
+     */
     private void btnCancelarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFuncActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
+       
     }//GEN-LAST:event_btnCancelarFuncActionPerformed
-/**
- * Botão de excluir cadastro de funcionário
- * @param evt 
- */
+    /**
+     * Botão de excluir cadastro de funcionário
+     *
+     * @param evt
+     */
     private void btnExluirFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirFuncActionPerformed
         // TODO add your handling code here:
         // fazendo a validação dos dados
@@ -598,29 +605,36 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnExluirFuncActionPerformed
-/**
- * Botão de sair da tela de cadastro
- * @param evt 
- */
+    /**
+     * Botão de sair da tela de cadastro
+     *
+     * @param evt
+     */
     private void btnSairFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairFuncActionPerformed
         // TODO add your handling code here:
        /*Controla a liberação do acesso ao menu funcionarios*/
-      
+
         setVisible(false);
     }//GEN-LAST:event_btnSairFuncActionPerformed
-/**
- * Botão de pesquisa por funcionário por nome
- * @param evt 
- */
+    /**
+     * Botão de pesquisa por funcionário por nome
+     *
+     * @param evt
+     */
     private void btnPesquisarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFuncActionPerformed
-        // TODO add your handling code here:
-        // fazendo a validação dos dados       
+        btnCadastroFunc.setEnabled(false);
+        btnAlterarFunc.setEnabled(true);
+        btnExluirFunc.setEnabled(true);
+
         if ((txtPesquisaFunc.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+            btnCadastroFunc.setEnabled(true);
+            btnAlterarFunc.setEnabled(false);
+            btnExluirFunc.setEnabled(false);
         } else {
             try {
                 // instanciando a classe Cliente do pacote dao e criando seu objeto dao
-               
+
                 nomePesquisa = txtPesquisaFunc.getText();
 
                 txtCodigoFunc.setText(String.valueOf(controle.pesquisaFuncionario().getIdFuncionario()));
@@ -628,8 +642,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 txtEmailFunc.setText(controle.pesquisaFuncionario().getEmail());
                 txtTelefoneFunc.setText(controle.pesquisaFuncionario().getTelefone());
                 txtCpfFunc.setText(controle.pesquisaFuncionario().getCpf());
-                txtSalario.setText("R$ "+String.valueOf(controle.pesquisaFuncionario().getSalario()).replace(".", ","));
-                txtComisao.setText("R$ "+String.valueOf(controle.pesquisaFuncionario().getComissao()).replace(".", ","));
+                txtSalario.setText("R$ " + String.valueOf(controle.pesquisaFuncionario().getSalario()).replace(".", ","));
+                txtComisao.setText("R$ " + String.valueOf(controle.pesquisaFuncionario().getComissao()).replace(".", ","));
                 txtEnderecoFunc.setText(controle.pesquisaFuncionario().getEndereco());
                 txtBairroFunc.setText(controle.pesquisaFuncionario().getBairro());
                 txtCidadeFunc.setText(controle.pesquisaFuncionario().getCidade());
@@ -650,17 +664,20 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private void txtNomeFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFuncActionPerformed
-/**
- * Método static de pesquisa que retorna o nome adicionado no campo txtNome.getText();
- * @return 
- */
+    /**
+     * Método static de pesquisa que retorna o nome adicionado no campo
+     * txtNome.getText();
+     *
+     * @return
+     */
     public static String Pesquisa() {
         String nome = nomePesquisa;
         return nome;
     }
-/**
- * Método que limpa os campos de digitação
- */
+
+    /**
+     * Método que limpa os campos de digitação
+     */
     public void ApagaCampos() {
         txtCodigoFunc.setText("");
         txtNomeFunc.setText("");
@@ -676,30 +693,33 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtCepFunc.setText("");
         txtEstadoFunc.setText("");
         txtDataAdmissao.setText("");
+         btnCadastroFunc.setEnabled(true);
+        btnAlterarFunc.setEnabled(false);
+        btnExluirFunc.setEnabled(false);
     }
 
-  /**
-   * Método que mascara um campo de digitação 
-   * desabilitando alguns caracteres 
-   * Exemplo se o campo for numerico só aceita numeros
-   * se for letras só aceita letras.
-   * @param tamanho
-   * @param caracteres
-   * @return 
-   */  
+    /**
+     * Método que mascara um campo de digitação desabilitando alguns caracteres
+     * Exemplo se o campo for numerico só aceita numeros se for letras só aceita
+     * letras.
+     *
+     * @param tamanho
+     * @param caracteres
+     * @return
+     */
     public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres
             String quantidade = "";
 
-		//defino um método de repetição para repetir o numero de
+            //defino um método de repetição para repetir o numero de
             //vezes  do tamanho
             for (int i = 0; i < tamanho; i++) {
                 quantidade = quantidade + "*";
             }
 
             javax.swing.text.MaskFormatter n = new javax.swing.text.MaskFormatter(quantidade);
-		
+
             n.setValidCharacters(caracteres);
 
             return new javax.swing.JFormattedTextField(n);
