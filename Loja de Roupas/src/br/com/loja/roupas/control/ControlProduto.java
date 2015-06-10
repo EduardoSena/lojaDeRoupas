@@ -26,12 +26,17 @@ public class ControlProduto {
     private ResultSet rs;
     private String sql;
     private String pesquisa;
-
+/**
+ * Método contrutor da classe ControlProduto
+ */
     public ControlProduto() {
         this.conexao = ConexaoDao.conexaoDB();
 
     }
-
+/**
+ * Método de cadastro de produto com referência a produto
+ * @param produto 
+ */
     public void adicionaProduto(ModelProdutos produto) {
 
         sql = "INSERT INTO lojaderoupa.produtos("
@@ -59,7 +64,11 @@ public class ControlProduto {
         }
 
     }
-
+/**.
+ * Método de exclusão do produto com parametro produto
+ * @param produto
+ * @throws Exception 
+ */
     public void excluiProduto(ModelProdutos produto) throws Exception {
 
         sql = "DELETE FROM lojaderoupa.produtos"
@@ -75,7 +84,10 @@ public class ControlProduto {
         }
 
     }
-
+/**
+ * Método de pesquisa de produtos que retorna um produto pelo nome
+ * @return 
+ */
     public ModelProdutos pesquisaProduto() {
 
         produto = new ModelProdutos();
@@ -109,7 +121,10 @@ public class ControlProduto {
 
         return produto;
     }
-
+/**
+ * Método de atualizar os produtos como parametro um produto
+ * @param produto 
+ */
     public void AtualizarProduto(ModelProdutos produto) {
 
         sql = "UPDATE lojaderoupa.produtos SET "
