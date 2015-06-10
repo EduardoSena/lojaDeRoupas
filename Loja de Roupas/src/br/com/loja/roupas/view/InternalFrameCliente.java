@@ -25,12 +25,13 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private ModelCliente cliente;
     private static String nomePesquisa;
     private ControlCliente controle;
+    
 /**
      * Método construtor da classe JFrame InternalFrameCliente
      */
     public InternalFrameCliente() {
         initComponents();
-        this.setLocation(150,99);
+      this.setLocation(150,99);
 
         cliente = new ModelCliente();
         controle = new ControlCliente();
@@ -561,6 +562,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             return new JTextField();
         }
     }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

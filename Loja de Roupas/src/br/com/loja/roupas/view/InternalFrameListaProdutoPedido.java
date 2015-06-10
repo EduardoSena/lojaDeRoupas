@@ -180,7 +180,11 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Data do Pedido:");
 
-        txtDataPedido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            txtDataPedido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtDataPedido.setToolTipText("Digite a data da compra no formato 01/01/2000");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

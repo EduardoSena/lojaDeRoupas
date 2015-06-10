@@ -5,6 +5,8 @@
  */
 package br.com.loja.roupas.view;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Eduardo Marcio
@@ -144,9 +146,9 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         InternalFrameCliente internoFrameCliente = new InternalFrameCliente();
     
-            DesktopPanePrincipal.add(internoFrameCliente);
+            DesktopPanePrincipal.add(internoFrameCliente);         
             internoFrameCliente.setVisible(true);
-       
+     
 
     }//GEN-LAST:event_subMenuClienteActionPerformed
 /**
@@ -236,6 +238,9 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         });
     }
 
+    
+   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPanePrincipal;
     private javax.swing.JMenuItem jMenuItem1;
