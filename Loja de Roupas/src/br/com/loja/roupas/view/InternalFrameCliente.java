@@ -25,7 +25,9 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private ModelCliente cliente;
     private static String nomePesquisa;
     private ControlCliente controle;
-
+/**
+     * Método construtor da classe JFrame InternalFrameCliente
+     */
     public InternalFrameCliente() {
         initComponents();
         this.setLocation(150,99);
@@ -350,7 +352,10 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoActionPerformed
-
+/**
+ * Botão de cadastro de Cliente
+ * @param evt 
+ */
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
 
         // fazendo a validação dos dados
@@ -381,7 +386,10 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnCadastroActionPerformed
-
+/**
+ * Botão de Alterar o cadastro de cliente
+ * @param evt 
+ */
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
 
         // fazendo a validação dos dados
@@ -413,7 +421,10 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnAlterar1ActionPerformed
-
+/**
+ * Botão de excluir cadastro de cliente
+ * @param evt 
+ */
     private void btnExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirActionPerformed
 
         // fazendo a validação dos dados
@@ -457,7 +468,10 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnSairActionPerformed
-
+/**
+ * Botão de pesquisa por cliente por nome
+ * @param evt 
+ */
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
 // fazendo a validação dos dados
@@ -485,17 +499,25 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
         }
         txtPesquisa.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
-
+/**
+ * Botão de cancelar cadastro de cliente
+ * @param evt 
+ */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+/**
+ * Método static de pesquisa que retorna o nome adicionado no campo txtNome.getText();
+ * @return 
+ */
     public static String Pesquisa() {
         String nome = nomePesquisa;
         return nome;
     }
-
+/**
+ * Método que limpa os campos de digitação
+ */
     public void ApagaCampos() {
         txtCodigoCliente.setText("");
         txtNome.setText("");
@@ -506,7 +528,15 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
         txtEndereco.setText("");
         txtCep.setText("");
     }
-
+/**
+   * Método que mascara um campo de digitação 
+   * desabilitando alguns caracteres 
+   * Exemplo se o campo for numerico só aceita numeros
+   * se for letras só aceita letras.
+   * @param tamanho
+   * @param caracteres
+   * @return 
+   */  
     public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres

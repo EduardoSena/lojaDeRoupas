@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ControlFuncionario {
 
@@ -35,7 +35,7 @@ public class ControlFuncionario {
     private String dataAdmissao;
 
     /**
-     * Método contrutor da classe ControlFuncionario
+     * Método contrutor da classe ControlFuncionario faz conexão com o banco
      */
     public ControlFuncionario() {
         this.conexao = ConexaoDao.conexaoDB();

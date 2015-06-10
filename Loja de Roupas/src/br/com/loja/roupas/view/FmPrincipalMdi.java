@@ -15,7 +15,8 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
    
 
     /**
-     * Creates new form fmPrincipal
+     * Método construtor da clsasse FmPrincipal
+     * com conexão com o banco
      */
     public FmPrincipalMdi() {
         
@@ -134,7 +135,10 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
  * Botão que abre o cadasstro de Clientes
  * @param evt 
  */
-    
+    /**
+     * Botão de Menu cliente para abrir tela de cadastro cliente
+     * @param evt 
+     */
     private void subMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuClienteActionPerformed
         // TODO add your handling code here: 
 
@@ -145,7 +149,10 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
        
 
     }//GEN-LAST:event_subMenuClienteActionPerformed
-
+/**
+     * Botão de Menu funcionário para abrir tela de cadastro funcionário
+     * @param evt 
+     */
     private void subMenuFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuFuncionarioActionPerformed
         // TODO add your handling code here:
         InternalFrameFuncionario internoFuncionario = new InternalFrameFuncionario();
@@ -154,7 +161,10 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
             internoFuncionario.setVisible(true);
         
     }//GEN-LAST:event_subMenuFuncionarioActionPerformed
-
+/**
+     * Botão de Menu produtos para abrir tela de lista produtos
+     * @param evt 
+     */
     private void subMenuListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuListaProdutosActionPerformed
         // TODO add your handling code here:
         InternalFrameListaProdutoPedido internoListaProdutos=new InternalFrameListaProdutoPedido();
@@ -164,7 +174,10 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
          
         
     }//GEN-LAST:event_subMenuListaProdutosActionPerformed
-
+/**
+     * Botão de Menu produtos para abrir tela de cadastro produto
+     * @param evt 
+     */
     private void subMenuCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadProdActionPerformed
         // TODO add your handling code here:
         InternalFrameProdutos internoProdutos=new InternalFrameProdutos();
@@ -175,7 +188,10 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_subMenuCadProdActionPerformed
-
+/**
+ * Botão de Menu vendas para abrir lista de vendas
+ * @param evt 
+ */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         InternalFrameListarVendas listaVendas=new InternalFrameListarVendas();

@@ -8,7 +8,7 @@ package br.com.loja.roupas.control;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ControleVenda {
     

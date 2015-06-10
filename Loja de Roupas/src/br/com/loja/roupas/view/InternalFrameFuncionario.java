@@ -25,6 +25,9 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private ModelFuncionarios funcionario;
     private static String nomePesquisa;
 
+    /**
+     * Método construtor da classe JFrame InternalFrameFuncionario
+     */
     public InternalFrameFuncionario() {
         initComponents();
         this.setLocation(150,99);
@@ -454,7 +457,10 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private void txtEnderecoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoFuncActionPerformed
-
+/**
+ * Botão de cadastro de Funcionarios
+ * @param evt 
+ */
     private void btnCadastroFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroFuncActionPerformed
         // TODO add your handling code here:
 
@@ -500,7 +506,10 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnCadastroFuncActionPerformed
-
+/**
+ * Botão de Alterar o cadastro de funcionário
+ * @param evt 
+ */
     private void btnAlterarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncActionPerformed
         // TODO add your handling code here:
         // fazendo a validação dos dados
@@ -543,12 +552,18 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnAlterarFuncActionPerformed
-
+/**
+ * Botão de cancelar cadastro de funcionário
+ * @param evt 
+ */
     private void btnCancelarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFuncActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
     }//GEN-LAST:event_btnCancelarFuncActionPerformed
-
+/**
+ * Botão de excluir cadastro de funcionário
+ * @param evt 
+ */
     private void btnExluirFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirFuncActionPerformed
         // TODO add your handling code here:
         // fazendo a validação dos dados
@@ -583,14 +598,20 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnExluirFuncActionPerformed
-
+/**
+ * Botão de sair da tela de cadastro
+ * @param evt 
+ */
     private void btnSairFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairFuncActionPerformed
         // TODO add your handling code here:
        /*Controla a liberação do acesso ao menu funcionarios*/
       
         setVisible(false);
     }//GEN-LAST:event_btnSairFuncActionPerformed
-
+/**
+ * Botão de pesquisa por funcionário por nome
+ * @param evt 
+ */
     private void btnPesquisarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFuncActionPerformed
         // TODO add your handling code here:
         // fazendo a validação dos dados       
@@ -629,12 +650,17 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private void txtNomeFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFuncActionPerformed
-
+/**
+ * Método static de pesquisa que retorna o nome adicionado no campo txtNome.getText();
+ * @return 
+ */
     public static String Pesquisa() {
         String nome = nomePesquisa;
         return nome;
     }
-
+/**
+ * Método que limpa os campos de digitação
+ */
     public void ApagaCampos() {
         txtCodigoFunc.setText("");
         txtNomeFunc.setText("");
@@ -652,7 +678,15 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtDataAdmissao.setText("");
     }
 
-    
+  /**
+   * Método que mascara um campo de digitação 
+   * desabilitando alguns caracteres 
+   * Exemplo se o campo for numerico só aceita numeros
+   * se for letras só aceita letras.
+   * @param tamanho
+   * @param caracteres
+   * @return 
+   */  
     public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres
@@ -665,8 +699,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             }
 
             javax.swing.text.MaskFormatter n = new javax.swing.text.MaskFormatter(quantidade);
-		//javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
-            //jTextFielddata = new javax.swing.JFormattedTextField(data);
+		
             n.setValidCharacters(caracteres);
 
             return new javax.swing.JFormattedTextField(n);

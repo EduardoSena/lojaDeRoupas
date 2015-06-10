@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ConexaoDao {
 
@@ -22,7 +22,11 @@ public class ConexaoDao {
     private static String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
     private static String login = "postgres";
     private static String senha = "181977dudu";
-
+/**
+ * Método construtor da classe conexaoDB
+ * para fazer chamar o banco de dados PostgreSQL
+ * @return 
+ */
     public static Connection conexaoDB() {
 
         try {

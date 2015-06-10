@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ControlProduto {
 
@@ -27,7 +27,7 @@ public class ControlProduto {
     private String sql;
     private String pesquisa;
 /**
- * Método contrutor da classe ControlProduto
+ * Método contrutor da classe ControlProduto abre conexão com o banco
  */
     public ControlProduto() {
         this.conexao = ConexaoDao.conexaoDB();

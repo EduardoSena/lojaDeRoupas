@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ControlCliente {
 
@@ -32,7 +32,7 @@ public class ControlCliente {
     private String pesquisa;
     private String dataAniversario;
 /**
- * Método construtor da classe cliente
+ * Método construtor da classe cliente que faz conexão com o banco
  * 
  */
     public ControlCliente() {

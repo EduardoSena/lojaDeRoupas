@@ -8,7 +8,7 @@ package br.com.loja.roupas.model;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ModelPedidos {
     

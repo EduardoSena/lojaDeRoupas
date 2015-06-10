@@ -7,7 +7,6 @@ package br.com.loja.roupas.control;
 
 import br.com.loja.roupas.dao.ConexaoDao;
 import br.com.loja.roupas.model.ModelPedidos;
-import br.com.loja.roupas.model.ModelProdutos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class ControlPedido {
 
@@ -29,7 +28,7 @@ public class ControlPedido {
     private String sql;
     private String dataAniversario;
 /**
- * Método construtor da classe CotrolPedido
+ * Método construtor da classe CotrolPedido faz conexão com o banco
  */
     public ControlPedido() {
         this.conexao = ConexaoDao.conexaoDB();

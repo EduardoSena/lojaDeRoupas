@@ -33,7 +33,7 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
     private ControlPedido controle;
 
     /**
-     * Creates new form NewJInternalFrame
+     *Construtor da classe NewJInternalFrame
      */
     public InternalFrameListaProdutoPedido() {
         initComponents();
@@ -432,24 +432,36 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         // TODO add your handling code here:
         pesquisaProdutoLista();
     }//GEN-LAST:event_txtPesquisaProdutosListaActionPerformed
-
+/**
+ * Botão de pesquisa da lista de produtos por nome
+ * @param evt 
+ */
     private void btnPesquisarNomePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarNomePActionPerformed
 
         pesquisaProdutoLista();
 
         txtPesquisaProdutosLista.setText("");
     }//GEN-LAST:event_btnPesquisarNomePActionPerformed
-
+/**
+ * Botão de sair da tela de lista de produtos e pedidos
+ * @param evt 
+ */
     private void btnSairProdutolLista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutolLista1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_btnSairProdutolLista1ActionPerformed
-
+/**
+ * Botão de Atualizar tabela de produtos
+ * @param evt 
+ */
     private void btnAtuTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtuTabelaActionPerformed
         // TODO add your handling code here:
         listaDeProdutos();
     }//GEN-LAST:event_btnAtuTabelaActionPerformed
-
+/**
+ * Botão de confirmar a compra de um produto através do pedido
+ * @param evt 
+ */
     private void btnConfirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarPedidoActionPerformed
 
         if (atualizarQuantidadeDeProduto() > 0) {
@@ -497,12 +509,18 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
 
 
     }//GEN-LAST:event_btnConfirmarPedidoActionPerformed
-
+/**
+ * Botão de cancelar edição dos dados da tabela
+ * @param evt 
+ */
     private void btnCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPedidoActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
     }//GEN-LAST:event_btnCancelarPedidoActionPerformed
-
+/**
+ * Selecionar linha da tabela com o click do mouse 
+ * @param evt 
+ */
     private void jTableListaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaProdutosMouseClicked
         // TODO add your handling code here:
         escolherLinhaTable();
@@ -518,7 +536,11 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtFKProdPedidoActionPerformed
-
+/**
+ * Selecionar enter e pesquisa no banco de dados 
+ * o valor do nome e código do cliente
+ * @param evt 
+ */
     private void txtFKCliPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFKCliPedidoActionPerformed
         // TODO add your handling code here:
         txtNomeClientePedido.setText("");
@@ -541,7 +563,11 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
     private void txtNomeClientePedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeClientePedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeClientePedidoActionPerformed
-
+/**
+ * Selecionar enter e pesquisa no banco de dados 
+ * o valor do nome e código do funcionario
+ * @param evt 
+ */
     private void txtFKFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFKFuncActionPerformed
         // TODO add your handling code here:
         txtNomeFuncPedido2.setText("");
@@ -565,12 +591,17 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtNomeFuncPedido2ActionPerformed
-
+/**
+ * Escolhe a qualidade de produtos a ser comprado 
+ * @param evt 
+ */
     private void txtQuantidadeCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeCompraActionPerformed
         // TODO add your handling code here:
         calculaValorTotalPedido();
     }//GEN-LAST:event_txtQuantidadeCompraActionPerformed
-
+/**
+ * Método que seleciona no banco de dados uma lista de produtos
+ */
     public void listaDeProdutos() {
 
         sql = "SELECT  * FROM lojaderoupa.produtos";
@@ -585,7 +616,9 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
             JOptionPane.showMessageDialog(null, u);
         }
     }
-
+/**
+ *Método que Realiza uma pesquisa de produtos por nome
+ */
     private void pesquisaProdutoLista() {
 
         sql = "SELECT  * FROM lojaderoupa.produtos WHERE nome like ?";
@@ -602,7 +635,10 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         }
         escolherLinhaTable();
     }
-
+/**
+ * Método que popula a tabela de produtos
+ * @param rs 
+ */
     private void tabelaProdutos(ResultSet rs) {
 
         DefaultTableModel tabela = new DefaultTableModel();
@@ -649,7 +685,9 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
             Logger.getLogger(InternalFrameListaProdutoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+/**
+ * Método que limpa os dados dos campos digitados
+ */
     private void ApagaCampos() {
         txtDataPedido.setText("");
         txtQuantidadeCompra.setText("");
@@ -663,7 +701,13 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         txtFKFunc.setText("");
 
     }
-
+/**
+ * Método de mascara de texto para evitar entrada de dados não altorizados 
+ * com exemplo numeros no lugar de letras
+ * @param tamanho
+ * @param caracteres
+ * @return 
+ */
     private JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres
@@ -685,7 +729,10 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
             return new JTextField();
         }
     }
-
+/**
+ * Método que seleciona ao click do mouse uma 
+ * linha da tabela em preenche os campos
+ */
     private void escolherLinhaTable() {
 
         int escolher = jTableListaProdutos.getSelectedRow();
@@ -694,7 +741,9 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         txtPrecoProdutoPedido.setText("R$ " + jTableListaProdutos.getModel().getValueAt(escolher, 4).toString().replace(".", ","));
 
     }
-
+/**
+ * Método que cálcula o valor do pedido realizado
+ */
     private void calculaValorTotalPedido() {
         DecimalFormat digitos = new DecimalFormat("0.00");
         int quantidade;
@@ -705,7 +754,11 @@ public class InternalFrameListaProdutoPedido extends javax.swing.JInternalFrame 
         txtValorTotalPedido.setText("R$ " + String.valueOf(
                 digitos.format(precoProduto * quantidade)).replace(".", ","));
     }
-
+/**
+ * Método que retorna um novo valor para modificar 
+ * a quantidade de produto do estoque
+ * @return 
+ */
     private int atualizarQuantidadeDeProduto() {
 
         int quantidadeComprada = Integer.parseInt(txtQuantidadeCompra.getText().trim());

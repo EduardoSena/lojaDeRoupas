@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio,Ludimla e Gustavo
  */
 public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
@@ -23,7 +23,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private ControlProduto controle;
 
     /**
-     * Creates new form InternalFrameCadastrarProdutos
+     * Construtor da classe InternalFrameCadastrarProdutos
      */
     public InternalFrameProdutos() {
         initComponents();
@@ -690,7 +690,10 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnExluirActionPerformed
-
+/**
+ * Botão sair da telade produtos
+ * @param evt 
+ */
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
 
         setVisible(false);
@@ -710,7 +713,10 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeProdutoActionPerformed
-
+/**
+ * Botão pesquisa de produtos por nome
+ * @param evt 
+ */
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
 
         if ((txtPesquisaProduto.getText().isEmpty())) {
@@ -739,7 +745,10 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtPesquisaProduto.setText("");
 
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
-
+/**
+ * Botão de sair da tela de produtos
+ * @param evt 
+ */
     private void btnSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProdutoActionPerformed
 
         setVisible(false);
@@ -774,12 +783,18 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnExluirProdutoActionPerformed
-
+/**
+ * Botão de cancelar a edição da tela de produto
+ * @param evt 
+ */
     private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
     }//GEN-LAST:event_btnCancelarProdutoActionPerformed
-
+/**
+ * Botão de alterar o cadastro de produtos
+ * @param evt 
+ */
     private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
 
         // fazendo a validação dos dados
@@ -814,7 +829,10 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnAlterarProdutoActionPerformed
-
+/**
+ * Botão que envia o cadastro do produto
+ * @param evt 
+ */
     private void btnCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutoActionPerformed
 
         // fazendo a validação dos dados
@@ -867,7 +885,10 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private void txtCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoProdutoActionPerformed
-
+/**
+ * Método estatico que envia o nome para a classe ControlProduto
+ * @return 
+ */
     public static String pesquisaNome() {
         String nome = nomePesquisa;
         return nome;
@@ -885,7 +906,14 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtQuantidade.setText(null);
 
     }
-
+/**
+ * Método que controla o acesso na digitação formando uma mascara
+ * se for para entrar com numeros e o usuário digitar letras 
+ * não será enviado.
+ * @param tamanho
+ * @param caracteres
+ * @return 
+ */
     public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres

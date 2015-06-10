@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Eduardo Marcio
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
@@ -25,7 +25,7 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
     private Connection conexao;
 
     /**
-     * Creates new form InternalFrameListarVendas
+     * Construtor da classe InternalFrameListarVendas
      */
     public InternalFrameListarVendas() {
         initComponents();
@@ -306,7 +306,9 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
     private void txtValorPedidosRealizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorPedidosRealizadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorPedidosRealizadosActionPerformed
-
+/**
+ * Método que cálcula a soma da quantidade de produtos no estoque
+ */
     private void quantidadeProdutoEstoque() {
         // TODO add your handling code here:
 
@@ -325,7 +327,9 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
 
         }
     }
-
+/**
+ * Método que cálcula o valor de todos os produtos no estoque
+ */
     private void valorTotalProdutosEstoque() {
         sql = "SELECT SUM (produtos.precounitario * produtos.quantidade)  FROM  lojaderoupa.produtos";
 
@@ -343,7 +347,9 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
         }
 
     }
-
+/**
+ * Método que busca no banco de dados a lista de pedido realizados
+ */
     public void listaDePedidos() {
 
         sql = "SELECT  * FROM lojaderoupa.pedidos";
@@ -358,7 +364,10 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, u);
         }
     }
-
+/**
+ * Método que realiza uma pesquisa no 
+ * banco de dados através do código do pedido
+ */
     private void pesquisaPedidosLista() {
 
         sql = "SELECT  * FROM lojaderoupa.pedidos WHERE idpedidos=?";
@@ -375,7 +384,10 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
         }
 
     }
-
+/**
+ * Método que popula a tabela de pedidos
+ * @param rs 
+ */
     private void tabelaPedidos(ResultSet rs) {
 
         DefaultTableModel tabela = new DefaultTableModel();
@@ -423,7 +435,9 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
             Logger.getLogger(InternalFrameListaProdutoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+/**
+ * Método que calcula a quantidade de pedidos realizados
+ */
     private void quantidadePedidosRealizados() {
 
         sql = "SELECT COUNT(*)  FROM  lojaderoupa.pedidos";
@@ -442,7 +456,9 @@ public class InternalFrameListarVendas extends javax.swing.JInternalFrame {
         }
     }
 
-   
+   /**
+    * Método que cálcula o valor das vendas realizadas de cada pedido
+    */
     private void valorPedidosRealizados() {
 
         sql = "SELECT SUM(pedidos.valorpedido)  FROM  lojaderoupa.pedidos";

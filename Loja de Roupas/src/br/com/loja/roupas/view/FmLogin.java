@@ -21,7 +21,7 @@ public class FmLogin extends javax.swing.JFrame {
     private String sql;
 
     /**
-     * Creates new form Login
+     * Método construtor da classe FmLogin que faz a conexao com o banco
      */
     public FmLogin() {
         initComponents();
@@ -134,7 +134,10 @@ public class FmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Botão enviar comando de validação de login
+ * @param evt 
+ */
     private void bntLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLogarActionPerformed
         // TODO add your handling code here:
 

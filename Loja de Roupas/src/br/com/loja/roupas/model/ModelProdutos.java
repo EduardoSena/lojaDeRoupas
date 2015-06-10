@@ -24,7 +24,7 @@ public class ModelProdutos {
     private int quantidade;
 
     /**
-     * @return the codigoProdutos
+     * @return o codigoProdutos
      */
     public int getCodigoProdutos() {
         return codigoProdutos;
