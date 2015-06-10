@@ -31,12 +31,18 @@ public class ControlCliente {
     private ResultSet rs;
     private String pesquisa;
     private String dataAniversario;
-
+/**
+ * Método construtor da classe cliente
+ * 
+ */
     public ControlCliente() {
         this.conexao = ConexaoDao.conexaoDB();
 
     }
-
+/**
+ * Médoto cadastra cliente passando com referência cliente
+ * @param cliente 
+ */
     public void adiciona(ModelCliente cliente) {
 
         Date dataAniv = null;
@@ -73,7 +79,11 @@ public class ControlCliente {
         }
 
     }
-
+/**
+ * Método que Exclui um clinte 
+ * @param cliente
+ * @throws Exception 
+ */
     public void excluiCliente(ModelCliente cliente) throws Exception {
 
         sql = "DELETE FROM lojaderoupa.clientes"
@@ -90,7 +100,10 @@ public class ControlCliente {
         }
 
     }
-
+/**
+ * Método de pesquisa de um cliente
+ * @return 
+ */
     public ModelCliente pesquisaCliente() {
         cliente = new ModelCliente();
         sql = "SELECT  * FROM lojaderoupa.clientes WHERE nome LIKE ?";
@@ -134,7 +147,10 @@ public class ControlCliente {
 
         return cliente;
     }
-
+/**
+ * Método de Atualização dos clientes cadastrados
+ * @param cliente 
+ */
     public void AtualizarCliente(ModelCliente cliente) {
 
         Date dataAniv = null;
