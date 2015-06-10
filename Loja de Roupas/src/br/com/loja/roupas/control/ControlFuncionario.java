@@ -34,11 +34,18 @@ public class ControlFuncionario {
     private String dataAniversario;
     private String dataAdmissao;
 
+    /**
+     * Método contrutor da classe ControlFuncionario
+     */
     public ControlFuncionario() {
         this.conexao = ConexaoDao.conexaoDB();
 
     }
-
+/**
+ * 
+ * Método de cadastro de funcionários com parametro em funcionario
+ * @param funcionario 
+ */
     public void adiciona(ModelFuncionarios funcionario) {
 
         Date dataAniv = null;
@@ -84,7 +91,11 @@ public class ControlFuncionario {
         }
 
     }
-
+/**
+ * Método de exclusão de funcionários passando como paramentro funcionario
+ * @param funcionario
+ * @throws Exception 
+ */
     public void excluiFuncionario(ModelFuncionarios funcionario) throws Exception {
 
         sql = "DELETE FROM lojaderoupa.funcionarios"
@@ -101,7 +112,10 @@ public class ControlFuncionario {
         }
 
     }
-
+/**
+ * Método de pesquisa de um funcionario que retorna nome do funcionário
+ * @return 
+ */
     public ModelFuncionarios pesquisaFuncionario() {
         funcionario = new ModelFuncionarios();
 
@@ -155,7 +169,10 @@ public class ControlFuncionario {
 
         return funcionario;
     }
-
+/**
+ * Método de atualização dos cadastro do funcionários
+ * @param funcionario 
+ */
     public void AtualizarFuncionario(ModelFuncionarios funcionario) {
 
         Date dataAniv = null;
