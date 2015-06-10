@@ -5,7 +5,7 @@
  */
 package br.com.loja.roupas.view;
 
-import java.awt.Dimension;
+
 
 /**
  *
