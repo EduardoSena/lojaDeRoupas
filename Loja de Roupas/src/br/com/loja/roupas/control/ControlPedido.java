@@ -28,12 +28,17 @@ public class ControlPedido {
     private PreparedStatement stmt;
     private String sql;
     private String dataAniversario;
-
+/**
+ * Método construtor da classe CotrolPedido
+ */
     public ControlPedido() {
         this.conexao = ConexaoDao.conexaoDB();
 
     }
-
+/**
+ * Método de confirmação do pedido e efetuando a compra do produto
+ * @param pedido 
+ */
     public void confirmaPedido(ModelPedidos pedido) {
 
         Date dataCompra = null;
