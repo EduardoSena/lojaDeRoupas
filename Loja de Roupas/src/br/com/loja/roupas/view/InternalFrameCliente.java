@@ -25,17 +25,15 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private ModelCliente cliente;
     private static String nomePesquisa;
     private ControlCliente controle;
-    
-/**
+
+    /**
      * Método construtor da classe JFrame InternalFrameCliente
      */
     public InternalFrameCliente() {
         initComponents();
         cliente = new ModelCliente();
         controle = new ControlCliente();
-        btnCadastro.setEnabled(true);
-        btnAlterar1.setEnabled(false);
-        btnExluir.setEnabled(false);
+       ativarBotao();
     }
 
     /**
@@ -354,10 +352,11 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoActionPerformed
-/**
- * Botão de cadastro de Cliente
- * @param evt 
- */
+    /**
+     * Botão de cadastro de Cliente
+     *
+     * @param evt
+     */
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
 
         // fazendo a validação dos dados
@@ -384,14 +383,16 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText().trim() + " inserido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
         }
 
 
     }//GEN-LAST:event_btnCadastroActionPerformed
-/**
- * Botão de Alterar o cadastro de cliente
- * @param evt 
- */
+    /**
+     * Botão de Alterar o cadastro de cliente
+     *
+     * @param evt
+     */
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
 
         // fazendo a validação dos dados
@@ -418,15 +419,17 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText().trim() + " Atualizado com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
 
         }
 
 
     }//GEN-LAST:event_btnAlterar1ActionPerformed
-/**
- * Botão de excluir cadastro de cliente
- * @param evt 
- */
+    /**
+     * Botão de excluir cadastro de cliente
+     *
+     * @param evt
+     */
     private void btnExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirActionPerformed
 
         // fazendo a validação dos dados
@@ -451,7 +454,8 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText().trim() + " removido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
-           
+            ativarBotao();
+
         }
 
 
@@ -466,23 +470,22 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
 
         /*Controla a liberação do acesso ao menu cliente*/
-       
         setVisible(false);
 
 
     }//GEN-LAST:event_btnSairActionPerformed
-/**
- * Botão de pesquisa por cliente por nome
- * @param evt 
- */
+    /**
+     * Botão de pesquisa por cliente por nome
+     *
+     * @param evt
+     */
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-btnCadastro.setEnabled(false);
-        btnAlterar1.setEnabled(true);
-        btnExluir.setEnabled(true);
+        desativarBotao();
 // fazendo a validação dos dados
         if ((txtPesquisa.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-            btnCadastro.setEnabled(true);
+            ApagaCampos();
+           ativarBotao();
         } else {
             try {
                 // instanciando a classe Cliente do pacote dao e criando seu objeto dao
@@ -505,27 +508,32 @@ btnCadastro.setEnabled(false);
         }
         txtPesquisa.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
-/**
- * Botão de cancelar cadastro de cliente
- * @param evt 
- */
+    /**
+     * Botão de cancelar cadastro de cliente
+     *
+     * @param evt
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
-       
+        ativarBotao();
+
     }//GEN-LAST:event_btnCancelarActionPerformed
-/**
- * Método static de pesquisa que retorna o nome adicionado no campo txtNome.getText();
- * @return 
- */
+    /**
+     * Método static de pesquisa que retorna o nome adicionado no campo
+     * txtNome.getText();
+     *
+     * @return
+     */
     public static String Pesquisa() {
         String nome = nomePesquisa;
         return nome;
     }
-/**
- * Método que limpa os campos de digitação
- */
-    public void ApagaCampos() {
+
+    /**
+     * Método que limpa os campos de digitação
+     */
+    private void ApagaCampos() {
         txtCodigoCliente.setText("");
         txtNome.setText("");
         txtEmail.setText("");
@@ -534,19 +542,38 @@ btnCadastro.setEnabled(false);
         txtDataDeNascimento.setText("");
         txtEndereco.setText("");
         txtCep.setText("");
+        
+    }
+
+    /**
+     * Método que abilita o botão cadastrar e 
+     * desativa o botão alterar e excluir
+     */
+    private void ativarBotao(){
          btnCadastro.setEnabled(true);
-         btnAlterar1.setEnabled(false);
+        btnAlterar1.setEnabled(false);
         btnExluir.setEnabled(false);
     }
-/**
-   * Método que mascara um campo de digitação 
-   * desabilitando alguns caracteres 
-   * Exemplo se o campo for numerico só aceita numeros
-   * se for letras só aceita letras.
-   * @param tamanho
-   * @param caracteres
-   * @return 
-   */  
+    /**
+     * Método que desabilita o botão cadastrar e 
+     * abilita o botão alterar e excluir
+     */
+    private void desativarBotao(){
+         btnCadastro.setEnabled(false);
+        btnAlterar1.setEnabled(true);
+        btnExluir.setEnabled(true);
+        
+    }
+    
+    /**
+     * Método que mascara um campo de digitação desabilitando alguns caracteres
+     * Exemplo se o campo for numerico só aceita numeros se for letras só aceita
+     * letras.
+     *
+     * @param tamanho
+     * @param caracteres
+     * @return
+     */
     public JTextField DefinirTiposCaracteresETamanho(int tamanho, String caracteres) {
         try {
             //defino a variável que vai guardar a quantidade de caracteres
@@ -571,7 +598,6 @@ btnCadastro.setEnabled(false);
             return new JTextField();
         }
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

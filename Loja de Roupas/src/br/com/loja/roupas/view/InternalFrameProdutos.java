@@ -29,8 +29,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         initComponents();
         produto = new ModelProdutos();
         controle = new ControlProduto();
-        btnAlterarProduto.setEnabled(false);
-        btnExluirProduto.setEnabled(false);
+       ativarBotao();
     }
 
     /**
@@ -721,14 +720,11 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-        btnCadastroProduto.setEnabled(false);
-        btnAlterarProduto.setEnabled(true);
-        btnExluirProduto.setEnabled(true);
+        desativarBotao();
         if ((txtPesquisaProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-            btnAlterarProduto.setEnabled(false);
-            btnExluirProduto.setEnabled(false);
-            btnCadastroProduto.setEnabled(true);
+            ativarBotao();
+            ApagaCampos();
         } else {
             try {
                 // instanciando a classe Cliente do pacote dao e criando seu objeto dao
@@ -788,6 +784,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Produto " + txtNomeProduto.getText().trim() + " removido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
 
         }
 
@@ -800,6 +797,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
     private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
+        ativarBotao();
 
 
     }//GEN-LAST:event_btnCancelarProdutoActionPerformed
@@ -838,6 +836,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
 
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
 
         }
 
@@ -859,6 +858,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
                 || (txtQuantidade.getText().isEmpty())
                 || (txtMarca.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+           
         } else {
 
             produto.setFkFuncionarios(Integer.parseInt(txtCodigoFKFuncionario.getText().trim()));
@@ -875,6 +875,7 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Produto " + txtNome.getText().trim() + " inserido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
 
         }
 
@@ -919,12 +920,32 @@ public class InternalFrameProdutos extends javax.swing.JInternalFrame {
         txtTamanho.setText(null);
         txtMarca.setText(null);
         txtQuantidade.setText(null);
-        btnAlterarProduto.setEnabled(false);
-        btnExluirProduto.setEnabled(false);
-        btnCadastroProduto.setEnabled(true);
+       
 
     }
 
+    /**
+     * Método que abilita o botão cadastrar e 
+     * desativa o botão alterar e excluir
+     */
+    private void ativarBotao(){
+         btnAlterarProduto.setEnabled(false);
+        btnExluirProduto.setEnabled(false);
+        btnCadastroProduto.setEnabled(true);
+    }
+    /**
+     * Método que desabilita o botão cadastrar e 
+     * abilita o botão alterar e excluir
+     */
+    private void desativarBotao(){
+          btnAlterarProduto.setEnabled(true);
+        btnExluirProduto.setEnabled(true);
+        btnCadastroProduto.setEnabled(false);
+        
+    }
+    
+
+    
     /**
      * Método que controla o acesso na digitação formando uma mascara se for
      * para entrar com numeros e o usuário digitar letras não será enviado.

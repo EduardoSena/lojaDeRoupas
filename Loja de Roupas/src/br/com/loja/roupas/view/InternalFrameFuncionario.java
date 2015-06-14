@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import br.com.loja.roupas.model.ModelFuncionarios;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -32,9 +34,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         initComponents();
         funcionario = new ModelFuncionarios();
         controle = new ControlFuncionario();
-        btnCadastroFunc.setEnabled(true);
-        btnAlterarFunc.setEnabled(false);
-        btnExluirFunc.setEnabled(false);
+        ativarBotao();
+        listaDeUf();
     }
 
     /**
@@ -70,7 +71,6 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtCidadeFunc = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -82,6 +82,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtSalario = new javax.swing.JFormattedTextField();
         txtComisao = new javax.swing.JFormattedTextField();
         txtEstadoFunc = new javax.swing.JTextField();
+        jComboBoxUF = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setIconifiable(true);
@@ -222,9 +223,6 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("Cep:");
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setText("UF:");
-
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Salário:");
 
@@ -276,6 +274,14 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtComisao.setToolTipText("Digite o valor da comisão R$ 0.000,00");
 
         txtEstadoFunc.setToolTipText("Digite o uf do funcionário");
+        txtEstadoFunc.setEnabled(false);
+
+        jComboBoxUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxUFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2FuncionarioLayout = new javax.swing.GroupLayout(jPanel2Funcionario);
         jPanel2Funcionario.setLayout(jPanel2FuncionarioLayout);
@@ -305,7 +311,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtPesquisaFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,18 +355,22 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2FuncionarioLayout.createSequentialGroup()
                                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCidadeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEstadoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
+                                        .addComponent(txtCidadeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
                                         .addComponent(jLabel20)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCepFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(txtCepFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
+                                        .addComponent(jComboBoxUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEstadoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())))
         );
         jPanel2FuncionarioLayout.setVerticalGroup(
@@ -380,7 +390,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtEmailFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel16)
@@ -400,8 +410,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(txtEstadoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstadoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -414,7 +424,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel23)
                     .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtComisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarFunc)
                     .addComponent(btnCancelarFunc)
@@ -430,7 +440,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -504,6 +514,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
 // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
+            listaDeUf();
 
         }
 
@@ -543,7 +555,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             funcionario.setBairro(txtBairroFunc.getText().trim());
             funcionario.setCidade(txtCidadeFunc.getText().trim());
             funcionario.setCep(txtCepFunc.getText());
-            funcionario.setEstado(txtEstadoFunc.getText().trim());
+            //funcionario.setEstado(txtEstadoFunc.getText().trim());
+            funcionario.setEstado((String)jComboBoxUF.getSelectedItem());
             funcionario.setDatanasc(txtDataDeNascimentoFunc.getText());
             funcionario.setDataAdmissao(txtDataAdmissao.getText());
 
@@ -552,6 +565,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Funcionário " + txtNomeFunc.getText().trim() + " Atualizado com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
+            listaDeUf();
         }
 
 
@@ -564,7 +579,9 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private void btnCancelarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFuncActionPerformed
         // TODO add your handling code here:
         ApagaCampos();
-       
+        ativarBotao();
+        listaDeUf();
+
     }//GEN-LAST:event_btnCancelarFuncActionPerformed
     /**
      * Botão de excluir cadastro de funcionário
@@ -601,6 +618,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Funcionário " + txtNomeFunc.getText().trim() + " removido com sucesso! ");
             // apaga os dados preenchidos nos campos de texto
             ApagaCampos();
+            ativarBotao();
+            listaDeUf();
         }
 
 
@@ -622,15 +641,12 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnPesquisarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFuncActionPerformed
-        btnCadastroFunc.setEnabled(false);
-        btnAlterarFunc.setEnabled(true);
-        btnExluirFunc.setEnabled(true);
+        desativarBotao();
 
         if ((txtPesquisaFunc.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-            btnCadastroFunc.setEnabled(true);
-            btnAlterarFunc.setEnabled(false);
-            btnExluirFunc.setEnabled(false);
+            ativarBotao();
+            ApagaCampos();
         } else {
             try {
                 // instanciando a classe Cliente do pacote dao e criando seu objeto dao
@@ -648,7 +664,10 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 txtBairroFunc.setText(controle.pesquisaFuncionario().getBairro());
                 txtCidadeFunc.setText(controle.pesquisaFuncionario().getCidade());
                 txtCepFunc.setText(controle.pesquisaFuncionario().getCep());
+                
+                jComboBoxUF.setSelectedItem(controle.pesquisaFuncionario().getEstado()); 
                 txtEstadoFunc.setText(controle.pesquisaFuncionario().getEstado());
+                
                 txtDataDeNascimentoFunc.setText(controle.pesquisaFuncionario().getDatanasc());
                 txtDataAdmissao.setText(controle.pesquisaFuncionario().getDataAdmissao());
 
@@ -659,11 +678,17 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         }
         txtPesquisaFunc.setText("");
+        listaDeUf();
     }//GEN-LAST:event_btnPesquisarFuncActionPerformed
 
     private void txtNomeFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeFuncActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFuncActionPerformed
+
+    private void jComboBoxUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUFActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBoxUFActionPerformed
     /**
      * Método static de pesquisa que retorna o nome adicionado no campo
      * txtNome.getText();
@@ -675,6 +700,26 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         return nome;
     }
 
+    /**
+     * Método de seleção do JComboBox da lista de Estados do Brasil pelas Siglas
+     */
+    private void listaDeUf() {
+     
+        String[] estados = {"UF","AC","AL","AP","AM", "BA", "CE","ES","GO","MA","MT",
+                           "MS","MG","PA","PB","PR","PE","PI","RJ","RN",
+                            "RS","RO","RR","SC","SP", "SE", "TO"};
+        
+        DefaultComboBoxModel funcaoModel=new DefaultComboBoxModel();
+        for (int i = 0; i < estados.length; i++) {
+           funcaoModel.addElement( estados[i]);
+           
+        }
+        jComboBoxUF.setModel(funcaoModel);
+    
+    }
+
+
+    
     /**
      * Método que limpa os campos de digitação
      */
@@ -693,9 +738,27 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         txtCepFunc.setText("");
         txtEstadoFunc.setText("");
         txtDataAdmissao.setText("");
-         btnCadastroFunc.setEnabled(true);
+
+    }
+
+    /**
+     * Método que abilita o botão cadastrar e desativa o botão alterar e excluir
+     */
+    private void ativarBotao() {
+        btnCadastroFunc.setEnabled(true);
         btnAlterarFunc.setEnabled(false);
         btnExluirFunc.setEnabled(false);
+    }
+
+    /**
+     * Método que desabilita o botão cadastrar e abilita o botão alterar e
+     * excluir
+     */
+    private void desativarBotao() {
+        btnCadastroFunc.setEnabled(false);
+        btnAlterarFunc.setEnabled(true);
+        btnExluirFunc.setEnabled(true);
+
     }
 
     /**
@@ -738,6 +801,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnExluirFunc;
     private javax.swing.JButton btnPesquisarFunc;
     private javax.swing.JButton btnSairFunc;
+    private javax.swing.JComboBox jComboBoxUF;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -748,7 +812,6 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
