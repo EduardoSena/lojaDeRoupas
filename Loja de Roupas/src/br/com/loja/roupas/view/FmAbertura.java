@@ -18,10 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-
 /**
  *
- * @author Eduardo Marcio, Ludimila e Gustavo 
+ * @author Eduardo Marcio, Ludimila e Gustavo
  */
 public class FmAbertura extends javax.swing.JFrame {
 
@@ -42,9 +41,8 @@ public class FmAbertura extends javax.swing.JFrame {
         setContentPane(new ComponenteTelaApresentacao());
         getContentPane().setBackground(Color.BLACK);//pinta o fundo de preto
         setLayout(new BorderLayout());//centraliza a image
-
+        this.setIconImage(new ImageIcon(getClass().getResource("ico.png")).getImage());
         iniciarImagem();
-
         setVisible(true);
 
         tempo.start();//Controla o tempo de execução em segundos
@@ -122,8 +120,8 @@ public class FmAbertura extends javax.swing.JFrame {
     }
 
     /**
-     *Método de controle de tempos em que a tela de apresentação ira 
-     * permanecer ativa
+     * Método de controle de tempos em que a tela de apresentação ira permanecer
+     * ativa
      *
      */
     public class ControleTempo extends Thread {

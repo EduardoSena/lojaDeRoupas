@@ -9,6 +9,7 @@ import br.com.loja.roupas.control.ControlCliente;
 import br.com.loja.roupas.model.ModelCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -31,6 +32,7 @@ public class InternalFrameCliente extends javax.swing.JInternalFrame {
      */
     public InternalFrameCliente() {
         initComponents();
+       
         cliente = new ModelCliente();
         controle = new ControlCliente();
        ativarBotao();

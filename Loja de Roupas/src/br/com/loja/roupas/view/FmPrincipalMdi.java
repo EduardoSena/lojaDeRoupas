@@ -5,6 +5,8 @@
  */
 package br.com.loja.roupas.view;
 
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
 /**
@@ -21,6 +23,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
+        this.setIconImage(new ImageIcon(getClass().getResource("ico.png")).getImage());
 
     }
 
@@ -146,6 +149,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         DesktopPanePrincipal.add(internoFrameCliente);
         internoFrameCliente.setVisible(true);
         centraliza(internoFrameCliente);
+         iconLoja(internoFrameCliente);
 
     }//GEN-LAST:event_subMenuClienteActionPerformed
 
@@ -161,6 +165,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         DesktopPanePrincipal.add(internoFuncionario);
         internoFuncionario.setVisible(true);
         centraliza(internoFuncionario);
+         iconLoja(internoFuncionario);
     }//GEN-LAST:event_subMenuFuncionarioActionPerformed
     /**
      * Botão de Menu produtos para abrir tela de lista produtos
@@ -174,6 +179,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         DesktopPanePrincipal.add(internoListaProdutos);
         internoListaProdutos.setVisible(true);
         centraliza(internoListaProdutos);
+        iconLoja(internoListaProdutos);
 
     }//GEN-LAST:event_subMenuListaProdutosActionPerformed
     /**
@@ -187,8 +193,8 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
 
         DesktopPanePrincipal.add(internoProdutos);
         internoProdutos.setVisible(true);
-
         centraliza(internoProdutos);
+        iconLoja(internoProdutos);
 
     }//GEN-LAST:event_subMenuCadProdActionPerformed
     /**
@@ -203,6 +209,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         DesktopPanePrincipal.add(listaVendas);
         listaVendas.setVisible(true);
         centraliza(listaVendas);
+        iconLoja(listaVendas);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -238,6 +245,17 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
                 new FmLogin().setVisible(true);
             }
         });
+    }
+/**
+ * Método que coloca o icon personalizado no lugar do padrão do Java
+ * @param iframe 
+ */
+    public void iconLoja(JInternalFrame iframe) {
+        
+            ImageIcon icon = new ImageIcon(getClass().getResource("ico.png"));
+            iframe.setFrameIcon(icon);
+           
+
     }
 
     /**
