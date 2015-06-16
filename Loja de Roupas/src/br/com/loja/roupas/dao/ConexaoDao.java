@@ -37,7 +37,7 @@ public class ConexaoDao {
             }
             Connection conexao;
             conexao = DriverManager.getConnection(bancoDeDado, login, senha);
-            JOptionPane.showMessageDialog(null, "Conexão efetuada com sucesso !");
+            //JOptionPane.showMessageDialog(null, "Conexão efetuada com sucesso !");
 
             return conexao;
         } catch (SQLException erro) {
@@ -47,5 +47,5 @@ public class ConexaoDao {
         }
         return null;
 
-    }
+    }   
 }

@@ -5,8 +5,9 @@
  */
 package br.com.loja.roupas.view;
 
-import java.sql.*;
 import br.com.loja.roupas.dao.ConexaoDao;
+import java.awt.Dimension;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +28,7 @@ public class FmLogin extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.conexao = ConexaoDao.conexaoDB();
-
+        this.setSize(new Dimension(410, 240));
     }
 
     /**
@@ -38,66 +39,74 @@ public class FmLogin extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtUsuarioCad = new javax.swing.JTextField();
+        txtSenhaCad = new javax.swing.JPasswordField();
+        btnCadastrar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         bntLogar = new javax.swing.JButton();
+        btnAumentarTela = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Loja de Roupa");
+        setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login de Usuários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 18))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Usuario ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 18))); // NOI18N
         jPanel2.setToolTipText("");
         jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Usuário");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(49, 22, 0, 0);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 45, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Senha");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 22, 0, 0);
-        jPanel2.add(jLabel2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 183;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(49, 18, 0, 22);
-        jPanel2.add(txtUsuario, gridBagConstraints);
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 83, -1, -1));
+
+        txtUsuarioCad.setToolTipText("Digite o nome do usuário");
+        jPanel2.add(txtUsuarioCad, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 45, 189, -1));
+
+        txtSenhaCad.setToolTipText("Digite a senha no novo usuário");
+        txtSenhaCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaCadActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtSenhaCad, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 83, 189, -1));
+
+        btnCadastrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login de Usuários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 18))); // NOI18N
+        jPanel3.setToolTipText("");
+        jPanel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Usuário");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Senha");
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 183;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 22);
-        jPanel2.add(txtSenha, gridBagConstraints);
 
         bntLogar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bntLogar.setText("Entrar");
@@ -106,14 +115,51 @@ public class FmLogin extends javax.swing.JFrame {
                 bntLogarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 19;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 34, 18, 0);
-        jPanel2.add(bntLogar, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(25, 25, 25)
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(bntLogar)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(bntLogar)
+                .addContainerGap())
+        );
+
+        btnAumentarTela.setText("Cadastrar");
+        btnAumentarTela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAumentarTelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,34 +167,61 @@ public class FmLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAumentarTela)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAumentarTela)
+                .addGap(19, 19, 19)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * Botão enviar comando de validação de login
- * @param evt 
- */
-    private void bntLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLogarActionPerformed
+     * Botão enviar comando de validação de login
+     *
+     * @param evt
+     */
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        cadastrarUsuario();
+        txtSenhaCad.setText("");
+        txtUsuarioCad.setText("");
+        this.setSize(new Dimension(410, 240));
 
-        validarLogin();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    }//GEN-LAST:event_bntLogarActionPerformed
+    private void txtSenhaCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaCadActionPerformed
+        // TODO add your handling code here:
+       cadastrarUsuario();
+    }//GEN-LAST:event_txtSenhaCadActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-         validarLogin();
+        validarLogin();
     }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void bntLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLogarActionPerformed
+        // TODO add your handling code here:
+        validarLogin();
+    }//GEN-LAST:event_bntLogarActionPerformed
+
+    private void btnAumentarTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarTelaActionPerformed
+        // TODO add your handling code here:
+        this.setSize(new Dimension(410, 400));
+    }//GEN-LAST:event_btnAumentarTelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,44 +257,87 @@ public class FmLogin extends javax.swing.JFrame {
             }
         });
     }
-/**
- * verifica no banco de dados se usuário e login são verdadeiros
- */
-   public void validarLogin() {
 
-         sql = "SELECT * FROM lojaderoupa.login WHERE usuario = ? AND senha= ? ";
+    /**
+     * verifica no banco de dados se usuário e login são verdadeiros
+     */
+    private void validarLogin() {
+        if ((txtUsuario.getText().isEmpty())
+                || (txtSenha.getText().isEmpty())) {
 
-        try {
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
 
-            this.stmt = conexao.prepareStatement(sql);
-            this.stmt.setString(1, txtUsuario.getText());
-            this.stmt.setString(2, txtSenha.getText());
-            this.rs = stmt.executeQuery();
-            
-            if(rs.next()){
-                FmPrincipalMdi fmprincipal=new FmPrincipalMdi();
-                fmprincipal.setVisible(true);
-                dispose();
-            /**
-             * retorna erro
-             */    
-            }else{
-                JOptionPane.showMessageDialog(null, "Favor verificar Usuario e Senha");
+        } else {
+            sql = "SELECT * FROM lojaderoupa.login WHERE usuario = ? AND senha= ? ";
+
+            try {
+
+                this.stmt = conexao.prepareStatement(sql);
+                this.stmt.setString(1, txtUsuario.getText());
+                this.stmt.setString(2, txtSenha.getText());
+                this.rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    FmPrincipalMdi fmprincipal = new FmPrincipalMdi();
+                    fmprincipal.setVisible(true);
+                    dispose();
+                    /**
+                     * retorna erro
+                     */
+                } else {
+                    JOptionPane.showMessageDialog(null, "Favor verificar Usuario e Senha");
+                }
+
+            } catch (SQLException u) {
+                JOptionPane.showMessageDialog(null, u);
             }
-
-        } catch (SQLException u) {
-            JOptionPane.showMessageDialog(null,u);
         }
-
     }
-  
+
+    /**
+     * Método de cadastro de novo usuario e senha
+     */
+    private void cadastrarUsuario() {
+
+        if ((txtUsuarioCad.getText().isEmpty())
+                || (txtSenhaCad.getText().isEmpty())) {
+
+            JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+
+        } else {
+            sql = "INSERT INTO lojaderoupa.login("
+                    + "usuario,senha) "
+                    + "VALUES(?,?)";
+
+            try {
+
+                stmt = conexao.prepareStatement(sql);
+                stmt.setString(1, txtUsuarioCad.getText());
+                stmt.setString(2, txtSenhaCad.getText());
+                stmt.execute();
+                stmt.close();
+
+            } catch (SQLException u) {
+                JOptionPane.showMessageDialog(null, u);
+
+            }
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntLogar;
+    private javax.swing.JButton btnAumentarTela;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JPasswordField txtSenhaCad;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtUsuarioCad;
     // End of variables declaration//GEN-END:variables
 }
