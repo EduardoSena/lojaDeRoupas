@@ -23,7 +23,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.setIconImage(new ImageIcon(getClass().getResource("ico.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("home.png")).getImage());
 
     }
 
@@ -252,7 +252,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
  */
     public void iconLoja(JInternalFrame iframe) {
         
-            ImageIcon icon = new ImageIcon(getClass().getResource("ico.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("home.png"));
             iframe.setFrameIcon(icon);
            
 
