@@ -1,0 +1,1 @@
+Na pasta chamada de Drivers, deve ser colocado o driver que é baixado no endereço https://jdbc.postgresql.org/download.html com a versão postgresql-9.4-1201.jdbc4.jar
