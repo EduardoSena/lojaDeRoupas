@@ -5,9 +5,9 @@
  */
 package br.com.loja.roupas.view;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
+
 
 /**
  *
@@ -19,7 +19,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
      * Método construtor da clsasse FmPrincipal com conexão com o banco
      */
     public FmPrincipalMdi() {
-
+       
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -149,7 +149,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         DesktopPanePrincipal.add(internoFrameCliente);
         internoFrameCliente.setVisible(true);
         centraliza(internoFrameCliente);
-         iconLoja(internoFrameCliente);
+        iconLoja(internoFrameCliente);
 
     }//GEN-LAST:event_subMenuClienteActionPerformed
 
@@ -165,7 +165,7 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
         DesktopPanePrincipal.add(internoFuncionario);
         internoFuncionario.setVisible(true);
         centraliza(internoFuncionario);
-         iconLoja(internoFuncionario);
+        iconLoja(internoFuncionario);
     }//GEN-LAST:event_subMenuFuncionarioActionPerformed
     /**
      * Botão de Menu produtos para abrir tela de lista produtos
@@ -246,15 +246,16 @@ public class FmPrincipalMdi extends javax.swing.JFrame {
             }
         });
     }
-/**
- * Método que coloca o icon personalizado no lugar do padrão do Java
- * @param iframe 
- */
+
+    /**
+     * Método que coloca o icon personalizado no lugar do padrão do Java
+     *
+     * @param iframe
+     */
     public void iconLoja(JInternalFrame iframe) {
-        
-            ImageIcon icon = new ImageIcon(getClass().getResource("home.png"));
-            iframe.setFrameIcon(icon);
-           
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("home.png"));
+        iframe.setFrameIcon(icon);
 
     }
 

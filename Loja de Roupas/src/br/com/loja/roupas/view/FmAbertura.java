@@ -6,6 +6,7 @@
 package br.com.loja.roupas.view;
 
 import br.com.loja.roupas.control.ComponenteTelaApresentacao;
+import br.com.loja.roupas.dao.CriarDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,6 +32,8 @@ public class FmAbertura extends javax.swing.JFrame {
      * Jframe e centraliza
      */
     public FmAbertura() {
+        //Cria o banco e as tabelas se não existe
+         CriarDB.criarBancoDeDados();
         // initComponents();
         Dimension dimensao = Toolkit.getDefaultToolkit().getScreenSize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +44,7 @@ public class FmAbertura extends javax.swing.JFrame {
         setContentPane(new ComponenteTelaApresentacao());
         getContentPane().setBackground(Color.BLACK);//pinta o fundo de preto
         setLayout(new BorderLayout());//centraliza a image
-        this.setIconImage(new ImageIcon(getClass().getResource("ico.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("home.png")).getImage());
         iniciarImagem();
         setVisible(true);
 

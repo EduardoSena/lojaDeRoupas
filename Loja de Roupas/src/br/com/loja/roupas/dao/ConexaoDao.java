@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
 public class ConexaoDao {
 
     private static String bancoDeDado = "jdbc:postgresql://localhost:5432/dbloja";
-    private static String driver = "org.postgresql.Driver";//"sun.jdbc.odbc.JdbcOdbcDriver";
+    private static String driver = "org.postgresql.Driver";
     private static String login = "postgres";
-    private static String senha = "181977dudu";
+    private static String senha = "123456";
 /**
  * Método construtor da classe conexaoDB
  * para fazer chamar o banco de dados PostgreSQL
