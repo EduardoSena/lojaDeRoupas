@@ -275,6 +275,11 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
 
         txtEstadoFunc.setToolTipText("Digite o uf do funcionário");
         txtEstadoFunc.setEnabled(false);
+        txtEstadoFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoFuncActionPerformed(evt);
+            }
+        });
 
         jComboBoxUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxUF.addActionListener(new java.awt.event.ActionListener() {
@@ -302,7 +307,9 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(btnSairFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel18)))
+                        .addComponent(jLabel18)
+                        .addGap(35, 35, 35)
+                        .addComponent(txtCidadeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
@@ -352,16 +359,10 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtComisao, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtEmailFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 263, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2FuncionarioLayout.createSequentialGroup()
-                                .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
-                                        .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
-                                        .addComponent(txtCidadeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(32, 32, 32)
+                                .addComponent(txtBairroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2FuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2FuncionarioLayout.createSequentialGroup()
                                         .addComponent(jLabel20)
@@ -440,7 +441,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addComponent(jPanel2Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -489,8 +490,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 || (txtEnderecoFunc.getText().isEmpty())
                 || (txtBairroFunc.getText().isEmpty())
                 || (txtCidadeFunc.getText().isEmpty())
-                || (txtCepFunc.getText().isEmpty())
-                || (txtEstadoFunc.getText().isEmpty())) {
+                || (txtCepFunc.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
 
         } else {
@@ -505,7 +505,8 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
             funcionario.setBairro(txtBairroFunc.getText().trim());
             funcionario.setCidade(txtCidadeFunc.getText().trim());
             funcionario.setCep(txtCepFunc.getText());
-            funcionario.setEstado(txtEstadoFunc.getText().trim());
+            //funcionario.setEstado(txtEstadoFunc.getText().trim());
+            funcionario.setEstado((String)jComboBoxUF.getSelectedItem());
             funcionario.setDatanasc(txtDataDeNascimentoFunc.getText());
             funcionario.setDataAdmissao(txtDataAdmissao.getText());
 
@@ -540,8 +541,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 || (txtEnderecoFunc.getText().isEmpty())
                 || (txtBairroFunc.getText().isEmpty())
                 || (txtCidadeFunc.getText().isEmpty())
-                || (txtCepFunc.getText().isEmpty())
-                || (txtEstadoFunc.getText().isEmpty())) {
+                || (txtCepFunc.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
             funcionario.setIdFuncionario(Integer.parseInt(txtCodigoFunc.getText()));
@@ -602,8 +602,7 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
                 || (txtEnderecoFunc.getText().isEmpty())
                 || (txtBairroFunc.getText().isEmpty())
                 || (txtCidadeFunc.getText().isEmpty())
-                || (txtCepFunc.getText().isEmpty())
-                || (txtEstadoFunc.getText().isEmpty())) {
+                || (txtCepFunc.getText().isEmpty())){
             JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
         } else {
             funcionario.setIdFuncionario(Integer.parseInt(txtCodigoFunc.getText()));
@@ -689,6 +688,11 @@ public class InternalFrameFuncionario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jComboBoxUFActionPerformed
+
+    private void txtEstadoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoFuncActionPerformed
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_txtEstadoFuncActionPerformed
     /**
      * Método static de pesquisa que retorna o nome adicionado no campo
      * txtNome.getText();

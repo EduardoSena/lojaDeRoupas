@@ -34,7 +34,7 @@ public class FmAbertura extends javax.swing.JFrame {
     public FmAbertura() {
         //Cria o banco e as tabelas se não existe
          CriarDB.criarBancoDeDados();
-        // initComponents();
+        
         Dimension dimensao = Toolkit.getDefaultToolkit().getScreenSize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(0, 0);
@@ -47,6 +47,7 @@ public class FmAbertura extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("home.png")).getImage());
         iniciarImagem();
         setVisible(true);
+        this.setTitle("Loja de Roupa");
 
         tempo.start();//Controla o tempo de execução em segundos
 
